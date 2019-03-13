@@ -1,0 +1,402 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+   name: {{ .Values.global.name }}
+   namespace: {{ .Values.global.clusterNamespace }}
+spec:
+   revisionHistoryLimit: 10
+   minReadySeconds: 10
+   strategy:
+      type: RollingUpdate
+      rollingUpdate:
+         maxUnavailable: 0
+         maxSurge: 1
+   replicas: 1
+   template:
+      metadata:
+         labels:
+            microservice: {{ .Values.global.name }}
+      spec:
+         imagePullSecrets:
+         - name: {{ .Values.global.imagePullSecret }}
+         containers:
+         - name: {{ .Values.global.name }}
+           image: registry.ng.bluemix.net/{{ .Values.global.registryNamespace }}/{{ .Values.global.name }}:{{ .Values.global.tag | default "last" }}
+           ports:
+           - containerPort: 443
+           env:
+           - name: xfeDbCosIamConfig
+             valueFrom:
+               configMapKeyRef:
+                  name: {{ .Release.Name}}-threatanalytics-configuration
+                  key: xfeDbCosIamConfig
+           - name: redis_host
+             valueFrom:
+               configMapKeyRef:
+                  name: {{ .Release.Name}}-threatanalytics-configuration
+                  key: redis_host
+           - name: redis_port
+             valueFrom:
+               configMapKeyRef:
+                  name: {{ .Release.Name}}-threatanalytics-configuration
+                  key: redis_port
+           - name: redis_auth
+             valueFrom:
+               configMapKeyRef:
+                  name: {{ .Release.Name}}-threatanalytics-configuration
+                  key: redis_auth
+           - name: kafkaSaalMechanism
+             valueFrom:
+               configMapKeyRef:
+                  name: {{ .Release.Name}}-threatanalytics-configuration
+                  key: kafkaSaalMechanism
+           - name: kafkaSecurityProtocol
+             valueFrom:
+               configMapKeyRef:
+                  name: {{ .Release.Name}}-threatanalytics-configuration
+                  key: kafkaSecurityProtocol
+           - name: consumerGroupId
+             valueFrom:
+               configMapKeyRef:
+                  name: {{ .Release.Name}}-threatanalytics-configuration
+                  key: consumerGroupId
+           - name: consumerTopics
+             valueFrom:
+               configMapKeyRef:
+                  name: {{ .Release.Name}}-threatanalytics-configuration
+                  key: consumerTopics
+           - name: consumerSupportedDataSources
+             valueFrom:
+               configMapKeyRef:
+                  name: {{ .Release.Name}}-threatanalytics-configuration
+                  key: consumerSupportedDataSources
+           - name: consumerRequiredAnalytic
+             valueFrom:
+               configMapKeyRef:
+                 name: {{ .Release.Name}}-threatanalytics-configuration
+                 key: consumerRequiredAnalytic
+           - name: consumerBucketMaxSize
+             valueFrom:
+               configMapKeyRef:
+                  name: {{ .Release.Name}}-threatanalytics-configuration
+                  key: consumerBucketMaxSize
+           - name: ingressDataSource
+             valueFrom:
+               configMapKeyRef:
+                  name: {{ .Release.Name}}-threatanalytics-configuration
+                  key: ingressDataSource
+           - name: egressDataSource
+             valueFrom:
+               configMapKeyRef:
+                  name: {{ .Release.Name}}-threatanalytics-configuration
+                  key: egressDataSource
+           - name: producerServiceId
+             valueFrom:
+               configMapKeyRef:
+                  name: {{ .Release.Name}}-threatanalytics-configuration
+                  key: producerServiceId
+           - name: producerTopic
+             valueFrom:
+               configMapKeyRef:
+                  name: {{ .Release.Name}}-threatanalytics-configuration
+                  key: producerTopic
+           - name: sendGoodIpAggregationsRate
+             valueFrom:
+               configMapKeyRef:
+                  name: {{ .Release.Name}}-threatanalytics-configuration
+                  key: sendGoodIpAggregationsRate
+           - name: updateXfeDbRate
+             valueFrom:
+               configMapKeyRef:
+                  name: {{ .Release.Name}}-threatanalytics-configuration
+                  key: updateXfeDbRate
+           - name: xfeDbObjectUrl
+             valueFrom:
+               configMapKeyRef:
+                  name: {{ .Release.Name}}-threatanalytics-configuration
+                  key: xfeDbObjectUrl
+           - name: xforceUrlLink
+             valueFrom:
+               configMapKeyRef:
+                  name: {{ .Release.Name}}-threatanalytics-configuration
+                  key: xforceUrlLink
+           - name: urlsReputationPullRate
+             valueFrom:
+               configMapKeyRef:
+                  name: {{ .Release.Name}}-threatanalytics-configuration
+                  key: urlsReputationPullRate
+           - name: urlsReputationSendRate
+             valueFrom:
+               configMapKeyRef:
+                  name: {{ .Release.Name}}-threatanalytics-configuration
+                  key: urlsReputationSendRate
+           - name: ingressBadGuyScoreThreshold
+             valueFrom:
+               configMapKeyRef:
+                 name: {{ .Release.Name}}-threatanalytics-configuration
+                 key: ingressBadGuyScoreThreshold
+           - name: egressBadGuyScoreThreshold
+             valueFrom:
+               configMapKeyRef:
+                 name: {{ .Release.Name}}-threatanalytics-configuration
+                 key: egressBadGuyScoreThreshold
+           - name: armadaBadGuyScoreThreshold
+             valueFrom:
+               configMapKeyRef:
+                 name: {{ .Release.Name}}-threatanalytics-configuration
+                 key: armadaBadGuyScoreThreshold
+           - name: highCertaintyScoreThreshold
+             valueFrom:
+               configMapKeyRef:
+                 name: {{ .Release.Name}}-threatanalytics-configuration
+                 key: highCertaintyScoreThreshold
+           - name: mediumCertaintyScoreThreshold
+             valueFrom:
+               configMapKeyRef:
+                 name: {{ .Release.Name}}-threatanalytics-configuration
+                 key: mediumCertaintyScoreThreshold
+           - name: podNameMaxLength
+             valueFrom:
+               configMapKeyRef:
+                  name: {{ .Release.Name}}-threatanalytics-configuration
+                  key: podNameMaxLength
+           - name: statisticsRate
+             valueFrom:
+               configMapKeyRef:
+                 name: {{ .Release.Name}}-threatanalytics-configuration
+                 key: statisticsRate
+           - name: monitoringPort
+             valueFrom:
+               configMapKeyRef:
+                 name: {{ .Release.Name}}-threatanalytics-configuration
+                 key: monitoringPort
+           - name: distributed_vulnerability_scan_switch
+             valueFrom:
+               configMapKeyRef:
+                  name: {{ .Release.Name}}-threatanalytics-configuration
+                  key: distributed_vulnerability_scan_switch
+           - name: clients_multiple_ips_switch
+             valueFrom:
+               configMapKeyRef:
+                  name: {{ .Release.Name}}-threatanalytics-configuration
+                  key: clients_multiple_ips_switch
+           - name: reconnaissance_multi_switch
+             valueFrom:
+               configMapKeyRef:
+                  name: {{ .Release.Name}}-threatanalytics-configuration
+                  key: reconnaissance_multi_switch
+           - name: vulnerability_scan_switch
+             valueFrom:
+               configMapKeyRef:
+                  name: {{ .Release.Name}}-threatanalytics-configuration
+                  key: vulnerability_scan_switch
+           - name: client_multiple_flows_switch
+             valueFrom:
+               configMapKeyRef:
+                  name: {{ .Release.Name}}-threatanalytics-configuration
+                  key: client_multiple_flows_switch
+           - name: reconnaissance_switch
+             valueFrom:
+               configMapKeyRef:
+                  name: {{ .Release.Name}}-threatanalytics-configuration
+                  key: reconnaissance_switch
+           - name: client_weaponized_total_switch
+             valueFrom:
+               configMapKeyRef:
+                  name: {{ .Release.Name}}-threatanalytics-configuration
+                  key: client_weaponized_total_switch
+           - name: client_switch
+             valueFrom:
+               configMapKeyRef:
+                  name: {{ .Release.Name}}-threatanalytics-configuration
+                  key: client_switch
+           - name: client_response_switch
+             valueFrom:
+               configMapKeyRef:
+                  name: {{ .Release.Name}}-threatanalytics-configuration
+                  key: client_response_switch
+           - name: client_weaponized_switch
+             valueFrom:
+               configMapKeyRef:
+                  name: {{ .Release.Name}}-threatanalytics-configuration
+                  key: client_weaponized_switch
+           - name: server_suspected_ratio_switch
+             valueFrom:
+               configMapKeyRef:
+                  name: {{ .Release.Name}}-threatanalytics-configuration
+                  key: server_suspected_ratio_switch
+           - name: server_response_multiple_ips_switch
+             valueFrom:
+               configMapKeyRef:
+                  name: {{ .Release.Name}}-threatanalytics-configuration
+                  key: server_response_multiple_ips_switch
+           - name: data_extrusion_multi_switch
+             valueFrom:
+               configMapKeyRef:
+                  name: {{ .Release.Name}}-threatanalytics-configuration
+                  key: data_extrusion_multi_switch
+           - name: server_weaponized_total_multi_switch
+             valueFrom:
+               configMapKeyRef:
+                  name: {{ .Release.Name}}-threatanalytics-configuration
+                  key: server_weaponized_total_multi_switch
+           - name: server_response_multiple_flows_switch
+             valueFrom:
+               configMapKeyRef:
+                  name: {{ .Release.Name}}-threatanalytics-configuration
+                  key: server_response_multiple_flows_switch
+           - name: data_extrusion_switch
+             valueFrom:
+               configMapKeyRef:
+                  name: {{ .Release.Name}}-threatanalytics-configuration
+                  key: data_extrusion_switch
+           - name: server_weaponized_total_switch
+             valueFrom:
+               configMapKeyRef:
+                  name: {{ .Release.Name}}-threatanalytics-configuration
+                  key: server_weaponized_total_switch
+           - name: server_switch
+             valueFrom:
+               configMapKeyRef:
+                  name: {{ .Release.Name}}-threatanalytics-configuration
+                  key: server_switch
+           - name: server_response_switch
+             valueFrom:
+               configMapKeyRef:
+                  name: {{ .Release.Name}}-threatanalytics-configuration
+                  key: server_response_switch
+           - name: armada_ip_switch
+             valueFrom:
+               configMapKeyRef:
+                  name: {{ .Release.Name}}-threatanalytics-configuration
+                  key: armada_ip_switch
+           - name: armada_url_switch
+             valueFrom:
+               configMapKeyRef:
+                  name: {{ .Release.Name}}-threatanalytics-configuration
+                  key: armada_url_switch
+           - name: ingress_num_different_bad_ips_approached_to_open_port
+             valueFrom:
+               configMapKeyRef:
+                  name: {{ .Release.Name}}-threatanalytics-configuration
+                  key: ingress_num_different_bad_ips_approached_to_open_port
+           - name: ingress_num_different_bad_ips_approached_to_close_port
+             valueFrom:
+               configMapKeyRef:
+                  name: {{ .Release.Name}}-threatanalytics-configuration
+                  key: ingress_num_different_bad_ips_approached_to_close_port
+           - name: ingress_num_different_closed_ports_accessed_by_bad_ips
+             valueFrom:
+               configMapKeyRef:
+                  name: {{ .Release.Name}}-threatanalytics-configuration
+                  key: ingress_num_different_closed_ports_accessed_by_bad_ips
+           - name: ingress_num_approaches_from_specific_bad_ip_to_open_port
+             valueFrom:
+               configMapKeyRef:
+                  name: {{ .Release.Name}}-threatanalytics-configuration
+                  key: ingress_num_approaches_from_specific_bad_ip_to_open_port
+           - name: ingress_num_approaches_from_specific_bad_ip_to_close_port
+             valueFrom:
+               configMapKeyRef:
+                  name: {{ .Release.Name}}-threatanalytics-configuration
+                  key: ingress_num_approaches_from_specific_bad_ip_to_close_port
+           - name: ingress_num_different_closed_ports_accessed_by_specific_bad_ip
+             valueFrom:
+               configMapKeyRef:
+                  name: {{ .Release.Name}}-threatanalytics-configuration
+                  key: ingress_num_different_closed_ports_accessed_by_specific_bad_ip
+           - name: ingress_total_num_in_bytes_from_specific_bad_ip
+             valueFrom:
+               configMapKeyRef:
+                  name: {{ .Release.Name}}-threatanalytics-configuration
+                  key: ingress_total_num_in_bytes_from_specific_bad_ip
+           - name: ingress_large_num_in_bytes_in_single_flow
+             valueFrom:
+               configMapKeyRef:
+                  name: {{ .Release.Name}}-threatanalytics-configuration
+                  key: ingress_large_num_in_bytes_in_single_flow
+           - name: egress_percent_bad_approaches
+             valueFrom:
+               configMapKeyRef:
+                  name: {{ .Release.Name}}-threatanalytics-configuration
+                  key: egress_percent_bad_approaches
+           - name: egress_suspected_ratio_minimal_overall_approaches
+             valueFrom:
+               configMapKeyRef:
+                  name: {{ .Release.Name}}-threatanalytics-configuration
+                  key: egress_suspected_ratio_minimal_overall_approaches
+           - name: egress_num_different_bad_ips_approached_to_open_port
+             valueFrom:
+               configMapKeyRef:
+                  name: {{ .Release.Name}}-threatanalytics-configuration
+                  key: egress_num_different_bad_ips_approached_to_open_port
+           - name: egress_total_num_out_bytes_to_bad_ips
+             valueFrom:
+               configMapKeyRef:
+                  name: {{ .Release.Name}}-threatanalytics-configuration
+                  key: egress_total_num_out_bytes_to_bad_ips
+           - name: egress_total_num_in_bytes_from_bad_ips
+             valueFrom:
+               configMapKeyRef:
+                  name: {{ .Release.Name}}-threatanalytics-configuration
+                  key: egress_total_num_in_bytes_from_bad_ips
+           - name: egress_num_approaches_to_specific_bad_ip_to_open_port
+             valueFrom:
+               configMapKeyRef:
+                  name: {{ .Release.Name}}-threatanalytics-configuration
+                  key: egress_num_approaches_to_specific_bad_ip_to_open_port
+           - name: egress_total_num_out_bytes_to_specific_bad_ip
+             valueFrom:
+               configMapKeyRef:
+                  name: {{ .Release.Name}}-threatanalytics-configuration
+                  key: egress_total_num_out_bytes_to_specific_bad_ip
+           - name: egress_total_num_in_bytes_from_specific_bad_ip
+             valueFrom:
+               configMapKeyRef:
+                  name: {{ .Release.Name}}-threatanalytics-configuration
+                  key: egress_total_num_in_bytes_from_specific_bad_ip
+           - name: LOG_LEVEL
+             valueFrom:
+               configMapKeyRef:
+                  name: {{ .Release.Name}}-threatanalytics-configuration
+                  key: log_level
+           - name: redisDbNum
+             valueFrom:
+               configMapKeyRef:
+                  name: {{ .Release.Name}}-threatanalytics-configuration
+                  key: redisDbNum
+           - name: kafkaMetadataBrokerList
+             valueFrom:
+               configMapKeyRef:
+                  name: {{ .Release.Name}}-threatanalytics-configuration
+                  key: kafkaMetadataBrokerList
+           - name: kafkaSslCaLocation
+             valueFrom:
+               configMapKeyRef:
+                  name: {{ .Release.Name}}-threatanalytics-configuration
+                  key: kafkaSslCaLocation
+           - name: minioEndpoint
+             valueFrom:
+               configMapKeyRef:
+                 name: {{ .Release.Name}}-threatanalytics-configuration
+                 key: minioEndpoint
+           - name: minioRegion
+             valueFrom:
+               configMapKeyRef:
+                 name: {{ .Release.Name}}-threatanalytics-configuration
+                 key: minioRegion
+           - name: accessKey
+             valueFrom:
+               configMapKeyRef:
+                 name: {{ .Release.Name}}-threatanalytics-configuration
+                 key: accessKey
+           - name: secretKey
+             valueFrom:
+               configMapKeyRef:
+                 name: {{ .Release.Name}}-threatanalytics-configuration
+                 key: secretKey
+           - name: useOS
+             valueFrom:
+               configMapKeyRef:
+                 name: {{ .Release.Name}}-threatanalytics-configuration
+                 key: useOS

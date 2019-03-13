@@ -1,0 +1,64 @@
+apiVersion: v1
+entries:
+  datacontrol:
+  - apiVersion: v1
+    appVersion: 0.0.1
+    created: 2019-03-13T09:04:12.561380122Z
+    description: This chart manages the Data Control micro-service.
+    digest: e5c3def327b89fd815c7ea04bee64ef7025554d7d394264bf1f43435e9e2a6ce
+    icon: https://avatars.github.ibm.com/u/56137?s=400
+    maintainers:
+    - email: ashishth@in.ibm.com
+      name: Ashish K Thakur
+    name: datacontrol
+    urls:
+    - datacontrol-0.0.1.tgz
+    version: 0.0.1
+  ibm-skydive-dev:
+  - apiVersion: v1
+    appVersion: 0.20.0
+    created: 2019-03-13T09:04:12.574696356Z
+    description: Skydive is an open source real-time network topology and protocols
+      analyzer.
+    digest: b182087e333cd2e20b3b4a1562bdce103cf181877764a42d43a2a161e031c872
+    home: https://skydive-project.github.io/skydive/
+    icon: https://avatars2.githubusercontent.com/u/19912486?s=400&v=4
+    keywords:
+    - Skydive
+    - Research
+    - amd64
+    - ppc64le
+    - s390x
+    - Limited
+    - OpenSource
+    - ICP
+    - IKS
+    - Network
+    - DevOps
+    - Analytics
+    kubeVersion: '>=1.10.3'
+    maintainers:
+    - email: cognetive.support@il.ibm.com
+      name: IBM Research (HRL)
+    name: ibm-skydive-dev
+    sources:
+    - https://github.com/skydive-project/skydive/tree/master/contrib
+    tillerVersion: '>=2.6.0'
+    urls:
+    - ibm-skydive-dev-1.0.4.tgz
+    version: 1.0.4
+  threatanalytics-v2:
+  - apiVersion: v1
+    appVersion: 0.0.1
+    created: 2019-03-13T09:04:12.575219355Z
+    description: This chart manages the Threat Intelligence Analytics micro-service.
+    digest: ce49d41ab2b69ba030037edd51de7ad9830d6cbf5490da972f60c7312c38919e
+    icon: https://avatars.github.ibm.com/u/56137?s=400
+    maintainers:
+    - email: iadar@il.ibm.com
+      name: Idan Adar
+    name: threatanalytics-v2
+    urls:
+    - threatanalytics-v2-0.0.1.tgz
+    version: 0.0.1
+generated: 2019-03-13T09:04:12.559284393Z

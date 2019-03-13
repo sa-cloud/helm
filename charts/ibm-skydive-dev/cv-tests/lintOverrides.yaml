@@ -1,0 +1,8 @@
+ignoreMessages:
+  - '\[ERROR\] Deployment should not be configured to use the HostNetwork'
+  - '\[ERROR\] Deployment volumes should not be using hostPath'
+  - '\[ERROR\] Container is being run with privileged access'
+  - '\[ERROR\] templates/deployment-agents.yaml: found privileged container: container at spec.template.spec.containers\[0\] has privileges'
+  - '\[WARNING\] No cv-tests with an application-test\/runTests.sh exist'
+  - '\[INFO\] \"ICP\" or \"IBM Cloud Private\" is referenced'
+  - '\[INFO\] No version of SCH'

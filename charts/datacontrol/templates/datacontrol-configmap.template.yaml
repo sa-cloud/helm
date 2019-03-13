@@ -1,0 +1,99 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Release.Name }}-datacontrol-configuration
+  namespace: {{ .Values.global.clusterNamespace }}
+  imagePullSecret: {{ .Values.global.imagePullSecret }}
+data:
+  log_level: {{ index .Values.global.log_level .Values.global.env | quote }}
+  statisticsRate: {{ .Values.global.statisticsRate | quote }}
+  accountsUpdatesTopic: {{ .Values.global.accountsUpdatesTopic | quote }}
+  accountsUpdatesGroupIdPrefix: {{ .Values.global.accountsUpdatesGroupIdPrefix | quote }}
+  billingTopic: {{ .Values.global.billingTopic | quote }}
+  billerCycleDuration: {{ .Values.global.billerCycleDuration | quote }}
+  billingExpirationTime: {{ .Values.global.billingExpirationTime | quote }}
+  updateDiscoverersRate: {{ .Values.global.updateDiscoverersRate | quote }}
+  dataSourcesTopicsMapping: {{ .Values.global.dataSourcesTopicsMapping | quote }}
+  supportedCollectorIds: {{ .Values.global.supportedCollectorIds | quote }}
+  supportedRegions: {{ .Values.global.supportedRegions | quote }}
+  observedEntityIdMaxLength: {{ .Values.global.observedEntityIdMaxLength | quote }}
+  readStartLimit: {{ .Values.global.readStartLimit | quote }}
+  readEndLimit: {{ .Values.global.readEndLimit | quote }}
+  minStreamDiscoveryAttemptPeriod: {{ .Values.global.minStreamDiscoveryAttemptPeriod | quote }}
+  maxStreamDiscoveryAttemptPeriod: {{ .Values.global.maxStreamDiscoveryAttemptPeriod | quote }}
+  streamDirHierarchyLevel: {{ .Values.global.streamDirHierarchyLevel | quote }}
+  maxContinuousObjectDiscoveries: {{ .Values.global.maxContinuousObjectDiscoveries | quote }}
+  objectSeqNumDigits: {{ .Values.global.objectSeqNumDigits | quote }}
+  streamDiscoveryAfterSuccessfulObjectDiscoveryPeriod: {{ .Values.global.streamDiscoveryAfterSuccessfulObjectDiscoveryPeriod | quote }}
+  objectsDiscoveryRate: {{ .Values.global.objectsDiscoveryRate | quote }}
+  objectMaxNumRecords: {{ .Values.global.objectMaxNumRecords | quote }}
+  objectMaxNumBytes: {{ .Values.global.objectMaxNumBytes | quote }}
+  maxAverageBytesPerRecord: {{ .Values.global.maxAverageBytesPerRecord | quote }}
+  headersMaxLength: {{ .Values.global.headersMaxLength | quote }}
+  headersPrefix: {{ .Values.global.headersPrefix | quote }}
+  accountsApiEndpoint: {{ .Values.global.accountsApiEndpoint | quote }}
+  securityAdvisorShardId: {{ .Values.global.securityAdvisorShardId | quote }}
+  accountsApiTimeout: {{ .Values.global.accountsApiTimeout | quote }}
+  activeDiscovererThreshold: {{ .Values.global.activeDiscovererThreshold | quote }}
+  statusUpdaterCycleDuration: {{ .Values.global.statusUpdaterCycleDuration | quote }}
+  accountsInfoWriteUpdatesTopic: {{ .Values.global.accountsInfoWriteUpdatesTopic | quote }}
+  monitoringPort: {{ .Values.global.monitoringPort | quote }}
+  refreshAccountsRate: {{ .Values.global.refreshAccountsRate | quote }}
+  accountsUpdatesCheckRate: {{ .Values.global.accountsUpdatesCheckRate | quote }}
+  accountsUpdatesCheckMinCycleDuration: {{ .Values.global.accountsUpdatesCheckMinCycleDuration | quote }}
+{{- if .Values.global.standalone }}
+  minioEndpoint: {{ .Values.global.minioEndpoint | quote }}
+{{- else }}
+  minioEndpoint: {{ .Release.Name | quote }}
+{{- end }}
+  minioRegion: {{ .Values.global.minioRegion | quote }}
+  accessKey: {{ .Values.global.accessKey | quote }}
+  secretKey: {{ .Values.global.secretKey | quote }}
+  #### Common configuration
+  # See common-values.yaml and _common-configmap.tpl for all available common properties.
+  # https://github.ibm.com/security-services/security-advisor-devops/tree/master/kubernetes/helm
+{{- if .Values.global.standalone }}
+  kafkaMetadataBrokerList: {{ .Values.global.kafkaMetadataBrokerList | quote }}
+{{- else }}
+  kafkaMetadataBrokerList: {{ .Release.Name}}-kafka-headless:9092
+{{- end }}
+  kafkaSslCaLocation: {{ .Values.global.kafkaSslCaLocation | quote }}
+  redisDbNum: {{ .Values.global.redisDbNum | quote }}
+  redisDbNumDC: {{ .Values.global.redisDbNumDC | quote }}
+{{- if .Values.global.kafkaSaslUsername }}
+  kafkaSaslUsername: {{ .Values.global.kafkaSaslUsername | quote }}
+  kafkaSaslPassword: {{ .Values.global.kafkaSaslPassword | quote }}
+{{- end }}
+{{- if .Values.global.kafkaSaalMechanism }}
+  kafkaSaalMechanism: {{ .Values.global.kafkaSaalMechanism | quote }}
+{{- end }}
+{{- if .Values.global.kafkaSecurityProtocol }}
+  kafkaSecurityProtocol: {{ .Values.global.kafkaSecurityProtocol | quote }}
+{{- end }}
+{{- if .Values.global.kafkaSaalMechanism }}
+  kafkaSslTruststoreLocation: {{ .Values.global.kafkaSslTruststoreLocation | quote }}
+{{- end }}
+{{- if .Values.global.kafkaSaalMechanism }}
+  kafkaSslTruststorePassword: {{ .Values.global.kafkaSslTruststorePassword | quote }}
+{{- end }}
+{{- if .Values.global.kafkaSaalMechanism }}
+  kafkaSslKeyPassword: {{ .Values.global.kafkaSslKeyPassword | quote }}
+{{- end }}
+{{- if .Values.global.kafkaSaalMechanism }}
+  kafkaSslKeystorePassword: {{ .Values.global.kafkaSslKeystorePassword | quote }}
+{{- end }}
+{{- if .Values.global.kafkaSaalMechanism }}
+  kafkaSslKeystoreLocation: {{ .Values.global.kafkaSslKeystoreLocation | quote }}
+{{- end }}
+{{- if .Values.global.standalone }}
+  dc_redis_host: {{ .Values.global.dc_redis_host | quote }}
+{{- else }}
+  dc_redis_host: {{ .Release.Name}}-ibm-redis-ha-dev-master-svc
+{{- end }}
+  dc_redis_port: {{ .Values.global.dc_redis_port | quote }}
+  dc_redis_auth: {{ .Values.global.dc_redis_auth | quote }}
+  iamTokenValidationURL: {{ .Values.global.iamTokenValidationURL | quote }}
+  iamPDPURL: {{ .Values.global.iamPDPURL | quote }}
+  iamTokenURL: {{ .Values.global.iamTokenURL | quote }}
+  iamPAPURL: {{ .Values.global.iamPAPURL | quote }}
+  iamConfig: {{ .Values.global.iamConfig | quote }}

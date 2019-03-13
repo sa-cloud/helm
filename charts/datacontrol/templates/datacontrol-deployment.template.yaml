@@ -1,0 +1,320 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+   name: {{ .Values.global.name }}
+   namespace: {{ .Values.global.clusterNamespace }}
+spec:
+   revisionHistoryLimit: 10
+   minReadySeconds: 10
+   strategy:
+      type: RollingUpdate
+      rollingUpdate:
+         maxUnavailable: 0
+         maxSurge: 3
+   replicas: 1
+   template:
+      metadata:
+         labels:
+            microservice: {{ .Values.global.name }}
+      spec:
+         imagePullSecrets:
+         - name: {{ .Values.global.imagePullSecret }}
+         containers:
+         - name: {{ .Values.global.name }}
+           image: registry.ng.bluemix.net/{{ .Values.global.registryNamespace }}/{{ .Values.global.name }}:{{ .Values.global.tag | default "last" }}
+           ports:
+           - containerPort: 443
+           env:
+           - name: LOG_LEVEL
+             valueFrom:
+               configMapKeyRef:
+                  name: {{ .Release.Name }}-datacontrol-configuration
+                  key: log_level
+           - name: statisticsRate
+             valueFrom:
+               configMapKeyRef:
+                  name: {{ .Release.Name }}-datacontrol-configuration
+                  key: statisticsRate
+           - name: accountsUpdatesTopic
+             valueFrom:
+               configMapKeyRef:
+                  name: {{ .Release.Name }}-datacontrol-configuration
+                  key: accountsUpdatesTopic
+           - name: accountsUpdatesGroupIdPrefix
+             valueFrom:
+               configMapKeyRef:
+                 name: {{ .Release.Name }}-datacontrol-configuration
+                 key: accountsUpdatesGroupIdPrefix
+           - name: billingTopic
+             valueFrom:
+               configMapKeyRef:
+                  name: {{ .Release.Name }}-datacontrol-configuration
+                  key: billingTopic
+           - name: billerCycleDuration
+             valueFrom:
+               configMapKeyRef:
+                  name: {{ .Release.Name }}-datacontrol-configuration
+                  key: billerCycleDuration
+           - name: billingExpirationTime
+             valueFrom:
+               configMapKeyRef:
+                 name: {{ .Release.Name }}-datacontrol-configuration
+                 key: billingExpirationTime
+           - name: updateDiscoverersRate
+             valueFrom:
+               configMapKeyRef:
+                  name: {{ .Release.Name }}-datacontrol-configuration
+                  key: updateDiscoverersRate
+           - name: dataSourcesTopicsMapping
+             valueFrom:
+               configMapKeyRef:
+                  name: {{ .Release.Name }}-datacontrol-configuration
+                  key: dataSourcesTopicsMapping
+           - name: supportedCollectorIds
+             valueFrom:
+               configMapKeyRef:
+                  name: {{ .Release.Name }}-datacontrol-configuration
+                  key: supportedCollectorIds
+           - name: supportedRegions
+             valueFrom:
+               configMapKeyRef:
+                 name: {{ .Release.Name }}-datacontrol-configuration
+                 key: supportedRegions
+           - name: observedEntityIdMaxLength
+             valueFrom:
+               configMapKeyRef:
+                 name: {{ .Release.Name }}-datacontrol-configuration
+                 key: observedEntityIdMaxLength
+           - name: readStartLimit
+             valueFrom:
+               configMapKeyRef:
+                  name: {{ .Release.Name }}-datacontrol-configuration
+                  key: readStartLimit
+           - name: readEndLimit
+             valueFrom:
+               configMapKeyRef:
+                  name: {{ .Release.Name }}-datacontrol-configuration
+                  key: readEndLimit
+           - name: minStreamDiscoveryAttemptPeriod
+             valueFrom:
+               configMapKeyRef:
+                  name: {{ .Release.Name }}-datacontrol-configuration
+                  key: minStreamDiscoveryAttemptPeriod
+           - name: maxStreamDiscoveryAttemptPeriod
+             valueFrom:
+               configMapKeyRef:
+                  name: {{ .Release.Name }}-datacontrol-configuration
+                  key: maxStreamDiscoveryAttemptPeriod
+           - name: streamDirHierarchyLevel
+             valueFrom:
+               configMapKeyRef:
+                  name: {{ .Release.Name }}-datacontrol-configuration
+                  key: streamDirHierarchyLevel
+           - name: maxContinuousObjectDiscoveries
+             valueFrom:
+               configMapKeyRef:
+                  name: {{ .Release.Name }}-datacontrol-configuration
+                  key: maxContinuousObjectDiscoveries
+           - name: objectSeqNumDigits
+             valueFrom:
+               configMapKeyRef:
+                  name: {{ .Release.Name }}-datacontrol-configuration
+                  key: objectSeqNumDigits
+           - name: streamDiscoveryAfterSuccessfulObjectDiscoveryPeriod
+             valueFrom:
+               configMapKeyRef:
+                  name: {{ .Release.Name }}-datacontrol-configuration
+                  key: streamDiscoveryAfterSuccessfulObjectDiscoveryPeriod
+           - name: objectsDiscoveryRate
+             valueFrom:
+               configMapKeyRef:
+                  name: {{ .Release.Name }}-datacontrol-configuration
+                  key: objectsDiscoveryRate
+           - name: objectMaxNumRecords
+             valueFrom:
+               configMapKeyRef:
+                  name: {{ .Release.Name }}-datacontrol-configuration
+                  key: objectMaxNumRecords
+           - name: objectMaxNumBytes
+             valueFrom:
+               configMapKeyRef:
+                  name: {{ .Release.Name }}-datacontrol-configuration
+                  key: objectMaxNumBytes
+           - name: maxAverageBytesPerRecord
+             valueFrom:
+               configMapKeyRef:
+                 name: {{ .Release.Name }}-datacontrol-configuration
+                 key: maxAverageBytesPerRecord
+           - name: headersMaxLength
+             valueFrom:
+               configMapKeyRef:
+                  name: {{ .Release.Name }}-datacontrol-configuration
+                  key: headersMaxLength
+           - name: headersPrefix
+             valueFrom:
+               configMapKeyRef:
+                  name: {{ .Release.Name }}-datacontrol-configuration
+                  key: headersPrefix
+           - name: accountsApiEndpoint
+             valueFrom:
+               configMapKeyRef:
+                 name: {{ .Release.Name }}-datacontrol-configuration
+                 key: accountsApiEndpoint
+           - name: securityAdvisorShardId
+             valueFrom:
+               configMapKeyRef:
+                 name: {{ .Release.Name }}-datacontrol-configuration
+                 key: securityAdvisorShardId
+           - name: accountsApiTimeout
+             valueFrom:
+               configMapKeyRef:
+                 name: {{ .Release.Name }}-datacontrol-configuration
+                 key: accountsApiTimeout
+           - name: activeDiscovererThreshold
+             valueFrom:
+               configMapKeyRef:
+                 name: {{ .Release.Name }}-datacontrol-configuration
+                 key: activeDiscovererThreshold
+           - name: statusUpdaterCycleDuration
+             valueFrom:
+               configMapKeyRef:
+                 name: {{ .Release.Name }}-datacontrol-configuration
+                 key: statusUpdaterCycleDuration
+           - name: accountsInfoWriteUpdatesTopic
+             valueFrom:
+               configMapKeyRef:
+                 name: {{ .Release.Name }}-datacontrol-configuration
+                 key: accountsInfoWriteUpdatesTopic
+           - name: monitoringPort
+             valueFrom:
+               configMapKeyRef:
+                 name: {{ .Release.Name }}-datacontrol-configuration
+                 key: monitoringPort
+           - name: refreshAccountsRate
+             valueFrom:
+               configMapKeyRef:
+                 name: {{ .Release.Name }}-datacontrol-configuration
+                 key: refreshAccountsRate
+           - name: accountsUpdatesCheckRate
+             valueFrom:
+               configMapKeyRef:
+                 name: {{ .Release.Name }}-datacontrol-configuration
+                 key: accountsUpdatesCheckRate
+           - name: accountsUpdatesCheckMinCycleDuration
+             valueFrom:
+               configMapKeyRef:
+                 name: {{ .Release.Name }}-datacontrol-configuration
+                 key: accountsUpdatesCheckMinCycleDuration
+           - name: secretKey
+             valueFrom:
+               configMapKeyRef:
+                 name: {{ .Release.Name }}-datacontrol-configuration
+                 key: secretKey
+           - name: accessKey
+             valueFrom:
+               configMapKeyRef:
+                 name: {{ .Release.Name }}-datacontrol-configuration
+                 key: accessKey
+           - name: minioRegion
+             valueFrom:
+               configMapKeyRef:
+                 name: {{ .Release.Name }}-datacontrol-configuration
+                 key: minioRegion
+           - name: minioEndpoint
+             valueFrom:
+               configMapKeyRef:
+                 name: {{ .Release.Name }}-datacontrol-configuration
+                 key: minioEndpoint
+#### ENVIRONMENT VARIABLES - COMMON CONFIGURATION
+           - name: kafkaMetadataBrokerList
+             valueFrom:
+               configMapKeyRef:
+                  name: {{ .Release.Name }}-datacontrol-configuration
+                  key: kafkaMetadataBrokerList
+           - name: kafkaSslCaLocation
+             valueFrom:
+               configMapKeyRef:
+                  name: {{ .Release.Name }}-datacontrol-configuration
+                  key: kafkaSslCaLocation
+           - name: redisDbNum
+             valueFrom:
+               configMapKeyRef:
+                  name: {{ .Release.Name }}-datacontrol-configuration
+                  key: redisDbNumDC
+           - name: iamTokenValidationURL
+             valueFrom:
+               configMapKeyRef:
+                 name: {{ .Release.Name }}-datacontrol-configuration
+                 key: iamTokenValidationURL
+           - name: iamPDPURL
+             valueFrom:
+               configMapKeyRef:
+                 name: {{ .Release.Name }}-datacontrol-configuration
+                 key: iamPDPURL
+           - name: iamTokenURL
+             valueFrom:
+               configMapKeyRef:
+                 name: {{ .Release.Name }}-datacontrol-configuration
+                 key: iamTokenURL
+           - name: iamPAPURL
+             valueFrom:
+               configMapKeyRef:
+                 name: {{ .Release.Name }}-datacontrol-configuration
+                 key: iamPAPURL
+           - name: kafkaSaalMechanism
+             valueFrom:
+               configMapKeyRef:
+                  name: {{ .Release.Name }}-datacontrol-configuration
+                  key: kafkaSaalMechanism
+           - name: kafkaSecurityProtocol
+             valueFrom:
+               configMapKeyRef:
+                  name: {{ .Release.Name }}-datacontrol-configuration
+                  key: kafkaSecurityProtocol
+           - name: kafkaSslTruststorePassword
+             valueFrom:
+               configMapKeyRef:
+                  name: {{ .Release.Name }}-datacontrol-configuration
+                  key: kafkaSslTruststorePassword
+           - name: kafkaSslTruststoreLocation
+             valueFrom:
+               configMapKeyRef:
+                  name: {{ .Release.Name }}-datacontrol-configuration
+                  key: kafkaSslTruststoreLocation
+           - name: kafkaSslKeyPassword
+             valueFrom:
+               configMapKeyRef:
+                  name: {{ .Release.Name }}-datacontrol-configuration
+                  key: kafkaSslKeyPassword
+           - name: kafkaSslKeystorePassword
+             valueFrom:
+               configMapKeyRef:
+                  name: {{ .Release.Name }}-datacontrol-configuration
+                  key: kafkaSslKeystorePassword
+           - name: kafkaSslKeystoreLocation
+             valueFrom:
+               configMapKeyRef:
+                  name: {{ .Release.Name }}-datacontrol-configuration
+                  key: kafkaSslKeystoreLocation
+#### ENVIRONMENT VARIABLES - REDIS SECRETS
+           - name: redis_host
+             valueFrom:
+               configMapKeyRef:
+                  name: {{ .Release.Name }}-datacontrol-configuration
+                  key: dc_redis_host
+           - name: redis_port
+             valueFrom:
+               configMapKeyRef:
+                  name: {{ .Release.Name }}-datacontrol-configuration
+                  key: dc_redis_port
+           - name: redis_auth
+             valueFrom:
+               configMapKeyRef:
+                  name: {{ .Release.Name }}-datacontrol-configuration
+                  key: dc_redis_auth
+#### ENVIRONMENT VARIABLES - IAM SECRETS
+           - name: iamConfig
+             valueFrom:
+               configMapKeyRef:
+                  name: {{ .Release.Name }}-datacontrol-configuration
+                  key: iamConfig

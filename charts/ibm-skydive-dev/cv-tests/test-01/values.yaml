@@ -1,0 +1,6 @@
+arch: 
+  amd64: "3 - Most preferred"
+  
+image:
+  repository: ibmcom/skydive
+  tag: "0.20.0"

@@ -1,0 +1,100 @@
+---
+minio:
+  existingSecret: sa-icp
+  persistence:
+    storageClass: glusterfs
+  minioConfig:
+    region: dontcare
+  defaultBucket:
+    enabled: true
+    name: icptest
+
+ibm-skydive-dev:
+  image:
+    repository: cognetive/skydive
+    tag: amd64-latest
+  env:
+    # For debug purposes
+    - name: SKYDIVE_LOGGING_LEVEL
+      value: "INFO"
+
+    # Send flow information to defender back-end
+    - name: SKYDIVE_ANALYZER_FLOW_BACKEND
+      value: "defender"
+
+    # We do not propagate the topology information, so just keep this in memory (this is being deleted over time)
+    - name: SKYDIVE_ANALYZER_TOPOLOGY_BACKEND
+      value: "memory"
+
+    # Maximum number of flows per object
+    - name: SKYDIVE_STORAGE_DEFENDER_MAX_FLOWS_PER_OBJECT
+      value: "6000"
+
+    # Flows to be updated every 30 seconds (thus, every 60 seconds to defender)
+    - name: SKYDIVE_FLOW_UPDATE
+      value: "30"
+
+    # Maximum seconds per object
+    - name: SKYDIVE_STORAGE_DEFENDER_MAX_SECONDS_PER_OBJECT
+      value: "60"
+
+    # Maximum seconds per stream
+    - name: SKYDIVE_STORAGE_DEFENDER_MAX_SECONDS_PER_STREAM
+      value: "600"
+
+    # Object-storage endpoint (COS / S3)
+    - name: SKYDIVE_STORAGE_DEFENDER_ENDPOINT
+      value: "http://sa-icp:9000"
+
+    # Object-storage endpoint (COS / S3)
+    - name: SKYDIVE_STORAGE_DEFENDER_ACCESS_KEY
+      value: "admin"
+
+    # Object-storage endpoint (COS / S3)
+    - name: SKYDIVE_STORAGE_DEFENDER_SECRET_KEY
+      value: "admin1234"
+
+    # Object-storage bucket
+    - name: SKYDIVE_STORAGE_DEFENDER_BUCKET
+      value: "icptest"
+
+    # Object-storage region
+    - name: SKYDIVE_STORAGE_DEFENDER_REGION
+      value: "dontcare"
+
+    # Object-storage kubernetes cluster guid
+    - name: SKYDIVE_STORAGE_DEFENDER_KUBERNETES_GUID
+      value: "icpsomGuid12363635"
+
+    # ?
+    - name: SKYDIVE_STORAGE_DEFENDER_DRIVER
+      value: defender
+
+    # COLLECTION (as defined in the defender API)
+    - name: SKYDIVE_STORAGE_DEFENDER_COLLECTION
+      value: "netflow"
+
+    # ANALYZER_STARTUP_CAPTURE_GREMLIN invoke at startup capturing in selected nodes
+    - name: SKYDIVE_ANALYZER_STARTUP_CAPTURE_GREMLIN
+      value: "G.V().has('Name', NE('lo'))"
+
+    - name: SKYDIVE_ANALYZER_STARTUP_CAPTURE_BPF
+      value: "not (tcp dst port 8082 or tcp dst port 9000)"
+
+    - name: SKYDIVEX_AGENT_CAPTURE_SYN
+      value: "True"
+
+    # DEFAULT_LAYER_KEY_MODE - the layers used to identify a unique flow.
+    - name: SKYDIVE_FLOW_DEFAULT_LAYER_KEY_MODE
+      value: "L3"
+
+    # IP Address of the cluster -  on icp - private masks (10.., 172.., 192..), pod ips/32, external ip/29 (use curl https://api.ipify.org from a node)
+    - name: SKYDIVE_STORAGE_DEFENDER_CLUSTER_NET_MASKS
+      value: "10.0.0.0/8 172.16.0.0/12 192.168.0.0/16 9.148.245.189/32 9.148.245.182/32 9.148.244.224/32 9.148.244.124/32 9.148.245.28/32 159.8.66.226/29"
+
+    - name: SKYDIVE_ANALYZER_STARTUP_CAPTURE_TYPE
+      value: "pcap"
+
+    - name: SKYDIVE_AGENT_CAPTURE_SYN
+      value: "True"
+

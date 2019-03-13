@@ -1,0 +1,111 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Release.Name}}-threatanalytics-configuration
+  namespace: {{ .Values.global.clusterNamespace }}
+data:
+  #### Evironment
+  log_level: {{ index .Values.global.log_level .Values.global.env | quote }}
+
+  #### X-Force
+  consumerGroupId: {{ .Values.global.consumerGroupId | quote }}
+  consumerTopics: {{ .Values.global.consumerTopics | quote }}
+  consumerSupportedDataSources: {{ .Values.global.consumerSupportedDataSources | quote }}
+  consumerRequiredAnalytic: {{ .Values.global.consumerRequiredAnalytic | quote }}
+  consumerBucketMaxSize: {{ .Values.global.consumerBucketMaxSize | quote }}
+  ingressDataSource: {{ .Values.global.ingressDataSource | quote }}
+  egressDataSource: {{ .Values.global.egressDataSource  | quote }}
+  producerServiceId: {{ .Values.global.producerServiceId | quote }}
+  producerTopic: {{ .Values.global.producerTopic | quote }}
+  sendGoodIpAggregationsRate: {{ .Values.global.sendGoodIpAggregationsRate | quote }}
+  updateXfeDbRate: {{ .Values.global.updateXfeDbRate | quote }}
+  xfeDbObjectUrl: {{ .Values.global.xfeDbObjectUrl | quote }}
+  xforceUrlLink: {{ .Values.global.xforceUrlLink | quote }}
+  urlsReputationPullRate: {{ .Values.global.urlsReputationPullRate | quote }}
+  urlsReputationSendRate: {{ .Values.global.urlsReputationSendRate | quote }}
+  ingressBadGuyScoreThreshold: {{ .Values.global.ingressBadGuyScoreThreshold | quote }}
+  egressBadGuyScoreThreshold: {{ .Values.global.egressBadGuyScoreThreshold | quote }}
+  armadaBadGuyScoreThreshold: {{ .Values.global.armadaBadGuyScoreThreshold | quote }}
+  highCertaintyScoreThreshold: {{ .Values.global.highCertaintyScoreThreshold | quote }}
+  mediumCertaintyScoreThreshold: {{ .Values.global.mediumCertaintyScoreThreshold | quote }}
+  podNameMaxLength: {{ .Values.global.podNameMaxLength | quote }}
+  monitoringPort: {{ .Values.global.monitoringPort | quote }}
+  statisticsRate: {{ .Values.global.statisticsRate | quote }}
+  distributed_vulnerability_scan_switch: {{ .Values.global.distributed_vulnerability_scan_switch | quote }}
+  clients_multiple_ips_switch: {{ .Values.global.clients_multiple_ips_switch | quote }}
+  reconnaissance_multi_switch: {{ .Values.global.reconnaissance_multi_switch | quote }}
+  vulnerability_scan_switch: {{ .Values.global.vulnerability_scan_switch | quote }}
+  client_multiple_flows_switch: {{ .Values.global.client_multiple_flows_switch | quote }}
+  reconnaissance_switch: {{ .Values.global.reconnaissance_switch | quote }}
+  client_weaponized_total_switch: {{ .Values.global.client_weaponized_total_switch | quote }}
+  client_switch: {{ .Values.global.client_switch | quote }}
+  client_response_switch: {{ .Values.global.client_response_switch | quote }}
+  client_weaponized_switch: {{ .Values.global.client_weaponized_switch | quote }}
+  server_suspected_ratio_switch: {{ .Values.global.server_suspected_ratio_switch | quote }}
+  server_response_multiple_ips_switch: {{ .Values.global.server_response_multiple_ips_switch | quote }}
+  data_extrusion_multi_switch: {{ .Values.global.data_extrusion_multi_switch | quote }}
+  server_weaponized_total_multi_switch: {{ .Values.global.server_weaponized_total_multi_switch | quote }}
+  server_response_multiple_flows_switch: {{ .Values.global.server_response_multiple_flows_switch | quote }}
+  data_extrusion_switch: {{ .Values.global.data_extrusion_switch | quote }}
+  server_weaponized_total_switch: {{ .Values.global.server_weaponized_total_switch | quote }}		
+  server_switch: {{ .Values.global.server_switch | quote }}
+  server_response_switch: {{ .Values.global.server_response_switch | quote }}
+  armada_ip_switch: {{ .Values.global.armada_ip_switch | quote }}
+  armada_url_switch: {{ .Values.global.armada_url_switch | quote }}
+  ingress_num_different_bad_ips_approached_to_open_port: {{ .Values.global.ingress_num_different_bad_ips_approached_to_open_port | quote }}
+  ingress_num_different_bad_ips_approached_to_close_port: {{ .Values.global.ingress_num_different_bad_ips_approached_to_close_port | quote }}
+  ingress_num_different_closed_ports_accessed_by_bad_ips: {{ .Values.global.ingress_num_different_closed_ports_accessed_by_bad_ips | quote }}
+  ingress_num_approaches_from_specific_bad_ip_to_open_port: {{ .Values.global.ingress_num_approaches_from_specific_bad_ip_to_open_port | quote }}
+  ingress_num_approaches_from_specific_bad_ip_to_close_port: {{ .Values.global.ingress_num_approaches_from_specific_bad_ip_to_close_port | quote }}
+  ingress_num_different_closed_ports_accessed_by_specific_bad_ip: {{ .Values.global.ingress_num_different_closed_ports_accessed_by_specific_bad_ip | quote }}
+  ingress_total_num_in_bytes_from_specific_bad_ip: {{ .Values.global.ingress_total_num_in_bytes_from_specific_bad_ip | quote }}
+  ingress_large_num_in_bytes_in_single_flow: {{ .Values.global.ingress_large_num_in_bytes_in_single_flow | quote }}
+  egress_percent_bad_approaches: {{ .Values.global.egress_percent_bad_approaches | quote }}
+  egress_suspected_ratio_minimal_overall_approaches: {{ .Values.global.egress_suspected_ratio_minimal_overall_approaches | quote }}
+  egress_num_different_bad_ips_approached_to_open_port: {{ .Values.global.egress_num_different_bad_ips_approached_to_open_port | quote }}
+  egress_total_num_out_bytes_to_bad_ips: {{ .Values.global.egress_total_num_out_bytes_to_bad_ips | quote }}
+  egress_total_num_in_bytes_from_bad_ips: {{ .Values.global.egress_total_num_in_bytes_from_bad_ips | quote }}
+  egress_num_approaches_to_specific_bad_ip_to_open_port: {{ .Values.global.egress_num_approaches_to_specific_bad_ip_to_open_port | quote }}
+  egress_total_num_out_bytes_to_specific_bad_ip: {{ .Values.global.egress_total_num_out_bytes_to_specific_bad_ip | quote }}
+  egress_total_num_in_bytes_from_specific_bad_ip: {{ .Values.global.egress_total_num_in_bytes_from_specific_bad_ip | quote }}
+{{- if .Values.global.standalone }}
+  redis_host: {{ .Values.global.redis_host | quote }}
+{{- else }}
+  redis_host: {{ .Release.Name}}-ibm-redis-ha-dev-master-svc
+{{- end }}
+  redis_port: {{ .Values.global.redis_port | quote }}
+  redis_auth: {{ .Values.global.redis_auth | quote }}
+  redisDbNum: {{ .Values.global.redisDbNum | quote }}
+{{- if .Values.global.standalone }}
+  minioEndpoint: {{ .Values.global.minioEndpoint | quote }}
+{{- else }}
+  minioEndpoint: {{ .Release.Name | quote }}
+{{- end }}
+  minioRegion: {{ .Values.global.minioRegion | quote }}
+  accessKey: {{ .Values.global.accessKey | quote }}
+  secretKey: {{ .Values.global.secretKey | quote }}
+  useOS: {{ .Values.global.useOS | quote }}
+  xfeDbCosIamConfig: {{ .Values.global.xfeDbCosIamConfig | quote }}
+  kafkaSslCaLocation: {{ .Values.global.kafkaSslCaLocation | quote }}
+{{- if .Values.global.kafkaSaslUsername }}
+  kafkaSaslUsername: {{ .Values.global.kafkaSaslUsername | quote }}
+  kafkaSaslPassword: {{ .Values.global.kafkaSaslPassword | quote }}
+{{- end }}
+{{- if .Values.global.kafkaSaalMechanism }}
+  kafkaSaalMechanism: {{ .Values.global.kafkaSaalMechanism | quote }}
+{{- end }}
+{{- if .Values.global.kafkaSecurityProtocol }}
+  kafkaSecurityProtocol: {{ .Values.global.kafkaSecurityProtocol | quote }}
+{{- end }}
+{{- if .Values.global.standalone }}
+  kafkaMetadataBrokerList: {{ .Values.global.kafkaMetadataBrokerList | quote }}
+{{- else }}
+  kafkaMetadataBrokerList: {{ .Release.Name}}-kafka-headless:9092
+{{- end }}
+{{- if .Values.global.kafkaSaalMechanism }}
+  kafkaSslTruststoreLocation: {{ .Values.global.kafkaSslTruststoreLocation | quote }}
+{{- end }}
+{{- if .Values.global.kafkaSaalMechanism }}
+  kafkaSslTruststorePassword: {{ .Values.global.kafkaSslTruststorePassword | quote }}
+{{- end }}
+
