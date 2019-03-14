@@ -1,0 +1,42 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+   name: {{ .Values.global.name }}
+   namespace: {{ .Values.global.clusterNamespace }}
+spec:
+   revisionHistoryLimit: 10
+   minReadySeconds: 10
+   strategy:
+      type: RollingUpdate
+      rollingUpdate:
+         maxUnavailable: 0
+         maxSurge: 3
+   replicas: 1
+   template:
+      metadata:
+         labels:
+            microservice: {{ .Values.global.name }}
+      spec:
+         imagePullSecrets:
+         - name: my-secret
+         containers:
+         - name: {{ .Values.global.name }}
+           image: {{ .Values.global.registry | default "registry.ng.bluemix.net" }}/{{ .Values.global.registryNamespace }}/{{ .Values.global.name }}:{{ .Values.global.tag | default "last" }}
+           ports:
+           - containerPort: 443
+           env:
+           - name: LOG_LEVEL
+             valueFrom:
+               configMapKeyRef:
+                  name: configmgr-configuration
+                  key: log_level
+           - name: shardId
+             valueFrom:
+               configMapKeyRef:
+                  name: datacontrol-configuration
+                  key: shardId
+           - name: shardData
+             valueFrom:
+               configMapKeyRef:
+                  name: datacontrol-configuration
+                  key: shardData

@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: configmgr-configuration
+  namespace: {{ .Values.global.clusterNamespace }}
+data:
+  log_level: {{ index .Values.global.log_level .Values.global.env | quote }}
+  shardId: {{ .Values.global.shardId | quote }}
+  shardData: {{ .Values.global.shardData | quote }}
