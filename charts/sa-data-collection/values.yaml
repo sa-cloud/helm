@@ -2,6 +2,7 @@
 minio:
   existingSecret: sa-icp
   persistence:
+    enabled: false
     storageClass: glusterfs
   minioConfig:
     region: dontcare
