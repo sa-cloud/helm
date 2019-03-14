@@ -3,7 +3,7 @@ entries:
   configmgr:
   - apiVersion: v1
     appVersion: 0.0.1
-    created: 2019-03-14T13:06:50.436724639Z
+    created: 2019-03-14T13:21:31.535327722Z
     description: This chart manages the Data Control micro-service.
     digest: 555a893106ee064276649a5b1afe63d589a8d082ccdd5837680dc0324217c573
     icon: https://avatars.github.ibm.com/u/56137?s=400
@@ -17,7 +17,7 @@ entries:
   datacontrol:
   - apiVersion: v1
     appVersion: 0.0.1
-    created: 2019-03-14T13:06:50.437189243Z
+    created: 2019-03-14T13:21:31.535813292Z
     description: This chart manages the Data Control micro-service.
     digest: c9edfdc104cfd1ae89ba38b8ef6afab422dec3b60cbae051c9a2d3577a169f07
     icon: https://avatars.github.ibm.com/u/56137?s=400
@@ -31,7 +31,7 @@ entries:
   ibm-skydive-dev:
   - apiVersion: v1
     appVersion: 0.20.0
-    created: 2019-03-14T13:06:50.449092682Z
+    created: 2019-03-14T13:21:31.548380207Z
     description: Skydive is an open source real-time network topology and protocols
       analyzer.
     digest: b182087e333cd2e20b3b4a1562bdce103cf181877764a42d43a2a161e031c872
@@ -64,17 +64,27 @@ entries:
   sa-data-collection:
   - apiVersion: v1
     appVersion: "1.0"
-    created: 2019-03-14T13:06:50.46340355Z
+    created: 2019-03-14T13:21:31.562360225Z
     description: A Helm chart for sa icp
     digest: 9bb79dd6a4df6295d1a5c8d35483261c70a2776e2fee279b87ee954711a7a37e
     name: sa-data-collection
     urls:
     - sa-data-collection-0.1.0.tgz
     version: 0.1.0
+  sa-shard:
+  - apiVersion: v1
+    appVersion: "1.0"
+    created: 2019-03-14T13:21:31.568816861Z
+    description: A Helm chart for sa icp
+    digest: 19a5207a9d09182886145f9c38776dfe89f6f10aa6fe04b63d34bb95eb7a33c1
+    name: sa-shard
+    urls:
+    - sa-shard-0.1.0.tgz
+    version: 0.1.0
   threatanalytics-v2:
   - apiVersion: v1
     appVersion: 0.0.1
-    created: 2019-03-14T13:06:50.463921353Z
+    created: 2019-03-14T13:21:31.569299388Z
     description: This chart manages the Threat Intelligence Analytics micro-service.
     digest: 938d6a431bcbe5730bc22e3c4b422d66a67c599a4f598be4da592a026321cc43
     icon: https://avatars.github.ibm.com/u/56137?s=400
@@ -85,4 +95,4 @@ entries:
     urls:
     - threatanalytics-v2-0.0.1.tgz
     version: 0.0.1
-generated: 2019-03-14T13:06:50.436009251Z
+generated: 2019-03-14T13:21:31.534596967Z
