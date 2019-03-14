@@ -33,10 +33,10 @@ spec:
            - name: shardId
              valueFrom:
                configMapKeyRef:
-                  name: datacontrol-configuration
+                  name: configmgr-configuration
                   key: shardId
            - name: shardData
              valueFrom:
                configMapKeyRef:
-                  name: datacontrol-configuration
+                  name: configmgr-configuration
                   key: shardData
