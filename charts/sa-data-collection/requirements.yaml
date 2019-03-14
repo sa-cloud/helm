@@ -1,7 +1,7 @@
 dependencies:
   - name: ibm-skydive-dev
     version: 1.0.4
-    repository: https://github.ibm.com/Jenny-Lerner/helm/blob/master/repo/ibm-skydive-dev-1.0.4.tgz?raw=true
+    repository: https://github.com/sa-cloud/helm/blob/master/repo/ibm-skydive-dev-1.0.4.tgz?raw=true
   - name: minio
     version: 2.1.0
     repository: https://kubernetes-charts.storage.googleapis.com
