@@ -1,0 +1,16 @@
+dependencies:
+  - name: ibm-redis-ha-dev
+    version: 1.1.0
+    repository: https://raw.githubusercontent.com/IBM/charts/master/repo/stable/
+  - name: datacontrol
+    version: 0.0.1
+    repository: https://github.com/sa-cloud/helm/blob/master/repo/datacontrol-0.0.1.tgz?raw=true
+  - name: kafka
+    version: 0.13.3
+    repository: https://kubernetes-charts-incubator.storage.googleapis.com/
+  - name: threatanalytics-v2
+    version: 0.0.1
+    repository: https://github.com/sa-cloud/helm/blob/master/repo/threatanalytics-v2-0.0.1.tgz?raw=true
+  - name: configmgr
+    version: 0.0.1
+    repository: https://github.com/sa-cloud/helm/blob/master/repo/configmgr-0.0.1.tgz?raw=true
