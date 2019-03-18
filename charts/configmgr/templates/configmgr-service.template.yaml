@@ -8,4 +8,4 @@ metadata:
 spec:
    type: ClusterIP
    ports:
-   - port: 443
+   - port: 9002
