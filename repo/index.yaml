@@ -3,7 +3,7 @@ entries:
   configmgr:
   - apiVersion: v1
     appVersion: 0.0.1
-    created: 2019-03-18T09:18:57.03722436Z
+    created: 2019-03-18T12:09:21.532468691Z
     description: This chart manages the Data Control micro-service.
     digest: 5e222af6bfd331061e0b0fd880a4eddd585862ed2341b42dfbd6f50a4fa5137e
     icon: https://avatars.github.ibm.com/u/56137?s=400
@@ -17,7 +17,7 @@ entries:
   datacontrol:
   - apiVersion: v1
     appVersion: 0.0.1
-    created: 2019-03-18T09:18:57.038347801Z
+    created: 2019-03-18T12:09:21.533062199Z
     description: This chart manages the Data Control micro-service.
     digest: c9edfdc104cfd1ae89ba38b8ef6afab422dec3b60cbae051c9a2d3577a169f07
     icon: https://avatars.github.ibm.com/u/56137?s=400
@@ -31,7 +31,7 @@ entries:
   ibm-skydive-dev:
   - apiVersion: v1
     appVersion: 0.20.0
-    created: 2019-03-18T09:18:57.051654781Z
+    created: 2019-03-18T12:09:21.545347272Z
     description: Skydive is an open source real-time network topology and protocols
       analyzer.
     digest: b182087e333cd2e20b3b4a1562bdce103cf181877764a42d43a2a161e031c872
@@ -64,7 +64,7 @@ entries:
   sa-data-collection:
   - apiVersion: v1
     appVersion: "1.0"
-    created: 2019-03-18T09:18:57.064578049Z
+    created: 2019-03-18T12:09:21.557558301Z
     description: A Helm chart for sa icp
     digest: b85453e159d338a843917154f5614c7fb292ec494fc5e9302f20700c56a8f6e5
     name: sa-data-collection
@@ -74,9 +74,9 @@ entries:
   sa-shard:
   - apiVersion: v1
     appVersion: "1.0"
-    created: 2019-03-18T09:18:57.07256937Z
+    created: 2019-03-18T12:09:21.565487642Z
     description: A Helm chart for sa icp
-    digest: 141a66257b59e4f43653d5ce976ba51a793cd3a65726ac4dacdb5bc2233bba07
+    digest: 0c9e37c8bf14c1cb49a10638ab7338437af74a157f9a48d0460ec17399cdf8c5
     name: sa-shard
     urls:
     - sa-shard-0.1.0.tgz
@@ -84,7 +84,7 @@ entries:
   threatanalytics-v2:
   - apiVersion: v1
     appVersion: 0.0.1
-    created: 2019-03-18T09:18:57.073617765Z
+    created: 2019-03-18T12:09:21.566049198Z
     description: This chart manages the Threat Intelligence Analytics micro-service.
     digest: 938d6a431bcbe5730bc22e3c4b422d66a67c599a4f598be4da592a026321cc43
     icon: https://avatars.github.ibm.com/u/56137?s=400
@@ -95,4 +95,4 @@ entries:
     urls:
     - threatanalytics-v2-0.0.1.tgz
     version: 0.0.1
-generated: 2019-03-18T09:18:57.035786048Z
+generated: 2019-03-18T12:09:21.531881625Z

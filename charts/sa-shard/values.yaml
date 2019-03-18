@@ -1,4 +1,14 @@
 ---
+redis:
+  cluster:
+    slaveCount: 3
+  networkPolicy:
+    enabled: false
+  master:
+    persistence:
+      enabled: false
+  usePassword: false
+
 kafka:
   persistence:
     enabled: false
