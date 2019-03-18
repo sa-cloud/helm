@@ -88,7 +88,7 @@ data:
 {{- if .Values.global.standalone }}
   dc_redis_host: {{ .Values.global.dc_redis_host | quote }}
 {{- else }}
-  dc_redis_host: {{ .Release.Name}}-ibm-redis-ha-dev-master-svc
+  dc_redis_host: {{ .Release.Name}}-redis-slave
 {{- end }}
   dc_redis_port: {{ .Values.global.dc_redis_port | quote }}
   dc_redis_auth: {{ .Values.global.dc_redis_auth | quote }}
