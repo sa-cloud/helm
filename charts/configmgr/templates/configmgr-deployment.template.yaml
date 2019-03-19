@@ -23,7 +23,7 @@ spec:
          - name: {{ .Values.global.name }}
            image: {{ .Values.global.registry | default "registry.ng.bluemix.net" }}/{{ .Values.global.registryNamespace }}/{{ .Values.global.name }}:{{ .Values.global.tag | default "last" }}
            ports:
-           - containerPort: 443
+           - containerPort: 9002
            env:
            - name: LOG_LEVEL
              valueFrom:
