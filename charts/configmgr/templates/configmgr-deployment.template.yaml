@@ -16,6 +16,7 @@ spec:
       metadata:
          labels:
             microservice: {{ .Values.global.name }}
+            app: configmgr
       spec:
          imagePullSecrets:
          - name: my-secret

@@ -41,11 +41,7 @@ data:
   refreshAccountsRate: {{ .Values.global.refreshAccountsRate | quote }}
   accountsUpdatesCheckRate: {{ .Values.global.accountsUpdatesCheckRate | quote }}
   accountsUpdatesCheckMinCycleDuration: {{ .Values.global.accountsUpdatesCheckMinCycleDuration | quote }}
-{{- if .Values.global.standalone }}
   minioEndpoint: {{ .Values.global.minioEndpoint | quote }}
-{{- else }}
-  minioEndpoint: {{ .Release.Name | quote }}
-{{- end }}
   minioRegion: {{ .Values.global.minioRegion | quote }}
   accessKey: {{ .Values.global.accessKey | quote }}
   secretKey: {{ .Values.global.secretKey | quote }}

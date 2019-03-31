@@ -1,0 +1,15 @@
+apiVersion: securityenforcement.admission.cloud.ibm.com/v1beta1
+kind: ClusterImagePolicy
+metadata:
+  name: ibmcloud-image-policy
+  labels:
+    app: {{ template "fullname" . }}
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+    release: "{{ .Release.Name }}"
+    heritage: "{{ .Release.Service }}"
+  annotations:
+    "helm.sh/hook": "crd-install"
+    "helm.sh/hook-delete-policy": "before-hook-creation"
+spec:
+  repositories:
+    - name: docker.io/skydive/*

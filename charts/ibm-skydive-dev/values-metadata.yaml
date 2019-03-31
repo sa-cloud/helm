@@ -2,16 +2,19 @@
 ## Architecture metadata
 arch:
   __metadata:
-    label: "analyzer node architecture scheduling preferences"
-    description: "Analyzer node architecture to deploy to."
+    label: "Architecture scheduling preferences"
+    description: "Targets a specific OS to use for the worker node."
+    options:
+    - label: 'AMD64 platforms'
+      value: 'amd64'
+    - label: 'Power 64 LE platforms'
+      value: 'ppc64le'
+    - label: 'zLinux platforms'
+      value: 's390x'
   amd64:
     __metadata:
-      name: "amd64"
-      label: "amd64"
-      description: "Architecture preference for target worker node."
-      type: "string"
-      immutable: false
-      required: true
+      label: "Architecture preference for target worker node"
+      description: "Scheduling priority for using the Intel 64-bit architecture for worker nodes."
       options:
         - label: "0 - Do not use"
           value: "0 - Do not use"
@@ -24,12 +27,8 @@ arch:
 
   ppc64le:
     __metadata:
-      name: "ppc64le"
-      label: "ppc64le"
-      description: "Architecture preference for target worker node."
-      type: "string"
-      immutable: false
-      required: true
+      label: "Architecture preference for target worker node"
+      description: "Scheduling priority for using the PowerPC 64-bit LE architecture for worker nodes."
       options:
         - label: "0 - Do not use"
           value: "0 - Do not use"
@@ -42,12 +41,8 @@ arch:
 
   s390x:
     __metadata:
-      name: "s390x"
-      label: "s390x"
-      description: "Architecture preference for target worker node."
-      type: "string"
-      immutable: false
-      required: true
+      label: "Architecture preference for target worker node"
+      description: "Scheduling priority for using s390x zLinux architecture for worker nodes."
       options:
         - label: "0 - Do not use"
           value: "0 - Do not use"
@@ -62,10 +57,11 @@ arch:
 image:
   __metadata:
     label: "Docker image configuration"
+    description: "Configuration for the Docker image used in the Job(s)"
   repository:
     __metadata:
       name: "repository"
-      label: "repository"
+      label: "Repository"
       description: "Docker image location"
       type: "string"
       immutable: false
@@ -127,10 +123,14 @@ resources:
         type: "string"
         required: true
 
+env:
+ __metadata:
+   label: "environment"
+   description: "Enter array in YAML syntax"
 
 service:
   __metadata:
-    label: "service"
+    label: "Service"
     description: "How to expose skydive web analyzer interface to the user."
   name:
     __metadata:
@@ -164,7 +164,22 @@ service:
           value: "NodePort"
         - label: "Load Balancer"
           value: "LoadBalancer"
+        - label: 'ExternalName'
+          value: 'ExternalName'
 
+etcd:
+  __metadata:
+    label: "etcd configuration store"
+    description: "etcd stores dynamic configuration."
+  port:
+    __metadata:
+      name: "port"
+      label: "etcd port"
+      description: "This is the etcd port number"
+      type: "number"
+      immutable: false
+      required: true
+ 
 analyzer:
   __metadata:
     label: "Analyzer Topology"
@@ -182,8 +197,8 @@ analyzer:
 ## Persistence options
 persistence:
   __metadata:
-    label: "Data persistence configuration"
-    description: "The nature of the dataVolume persistent."
+    label: "Persistence configuration"
+    description: "The nature of the persistent dataVolume."
   enabled:
     __metadata:
       name: "enabled"
@@ -196,7 +211,7 @@ persistence:
     __metadata:
       name: "useDynamicProvisioning"
       label: "Use dynamic provisioning for persistent volume"
-      description: "If dynamic provisioning is available in the cluster this option will automatically provision the requested volume if set to true."
+      description: "Select this checkbox to allow the cluster to automatically provision new storage resource and create PersistentVolume objects."
       type: "boolean"
       immutable: false
       required: true
@@ -278,3 +293,13 @@ storage:
         type: "number"
         immutable: false
         required: true
+  elasticsearch:
+    host:
+      __metadata:
+        label: "Elastic search host"
+        description: "Elastic search container will be created only if you need persistent volume"
+    port:
+      __metadata:
+        label: "Elastic search port"
+        description: "Elastic search container will be created only if you need persistent volume"
+

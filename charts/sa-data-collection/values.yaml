@@ -1,12 +1,12 @@
 ---
 minio:
-  existingSecret: sa-icp
+  existingSecret: sa
   persistence:
     enabled: false
   minioConfig:
-    region: dontcare
+    region: "dontcare"
   defaultBucket:
-    enabled: true
+    enabled: false
     name: icptest
 
 ibm-skydive-dev:
@@ -44,7 +44,7 @@ ibm-skydive-dev:
 
     # Object-storage endpoint (COS / S3)
     - name: SKYDIVE_STORAGE_DEFENDER_ENDPOINT
-      value: "http://sa-icp:9000"
+      value: "http://sa:9000"
 
     # Object-storage endpoint (COS / S3)
     - name: SKYDIVE_STORAGE_DEFENDER_ACCESS_KEY

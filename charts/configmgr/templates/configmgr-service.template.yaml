@@ -6,6 +6,9 @@ metadata:
   labels:
      microservice: {{ .Values.global.name }}
 spec:
-   type: ClusterIP
-   ports:
-   - port: 9002
+  ports:
+    - port: 9002
+      name: accapi
+      targetPort: 9002
+  selector:
+    app: configmgr

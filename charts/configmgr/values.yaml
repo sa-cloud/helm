@@ -4,10 +4,10 @@ global:
   env: development
   registryNamespace : secadvisor_dev
   name: configmgr
-  tag: 1
+  tag: 2
   log_level:
     development: debug
     pre_production: debug
     production: info
   shardId: 'default_449a6a22-1059-4b96-97cb-0f0dca2d25f3'
-  shardData: '{"accounts":[{"account_id":"test123","bucket_url":"sa-icp:9000/icptest","region":"dontcare","accessKey":"admin","secretKey":"admin1234","collect_from":{"netflow_ingress":true,"netflow_egress":true,"netflow_internal":true,"netflow_other":true,"at_cadf":true},"sa_analytics":{"tia":true,"ata":true,"nba":true}, "sa_instance_crn":"crn:v1:staging:public:security-advisor:us-south:a/d0c8a917589e40076961f56b23056d16:ef71b41c-3239-5ff0-ad6e-5f8059f1130b:security-advisor:", "sa_analytics_status":{"ata":[{"packageUrl":"https://","num_active_rules":2,"num_dormant_rules":45,"num_illegal_rules":6,"status":"success"}],"dc":{"num_sources_netflow":3,"num_sources_at":1}}}]}'
+  shardData: '{"accounts":[{"account_id":"test123","bucket_url":"sa:9000/icptest","region":"dontcare","accessKey":"admin","secretKey":"admin1234","collect_from":{"netflow_ingress":true,"netflow_egress":true,"netflow_internal":true,"netflow_other":true,"at_cadf":true},"sa_analytics":{"tia":true,"ata":true,"nba":true}, "sa_instance_crn":"crn:v1:staging:public:security-advisor:us-south:a/d0c8a917589e40076961f56b23056d16:ef71b41c-3239-5ff0-ad6e-5f8059f1130b:security-advisor:", "sa_analytics_status":{"ata":[{"packageUrl":"https://","num_active_rules":2,"num_dormant_rules":45,"num_illegal_rules":6,"status":"success"}],"dc":{"num_sources_netflow":3,"num_sources_at":1}}}]}'
