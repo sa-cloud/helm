@@ -6,7 +6,7 @@ minio:
   minioConfig:
     region: "dontcare"
   defaultBucket:
-    enabled: false
+    enabled: true
     name: icptest
 
 ibm-skydive-dev:
@@ -28,7 +28,7 @@ ibm-skydive-dev:
 
     # Maximum number of flows per object
     - name: SKYDIVE_STORAGE_DEFENDER_MAX_FLOWS_PER_OBJECT
-      value: "6000"
+      value: "60000"
 
     # Flows to be updated every 30 seconds (thus, every 60 seconds to defender)
     - name: SKYDIVE_FLOW_UPDATE
@@ -40,7 +40,7 @@ ibm-skydive-dev:
 
     # Maximum seconds per stream
     - name: SKYDIVE_STORAGE_DEFENDER_MAX_SECONDS_PER_STREAM
-      value: "600"
+      value: "86400"
 
     # Object-storage endpoint (COS / S3)
     - name: SKYDIVE_STORAGE_DEFENDER_ENDPOINT
@@ -88,9 +88,9 @@ ibm-skydive-dev:
     - name: SKYDIVE_FLOW_DEFAULT_LAYER_KEY_MODE
       value: "L3"
 
-    # IP Address of the cluster -  on icp - private masks (10.., 172.., 192..), pod ips/32, external ip/29 (use curl https://api.ipify.org from a node)
+    # IP Address of the cluster -  on icp - private masks (10.., 172.., 192..), node ips/32, external ip/29 (use curl https://api.ipify.org from a node)
     - name: SKYDIVE_STORAGE_DEFENDER_CLUSTER_NET_MASKS
-      value: "10.0.0.0/8 172.16.0.0/12 192.168.0.0/16 9.148.245.189/32 9.148.245.182/32 9.148.244.224/32 9.148.244.124/32 9.148.245.28/32 159.8.66.226/29"
+      value: "10.0.0.0/8 172.16.0.0/12 192.168.0.0/16 9.148.245.11/32 9.148.245.127/32 9.148.244.87/32 9.148.244.253/32 159.8.66.226/29"
 
     - name: SKYDIVE_ANALYZER_STARTUP_CAPTURE_TYPE
       value: "pcap"
