@@ -45,6 +45,24 @@ data:
   minioRegion: {{ .Values.global.minioRegion | quote }}
   accessKey: {{ .Values.global.accessKey | quote }}
   secretKey: {{ .Values.global.secretKey | quote }}
+  collectorSpecificConfig: {{ .Values.global.collectorSpecificConfig | quote }}
+  produceBillsRate: {{ .Values.global.produceBillsRate | quote }}
+  streamStartLimit: {{ .Values.global.streamStartLimit | quote }}
+  streamEndLimit: {{ .Values.global.streamEndLimit | quote }}
+  objectStartLimit: {{ .Values.global.objectStartLimit | quote }}
+  objectEndLimit: {{ .Values.global.objectEndLimit | quote }}
+  handleStreamRate: {{ .Values.global.handleStreamRate | quote }}
+  cosTimeout: {{ .Values.global.cosTimeout | quote }}
+  updateDiscoverersMaxOffset: {{ .Values.global.updateDiscoverersMaxOffset | quote }}
+  accountsAllocationsTopic: {{ .Values.global.accountsAllocationsTopic | quote }}
+  accountsAllocationsGroupId: {{ .Values.global.accountsAllocationsGroupId | quote }}
+  accountAllocationExpirationTime: {{ .Values.global.accountAllocationExpirationTime | quote }}
+  validateAccountsAllocationsRate: {{ .Values.global.validateAccountsAllocationsRate | quote }}
+  accountInitDelayPeriod: {{ .Values.global.accountInitDelayPeriod | quote }}
+  sendAccountsAllocationsMessagesRate: {{ .Values.global.sendAccountsAllocationsMessagesRate | quote }}
+  acquireAccountsAllocationsLockAttemptRate: {{ .Values.global.acquireAccountsAllocationsLockAttemptRate | quote }}
+  numMockedAccounts: {{ .Values.global.numMockedAccounts | quote }}
+  cosFindDirectoriesMaxRetries: {{ .Values.global.cosFindDirectoriesMaxRetries | quote }}
   #### Common configuration
   # See common-values.yaml and _common-configmap.tpl for all available common properties.
   # https://github.ibm.com/security-services/security-advisor-devops/tree/master/kubernetes/helm

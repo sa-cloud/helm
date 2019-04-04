@@ -3,7 +3,7 @@ global:
   env: development
   registryNamespace: secadvisor_dev #secadv_dev
   name: datacontrol
-  tag: 18 #106 #0.0.106 #18 is a good build, but has no certs (can run with unsecure kafka)
+  tag: 31 #106 #0.0.106 #18 is a good build, but has no certs (can run with unsecure kafka)
   imagePullSecret: 'my-secret'
   statisticsRate: '60000'
   accountsUpdatesTopic: 'account_was_updated'
@@ -11,6 +11,7 @@ global:
   billingTopic: 'billing'
   billerCycleDuration: '600000'
   billingExpirationTime: '86400000'
+  produceBillsRate: '600000'
   updateDiscoverersRate: '900000'
   dataSourcesTopicsMapping: '{"netflow_ingress":"netflow_ingress","netflow_egress":"netflow_egress","netflow_internal":"netflow_internal","netflow_other":"netflow_other","at_cadf":"at_cadf"}'
   supportedCollectorIds: '0'
@@ -40,27 +41,38 @@ global:
   refreshAccountsRate: '3600000'
   accountsUpdatesCheckRate: '5000'
   accountsUpdatesCheckMinCycleDuration: '3600000'
+  streamStartLimit: '93600000'
+  streamEndLimit: '86400000'
+  objectStartLimit: '7200000'
+  objectEndLimit: '86400000'
+  handleStreamRate: '30000'
+  cosTimeout: '90000'
+  updateDiscoverersMaxOffset: '60000'
+  accountsAllocationsTopic: 'accountsAllocationsTopic'
+  accountsAllocationsGroupId: 'data_controller_dev'
+  accountAllocationExpirationTime: '86400000'
+  validateAccountsAllocationsRate: '60000'
+  accountInitDelayPeriod: '60000'
+  sendAccountsAllocationsMessagesRate: '30000'
+  acquireAccountsAllocationsLockAttemptRate: '30000'
+  numMockedAccounts: '1000'
+  cosFindDirectoriesMaxRetries: '2'
+  collectorSpecificConfig: '{"netflow":{"dataTypesToTopicsMapping":{"ingress":"netflow_ingress","egress":"netflow_egress","internal":"netflow_internal","other":"netflow_other"}},"at":{"dataTypesToTopicsMapping":{"cadf":"at_cadf"}},"dns":{"dataTypesToTopicsMapping":{"dns":"dns_dns"}}}'
   log_level:
     development: debug
     pre_production: debug
     production: info
-  kafkaMetadataBrokerList: 'sa-icp-kafka-headless:9092'
+  kafkaMetadataBrokerList: 'sa-shard-kafka-headless:9092'
   kafkaSaalMechanism: 'PLAIN'
-  kafkaSecurityProtocol1: 'PLAINTEXT'
-  kafkaSecurityProtocol: 'SSL'
-  kafkaSslTruststoreLocation: /certs/
-  kafkaSslTruststorePassword: test1234
-  kafkaSslKeystoreLocation: /certs/
-  kafkaSslKeystorePassword: test1234
-  kafkaSslKeyPassword: test1234
+  kafkaSecurityProtocol: 'PLAINTEXT'
   redisDbNum: 1
   redisDbNumDC: 1
-  minioEndpoint: 'sa-icp'
+  minioEndpoint: 'sa-shard'
   minioRegion: 'dontcare'
   accessKey: 'admin'
   secretKey: 'admin1234'
   standalone: true
-  dc_redis_host: 'sa-icp-ibm-redis-ha-dev-master-svc'
+  dc_redis_host: 'sa-shard-redis-slave'
   dc_redis_port: '6379'
   dc_redis_auth: ''
   iamTokenValidationURL: 'https://iam.test.cloud.ibm.com/identity/keys'

@@ -25,6 +25,10 @@ spec:
            ports:
            - containerPort: 443
            env:
+           - name: podName
+             valueFrom:
+               fieldRef:
+                 fieldPath: metadata.name
            - name: LOG_LEVEL
              valueFrom:
                configMapKeyRef:
@@ -190,6 +194,96 @@ spec:
                configMapKeyRef:
                  name: {{ .Release.Name }}-datacontrol-configuration
                  key: monitoringPort
+           - name: collectorSpecificConfig
+             valueFrom:
+               configMapKeyRef:
+                 name: {{ .Release.Name }}-datacontrol-configuration
+                 key: collectorSpecificConfig
+           - name: produceBillsRate
+             valueFrom:
+               configMapKeyRef:
+                 name: {{ .Release.Name }}-datacontrol-configuration
+                 key: produceBillsRate
+           - name: streamStartLimit
+             valueFrom:
+               configMapKeyRef:
+                 name: {{ .Release.Name }}-datacontrol-configuration
+                 key: streamStartLimit
+           - name: streamEndLimit
+             valueFrom:
+               configMapKeyRef:
+                 name: {{ .Release.Name }}-datacontrol-configuration
+                 key: streamEndLimit
+           - name: objectStartLimit
+             valueFrom:
+               configMapKeyRef:
+                 name: {{ .Release.Name }}-datacontrol-configuration
+                 key: objectStartLimit
+           - name: objectEndLimit
+             valueFrom:
+               configMapKeyRef:
+                 name: {{ .Release.Name }}-datacontrol-configuration
+                 key: objectEndLimit
+           - name: handleStreamRate
+             valueFrom:
+               configMapKeyRef:
+                 name: {{ .Release.Name }}-datacontrol-configuration
+                 key: handleStreamRate
+           - name: cosTimeout
+             valueFrom:
+               configMapKeyRef:
+                 name: {{ .Release.Name }}-datacontrol-configuration
+                 key: cosTimeout
+           - name: updateDiscoverersMaxOffset
+             valueFrom:
+               configMapKeyRef:
+                 name: {{ .Release.Name }}-datacontrol-configuration
+                 key: updateDiscoverersMaxOffset
+           - name: accountsAllocationsTopic
+             valueFrom:
+               configMapKeyRef:
+                 name: {{ .Release.Name }}-datacontrol-configuration
+                 key: accountsAllocationsTopic
+           - name: accountsAllocationsGroupId
+             valueFrom:
+               configMapKeyRef:
+                 name: {{ .Release.Name }}-datacontrol-configuration
+                 key: accountsAllocationsGroupId
+           - name: accountAllocationExpirationTime
+             valueFrom:
+               configMapKeyRef:
+                 name: {{ .Release.Name }}-datacontrol-configuration
+                 key: accountAllocationExpirationTime
+           - name: validateAccountsAllocationsRate
+             valueFrom:
+               configMapKeyRef:
+                 name: {{ .Release.Name }}-datacontrol-configuration
+                 key: validateAccountsAllocationsRate
+           - name: accountInitDelayPeriod
+             valueFrom:
+               configMapKeyRef:
+                 name: {{ .Release.Name }}-datacontrol-configuration
+                 key: accountInitDelayPeriod
+           - name: sendAccountsAllocationsMessagesRate
+             valueFrom:
+               configMapKeyRef:
+                 name: {{ .Release.Name }}-datacontrol-configuration
+                 key: sendAccountsAllocationsMessagesRate
+           - name: acquireAccountsAllocationsLockAttemptRate
+             valueFrom:
+               configMapKeyRef:
+                 name: {{ .Release.Name }}-datacontrol-configuration
+                 key: acquireAccountsAllocationsLockAttemptRate
+           - name: numMockedAccounts
+             valueFrom:
+               configMapKeyRef:
+                 name: {{ .Release.Name }}-datacontrol-configuration
+                 key: numMockedAccounts
+           - name: cosFindDirectoriesMaxRetries
+             valueFrom:
+               configMapKeyRef:
+                 name: {{ .Release.Name }}-datacontrol-configuration
+                 key: cosFindDirectoriesMaxRetries
            - name: refreshAccountsRate
              valueFrom:
                configMapKeyRef:
