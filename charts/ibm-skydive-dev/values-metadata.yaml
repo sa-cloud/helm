@@ -194,6 +194,29 @@ analyzer:
         immutable: false
         required: true
 
+## Elastic search image
+elasticsearch:
+  __metadata:
+    label: "Elastic Search Docker image configuration"
+    description: "Configuration for the Elastic Search Docker image used in the Job(s)"
+  image:
+    repository:
+      __metadata:
+        name: "Repository"
+        label: "Elastic Image Repository"
+        description: "Docker Image Repository for Elastic"
+        type: "string"
+        immutable: false
+        required: true
+    tag:
+      __metadata:
+        name: "Tag"
+        label: "Elastic Image Tag"
+        description: "Elastic Docker Image Tag / Version"
+        type: "string"
+        immutable: false
+        required: true
+
 ## Persistence options
 persistence:
   __metadata:

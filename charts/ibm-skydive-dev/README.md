@@ -9,8 +9,6 @@ Skydive agents collect topology informations and flows and forward them to a cen
 
 Skydive is SDN-agnostic but provides SDN drivers in order to enhance the topology and flows informations.
 
-![](https://github.com/skydive-project/skydive.network/raw/images/overview.gif)
-
 ## Prerequisites
 
 Skydive requires:
@@ -35,6 +33,19 @@ spec:
   hostPath:
     path: <PATH>
 ```
+
+- Skydive Community Image. Docker Hub container registry docker.io/skydive/*  must be added to the list of trusted registries. First make sure you have the ClusterAdminRole role. Next under an admin role setup image policy:
+
+```
+kind: ClusterImagePolicy
+metadata:
+  name: skydive-ibmcloud-image-policy
+spec:
+  repositories:
+    - name: docker.io/skydive/*
+```
+  
+  Finally install ibm-skydive-dev using the docker.io/skydive/skydive:tag image.
 
 ## Installing the Chart
 To install the chart with the release name `my-release`:
