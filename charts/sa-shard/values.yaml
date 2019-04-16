@@ -19,7 +19,7 @@ datacontrol:
     env: development
     registryNamespace: secadvisor_dev #secadv_dev
     name: datacontrol
-    tag: 31 #18 #20 #18 #106 #0.0.106  # 18 is a good working version for unsecure kafka #31 is a working version with new adapter (unsecured kafka)
+    tag: 33 #18 #20 #18 #106 #0.0.106  # 18 is a good working version for unsecure kafka #31 is a working version with new adapter (unsecured kafka)
     imagePullSecret: 'my-secret'
     statisticsRate: '60000'
     dataSourcesTopicsMapping: '{"netflow_ingress":"netflow_ingress","netflow_egress":"netflow_egress","netflow_internal":"netflow_internal","netflow_other":"netflow_other","at_cadf":"at_cadf"}'

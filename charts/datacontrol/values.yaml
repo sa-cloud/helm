@@ -3,7 +3,7 @@ global:
   env: development
   registryNamespace: secadvisor_dev #secadv_dev
   name: datacontrol
-  tag: 31 #106 #0.0.106 #18 is a good build, but has no certs (can run with unsecure kafka)
+  tag: 33 #106 #0.0.106 #18 is a good build, but has no certs (can run with unsecure kafka)
   imagePullSecret: 'my-secret'
   statisticsRate: '60000'
   accountsUpdatesTopic: 'account_was_updated'
