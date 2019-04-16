@@ -217,6 +217,20 @@ elasticsearch:
         immutable: false
         required: true
 
+agent:
+  __metadata:
+    label: "Agent Topology"
+    description: "Configuration of agent topology"
+  topology:
+    probes:
+      __metadata:
+        name: "Probes"
+        label: "Agent Topology Probes"
+        description: "This represents a list of agent probes"
+        type: "string"
+        immutable: false
+        required: true
+
 ## Persistence options
 persistence:
   __metadata:

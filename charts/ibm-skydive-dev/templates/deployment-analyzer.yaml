@@ -26,7 +26,7 @@ metadata:
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
-  name: view
+  name: cluster-admin 
 subjects:
   - kind: ServiceAccount
     name: skydive-service-account
@@ -58,6 +58,7 @@ spec:
     spec:
       serviceAccountName: skydive-service-account
       hostNetwork: true
+      dnsPolicy: ClusterFirstWithHostNet
       hostPID: true
       hostIPC: true
       securityContext:
@@ -157,6 +158,8 @@ spec:
           value: "true"
         - name: SKYDIVE_FLOW_PROTOCOL
           value: "websocket"
+        - name: SKYDIVE_ANALYZER_TOPOLOGY_FABRIC
+          value: {{ .Values.analyzer.topology.fabric }}
       {{- if .Values.env }}
 {{ toYaml .Values.env | indent 8 }}
       {{- end }}

@@ -3,7 +3,7 @@ entries:
   configmgr:
   - apiVersion: v1
     appVersion: 0.0.1
-    created: 2019-04-16T06:07:55.977541486Z
+    created: 2019-04-16T11:09:31.753108889Z
     description: This chart manages the Data Control micro-service.
     digest: 73dcc2dab7abc13f41c2992d099bda6615d4c45d30b70189b2738eb2e2df3f55
     icon: https://avatars.github.ibm.com/u/56137?s=400
@@ -17,7 +17,7 @@ entries:
   datacontrol:
   - apiVersion: v1
     appVersion: 0.0.1
-    created: 2019-04-16T06:07:55.978184852Z
+    created: 2019-04-16T11:09:31.754136575Z
     description: This chart manages the Data Control micro-service.
     digest: 5242ec201ea33bdcec0bfd9fb6831a7033a391f650b91882dd330d1faee0c043
     icon: https://avatars.github.ibm.com/u/56137?s=400
@@ -31,7 +31,7 @@ entries:
   ibm-skydive-dev:
   - apiVersion: v1
     appVersion: 0.21.0
-    created: 2019-04-16T06:07:56.014586097Z
+    created: 2019-04-16T11:09:31.79973567Z
     description: Skydive is an open source real-time network topology and protocols
       analyzer.
     digest: df19f17d5c63e0fda328185ae4b15c38f3011927d548c17ba0c538c7b4953379
@@ -62,8 +62,40 @@ entries:
     - ibm-skydive-dev-2.2.2.tgz
     version: 2.2.2
   - apiVersion: v1
+    appVersion: 0.22.0
+    created: 2019-04-16T11:09:31.788337972Z
+    description: Skydive is an open source real-time network topology and protocols
+      analyzer.
+    digest: 288b0be48a9e10c4cc91dd094879d67e5d9ebf4a40cb12066452be67ee7c35d7
+    home: https://skydive-project.github.io/skydive/
+    icon: https://avatars2.githubusercontent.com/u/19912486?s=400&v=4
+    keywords:
+    - Skydive
+    - Research
+    - amd64
+    - ppc64le
+    - s390x
+    - Limited
+    - OpenSource
+    - ICP
+    - IKS
+    - Network
+    - DevOps
+    - Analytics
+    kubeVersion: '>=1.10.0'
+    maintainers:
+    - email: cognetive.support@il.ibm.com
+      name: IBM Research (HRL)
+    name: ibm-skydive-dev
+    sources:
+    - https://github.com/skydive-project/skydive/tree/master/contrib
+    tillerVersion: '>=2.7.2'
+    urls:
+    - ibm-skydive-dev-1.1.2.tgz
+    version: 1.1.2
+  - apiVersion: v1
     appVersion: 0.21.0
-    created: 2019-04-16T06:07:56.004383817Z
+    created: 2019-04-16T11:09:31.778956627Z
     description: Skydive is an open source real-time network topology and protocols
       analyzer.
     digest: bae41fb4c09a874962c1c405d89554d726c6e3b9e99771ee4de2156484e16f8d
@@ -95,7 +127,7 @@ entries:
     version: 1.1.1
   - apiVersion: v1
     appVersion: 0.20.0
-    created: 2019-04-16T06:07:55.990938023Z
+    created: 2019-04-16T11:09:31.766610151Z
     description: Skydive is an open source real-time network topology and protocols
       analyzer.
     digest: fe9a41f61038db24f0d312716eb41b465d3308afbcde59b8e0823da0ee921f16
@@ -128,9 +160,9 @@ entries:
   sa-data-collection:
   - apiVersion: v1
     appVersion: "1.0"
-    created: 2019-04-16T06:07:56.027040149Z
+    created: 2019-04-16T11:09:31.811634847Z
     description: A Helm chart for sa icp
-    digest: a8eaf99915decdf97ae25700573a960744331dabe4b0b7daf01f6abe5df1b8e2
+    digest: 037877879792e525fb9be1fa6f0a780be5c325a5861ec31f241ace52c312cde7
     name: sa-data-collection
     urls:
     - sa-data-collection-0.1.0.tgz
@@ -138,7 +170,7 @@ entries:
   sa-shard:
   - apiVersion: v1
     appVersion: "1.0"
-    created: 2019-04-16T06:07:56.034889876Z
+    created: 2019-04-16T11:09:31.818576266Z
     description: A Helm chart for sa icp
     digest: db3ca66026a5c265ba4904fe344d0cdcf70d89fb35fa2a84b449eb69a72183a6
     name: sa-shard
@@ -148,7 +180,7 @@ entries:
   threatanalytics-v2:
   - apiVersion: v1
     appVersion: 0.0.1
-    created: 2019-04-16T06:07:56.035420129Z
+    created: 2019-04-16T11:09:31.819059324Z
     description: This chart manages the Threat Intelligence Analytics micro-service.
     digest: ec8de9689f3a3ae3a398d48b54cd281617604f34d1899efba9cbe80f3d97a925
     icon: https://avatars.github.ibm.com/u/56137?s=400
@@ -159,4 +191,4 @@ entries:
     urls:
     - threatanalytics-v2-0.0.1.tgz
     version: 0.0.1
-generated: 2019-04-16T06:07:55.976784282Z
+generated: 2019-04-16T11:09:31.752146661Z
