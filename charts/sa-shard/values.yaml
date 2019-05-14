@@ -58,7 +58,7 @@ threatanalytics-v2:
     # Threat Intelligence Analytics micro-service properties.
     name: tia
     registryNamespace: secadvisor_dev
-    tag: 6 #7 # 6 # 6 is a good stable version for unsecured kafka
+    tag: 8 
     imagePullSecret: 'my-secret'
     consumerGroupId: 'tia-consumer-group-dev'
     consumerTopics: 'netflow_ingress,netflow_egress'
