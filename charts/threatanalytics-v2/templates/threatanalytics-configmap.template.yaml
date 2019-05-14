@@ -6,6 +6,7 @@ metadata:
 data:
   #### Evironment
   log_level: {{ index .Values.global.log_level .Values.global.env | quote }}
+  port_vulnerability_switch: {{ .Values.global.port_vulnerability_switch | quote }}
 
   #### X-Force
   consumerGroupId: {{ .Values.global.consumerGroupId | quote }}
@@ -68,6 +69,13 @@ data:
   egress_num_approaches_to_specific_bad_ip_to_open_port: {{ .Values.global.egress_num_approaches_to_specific_bad_ip_to_open_port | quote }}
   egress_total_num_out_bytes_to_specific_bad_ip: {{ .Values.global.egress_total_num_out_bytes_to_specific_bad_ip | quote }}
   egress_total_num_in_bytes_from_specific_bad_ip: {{ .Values.global.egress_total_num_in_bytes_from_specific_bad_ip | quote }}
+  maxInflatedZipSize: {{ .Values.global.maxInflatedZipSize | quote }}
+  updateXfeDbRate: {{ .Values.global.updateXfeDbRate | quote }}
+  portVulnerabilityAggregationsPeriod: {{ .Values.global.portVulnerabilityAggregationsPeriod | quote }}
+  portVulnerabilityAggregationsTTL: {{ .Values.global.portVulnerabilityAggregationsTTL | quote }}
+  updateVulnerablePortsRate: {{ .Values.global.updateVulnerablePortsRate | quote }}
+  updateVulnerablePortsAggregationsSizeRate: {{ .Values.global.updateVulnerablePortsAggregationsSizeRate | quote }}
+  vulnerablePortsAggregationsMaxSize: {{ .Values.global.vulnerablePortsAggregationsMaxSize | quote }}
 {{- if .Values.global.standalone }}
   redis_host: {{ .Values.global.redis_host | quote }}
 {{- else }}
