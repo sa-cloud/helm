@@ -121,7 +121,7 @@ spec:
            - name: maxInflatedZipSize
              valueFrom:
                configMapKeyRef:
-                 name: threatanalytics-configuration
+                 name: {{ .Release.Name}}-threatanalytics-configuration
                  key: maxInflatedZipSize
            - name: xfeDbObjectUrl
              valueFrom:
@@ -171,27 +171,27 @@ spec:
            - name: portVulnerabilityAggregationsPeriod
              valueFrom:
                configMapKeyRef:
-                 name: threatanalytics-configuration
+                 name: {{ .Release.Name}}-threatanalytics-configuration
                  key: portVulnerabilityAggregationsPeriod
            - name: portVulnerabilityAggregationsTTL
              valueFrom:
                configMapKeyRef:
-                 name: threatanalytics-configuration
+                 name: {{ .Release.Name}}-threatanalytics-configuration
                  key: portVulnerabilityAggregationsTTL
            - name: updateVulnerablePortsRate
              valueFrom:
                configMapKeyRef:
-                 name: threatanalytics-configuration
+                 name: {{ .Release.Name}}-threatanalytics-configuration
                  key: updateVulnerablePortsRate
            - name: updateVulnerablePortsAggregationsSizeRate
              valueFrom:
                configMapKeyRef:
-                 name: threatanalytics-configuration
+                 name: {{ .Release.Name}}-threatanalytics-configuration
                  key: updateVulnerablePortsAggregationsSizeRate
            - name: vulnerablePortsAggregationsMaxSize
              valueFrom:
                configMapKeyRef:
-                 name: threatanalytics-configuration
+                 name: {{ .Release.Name}}-threatanalytics-configuration
                  key: vulnerablePortsAggregationsMaxSize
            - name: podNameMaxLength
              valueFrom:
@@ -261,7 +261,7 @@ spec:
            - name: port_vulnerability_switch
              valueFrom:
                configMapKeyRef:
-                 name: threatanalytics-configuration
+                 name: {{ .Release.Name}}-threatanalytics-configuration
                  key: port_vulnerability_switch
            - name: server_suspected_ratio_switch
              valueFrom:
