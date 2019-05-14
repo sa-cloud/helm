@@ -23,7 +23,15 @@ spec:
          - name: {{ .Values.global.name }}
            image: {{ .Values.global.registry | default "registry.ng.bluemix.net" }}/{{ .Values.global.registryNamespace }}/{{ .Values.global.name }}:{{ .Values.global.tag | default "last" }}
            ports:
-           - containerPort: 443
+           - containerPort: 8080
+           livenessProbe:
+               httpGet:
+                 scheme: HTTP
+                 path: /healthz
+                 port: 8080
+               initialDelaySeconds: 10
+               timeoutSeconds: 9
+               periodSeconds: 10
            env:
            - name: xfeDbCosIamConfig
              valueFrom:
@@ -110,6 +118,11 @@ spec:
                configMapKeyRef:
                   name: {{ .Release.Name}}-threatanalytics-configuration
                   key: updateXfeDbRate
+           - name: maxInflatedZipSize
+             valueFrom:
+               configMapKeyRef:
+                 name: threatanalytics-configuration
+                 key: maxInflatedZipSize
            - name: xfeDbObjectUrl
              valueFrom:
                configMapKeyRef:
@@ -155,6 +168,31 @@ spec:
                configMapKeyRef:
                  name: {{ .Release.Name}}-threatanalytics-configuration
                  key: mediumCertaintyScoreThreshold
+           - name: portVulnerabilityAggregationsPeriod
+             valueFrom:
+               configMapKeyRef:
+                 name: threatanalytics-configuration
+                 key: portVulnerabilityAggregationsPeriod
+           - name: portVulnerabilityAggregationsTTL
+             valueFrom:
+               configMapKeyRef:
+                 name: threatanalytics-configuration
+                 key: portVulnerabilityAggregationsTTL
+           - name: updateVulnerablePortsRate
+             valueFrom:
+               configMapKeyRef:
+                 name: threatanalytics-configuration
+                 key: updateVulnerablePortsRate
+           - name: updateVulnerablePortsAggregationsSizeRate
+             valueFrom:
+               configMapKeyRef:
+                 name: threatanalytics-configuration
+                 key: updateVulnerablePortsAggregationsSizeRate
+           - name: vulnerablePortsAggregationsMaxSize
+             valueFrom:
+               configMapKeyRef:
+                 name: threatanalytics-configuration
+                 key: vulnerablePortsAggregationsMaxSize
            - name: podNameMaxLength
              valueFrom:
                configMapKeyRef:
@@ -220,6 +258,11 @@ spec:
                configMapKeyRef:
                   name: {{ .Release.Name}}-threatanalytics-configuration
                   key: client_weaponized_switch
+           - name: port_vulnerability_switch
+             valueFrom:
+               configMapKeyRef:
+                 name: threatanalytics-configuration
+                 key: port_vulnerability_switch
            - name: server_suspected_ratio_switch
              valueFrom:
                configMapKeyRef:

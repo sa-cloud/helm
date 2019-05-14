@@ -2,11 +2,11 @@
 global:
   # env refers to the environment properties belong to during build-time. Default is "development".
   env: development
-
+  #registry.ng.bluemix.net/secadv_dev/threatanalytics-v2:0.0.276
   # Threat Intelligence Analytics micro-service properties.
   name: tia
   registryNamespace: secadvisor_dev
-  tag: 6
+  tag: 8
   imagePullSecret: 'my-secret'
   consumerGroupId: 'tia-consumer-group-dev'
   consumerTopics: 'netflow_ingress,netflow_egress'
@@ -29,9 +29,16 @@ global:
   highCertaintyScoreThreshold: '85'
   mediumCertaintyScoreThreshold: '70'
   podNameMaxLength: '253'
-  monitoringPort: '443'
+  monitoringPort: '8080'
   statisticsRate: '60000'
   distributed_vulnerability_scan_switch: 'true'
+  port_vulnerability_switch: 'true'
+  maxInflatedZipSize: '240000000'
+  portVulnerabilityAggregationsPeriod: '600000'
+  portVulnerabilityAggregationsTTL: '90000000'
+  updateVulnerablePortsRate: '300000'
+  updateVulnerablePortsAggregationsSizeRate: '100'
+  vulnerablePortsAggregationsMaxSize: '1000000'
   clients_multiple_ips_switch: 'true'
   reconnaissance_multi_switch: 'true'
   vulnerability_scan_switch: 'true'
