@@ -6,7 +6,7 @@ global:
   # Threat Intelligence Analytics micro-service properties.
   name: tia
   registryNamespace: secadvisor_dev
-  tag: 8
+  tag: 16
   imagePullSecret: 'my-secret'
   consumerGroupId: 'tia-consumer-group-dev'
   consumerTopics: 'netflow_ingress,netflow_egress'
