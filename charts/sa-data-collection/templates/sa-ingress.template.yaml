@@ -7,7 +7,7 @@ spec:
    rules:
    - http:
       paths:
-      - path: /minio
+      - path: /
         backend:
           serviceName: {{ template "minio.fullname" . }}
           servicePort: 9000
