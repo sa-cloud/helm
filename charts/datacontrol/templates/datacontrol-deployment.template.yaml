@@ -1,7 +1,7 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-   name: {{ .Values.global.name }}
+   name: {{ template "fullname" . }}
    namespace: {{ .Values.global.clusterNamespace }}
 spec:
    revisionHistoryLimit: 10

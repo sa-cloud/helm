@@ -1,7 +1,7 @@
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
-  name: {{ template "minio.fullname" . }}
+  name: {{ .Values.minio.fullnameOverride | quote }}
   namespace: "{{.Release.Namespace}}"
 spec:
    rules:
@@ -9,7 +9,7 @@ spec:
       paths:
       - path: /
         backend:
-          serviceName: {{ template "minio.fullname" . }}
+          serviceName: {{ .Values.minio.fullnameOverride | quote }}
           servicePort: 9000
 
 

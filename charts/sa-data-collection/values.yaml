@@ -1,12 +1,22 @@
 ---
 minio:
-  existingSecret: sa
+  existingSecret: sa-collect-minio-object-store
+  #this will be used as the chart name in the convention releasename-chartname
+  #nameOverride:minio
+  #this will be used as the chart name and used as is for the components naming
+  fullnameOverride: sa-collect-minio-object-store
+  ingress:
+    enabled: false
+    path: "/"
+    hosts: []
   persistence:
     enabled: false
+  # minioConfig values are used by minio server the values will be passed on to Minio container(s) when Chart is deployed
+  #https://docs.min.io/docs/minio-server-configuration-guide.html
   minioConfig:
     region: "dontcare"
   defaultBucket:
-    enabled: true
+    enabled: false
     name: icptest
 
 ibm-skydive-dev:
