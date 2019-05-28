@@ -18,13 +18,15 @@ datacontrol:
     # env refers to the environment properties belong to during build-time. Default is "development".
     env: development
     registryNamespace: secadvisor_dev #secadv_dev
-    name: datacontrol
+    name: data-control
+    nameOverride: data-control
+    fullnameOverride: sa-shard-data-control
     tag: 33 #18 #20 #18 #106 #0.0.106  # 18 is a good working version for unsecure kafka #31 is a working version with new adapter (unsecured kafka)
     imagePullSecret: 'my-secret'
     statisticsRate: '60000'
     dataSourcesTopicsMapping: '{"netflow_ingress":"netflow_ingress","netflow_egress":"netflow_egress","netflow_internal":"netflow_internal","netflow_other":"netflow_other","at_cadf":"at_cadf"}'
     supportedRegions: 'us-south,us-east,us-west,eu-gb,eu-de,au-syd,jp-tok,other,dontcare'
-    accountsApiEndpoint: 'http://configmgr:9002/api/v1/'
+    accountsApiEndpoint: 'http://sa-shard-configmgr:9002/api/v1/'
     securityAdvisorShardId: 'default_449a6a22-1059-4b96-97cb-0f0dca2d25f3'
     redisDbNum: 1
     redisDbNumDC: 1
@@ -56,7 +58,9 @@ threatanalytics-v2:
     env: development
 
     # Threat Intelligence Analytics micro-service properties.
-    name: tia
+    name: threat-intelligence-analytics
+    nameOverride:: threat-intelligence-analytics
+    fullnameOverride: sa-shard-threat-intelligence-analytics
     registryNamespace: secadvisor_dev
     tag: 16 
     imagePullSecret: 'my-secret'
@@ -88,4 +92,4 @@ configmgr:
     name: configmgr
     tag: 3
     shardId: 'default_449a6a22-1059-4b96-97cb-0f0dca2d25f3'
-    shardData: '{"accounts":[{"account_id":"fa53b6717d5e9c9979101d8dac5fd4ad","bucket_url":"sa:9000/icptest","auth":{"type":"AMAZON_S3", "accessKey":"admin","secretKey":"admin1234","region":"dontcare"},"collect_from":{"netflow_ingress":true,"netflow_egress":true,"netflow_internal":true,"netflow_other":true,"at_cadf":true},"sa_analytics":{"tia":true,"ata":true,"nba":true},"sa_instance_crn":"crn:v1:staging:public:security-advisor:us-south:a/d0c8a917589e40076961f56b23056d16:ef71b41c-3239-5ff0-ad6e-5f8059f1130b:security-advisor:","sa_analytics_status":{"ata":[{"packageUrl":"https://","num_active_rules":2,"num_dormant_rules":45,"num_illegal_rules":6,"status":"success"}],"dc":{"num_sources_netflow":3,"num_sources_at":1}}},{"account_id":"2e40efb1287694f11d1f27920543d283","bucket_url":"sa:9000/icptest","auth":{"type":"AMAZON_S3","accessKey":"admin","secretKey":"admin1234","region":"dontcare"},"collect_from":{"netflow_ingress":true,"netflow_egress":true,"netflow_internal":true,"netflow_other":true,"at_cadf":true},"sa_analytics":{"tia":true,"ata":true,"nba":true},"sa_instance_crn":"crn:v1:staging:public:security-advisor:us-south:a/d0c8a917589e40076961f56b23056d16:ef71b41c-3239-5ff0-ad6e-5f8059f1130b:security-advisor:","sa_analytics_status":{"ata":[{"packageUrl":"https://","num_active_rules":2,"num_dormant_rules":45,"num_illegal_rules":6,"status":"success"}],"dc":{"num_sources_netflow":3,"num_sources_at":1}}}]}'
+    shardData: '{"accounts":[{"account_id":"fa53b6717d5e9c9979101d8dac5fd4ad","bucket_url":"http://customerv11.us-south.containers.appdomain.cloud/icptest","auth":{"type":"AMAZON_S3","cred":{"accessKey":"admin","secretKey":"admin1234"},"region":"dontcare"},"collect_from":{"netflow_ingress":true,"netflow_egress":true,"netflow_internal":true,"netflow_other":true,"at_cadf":true},"sa_analytics":{"tia":true,"ata":true,"nba":true},"sa_instance_crn":"crn:v1:staging:public:security-advisor:us-south:a/d0c8a917589e40076961f56b23056d16:ef71b41c-3239-5ff0-ad6e-5f8059f1130b:security-advisor:","sa_analytics_status":{"ata":[{"packageUrl":"https://","num_active_rules":2,"num_dormant_rules":45,"num_illegal_rules":6,"status":"success"}],"dc":{"num_sources_netflow":3,"num_sources_at":1}}},{"account_id":"2e40efb1287694f11d1f27920543d283","bucket_url":"http://sa-collect-minio-object-store:9000/icptest","auth":{"type":"AMAZON_S3","cred":{"accessKey":"admin","secretKey":"admin1234"},"region":"dontcare"},"collect_from":{"netflow_ingress":true,"netflow_egress":true,"netflow_internal":true,"netflow_other":true,"at_cadf":true},"sa_analytics":{"tia":true,"ata":true,"nba":true},"sa_instance_crn":"crn:v1:staging:public:security-advisor:us-south:a/d0c8a917589e40076961f56b23056d16:ef71b41c-3239-5ff0-ad6e-5f8059f1130b:security-advisor:","sa_analytics_status":{"ata":[{"packageUrl":"https://","num_active_rules":2,"num_dormant_rules":45,"num_illegal_rules":6,"status":"success"}],"dc":{"num_sources_netflow":3,"num_sources_at":1}}},{"account_id":"2e40efb1287694f11d1f27920543d283","bucket_url":"http://9.148.244.87/icptest","auth":{"type":"AMAZON_S3","cred":{"accessKey":"admin","secretKey":"admin1234"},"region":"dontcare"},"collect_from":{"netflow_ingress":true,"netflow_egress":true,"netflow_internal":true,"netflow_other":true,"at_cadf":true},"sa_analytics":{"tia":true,"ata":true,"nba":true},"sa_instance_crn":"crn:v1:staging:public:security-advisor:us-south:a/d0c8a917589e40076961f56b23056d16:ef71b41c-3239-5ff0-ad6e-5f8059f1130b:security-advisor:","sa_analytics_status":{"ata":[{"packageUrl":"https://","num_active_rules":2,"num_dormant_rules":45,"num_illegal_rules":6,"status":"success"}],"dc":{"num_sources_netflow":3,"num_sources_at":1}}}]}'

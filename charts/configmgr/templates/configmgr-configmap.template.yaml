@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: {{ template "fullname" . }}
+  name: configmgr-configuration
   namespace: {{ .Values.global.clusterNamespace }}
 data:
   log_level: {{ index .Values.global.log_level .Values.global.env | quote }}

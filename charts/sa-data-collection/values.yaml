@@ -54,7 +54,7 @@ ibm-skydive-dev:
 
     # Object-storage endpoint (COS / S3)
     - name: SKYDIVE_STORAGE_DEFENDER_ENDPOINT
-      value: "http://sa:9000"
+      value: "http://sa-collect-minio-object-store:9000"
 
     # Object-storage endpoint (COS / S3)
     - name: SKYDIVE_STORAGE_DEFENDER_ACCESS_KEY
