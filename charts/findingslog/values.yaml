@@ -1,0 +1,19 @@
+---
+global:
+  # env refers to the environment properties belong to during build-time. Default is "development".
+  env: development
+  registryNamespace: secadvisor_dev
+  name: findingslog
+  nameOverride: finding-distributor-log
+  #fullnameOverride:sa-shard-finding-distributor-log
+  tag: 7
+  log_level:
+    development: debug
+  topics: 'security_advisor_findings'
+  groupid: 'findingslog33'
+  imagePullSecret: 'my-secret'
+  kafkaSaalMechanism: 'PLAIN'
+  kafkaSecurityProtocol: PLAINTEXT #'SSL'
+  kafkaMetadataBrokerList: 'sa-shard-kafka-headless:9092' #local kafka
+
+

@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: {{ .Release.Name}}-threatanalytics-configuration
+  name: {{ template "fullname" . }}-configuration
   namespace: {{ .Values.global.clusterNamespace }}
 data:
   #### Evironment

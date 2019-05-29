@@ -1,10 +1,11 @@
 ---
+host: "customerv12.us-south.containers.appdomain.cloud"
 minio:
   existingSecret: sa-collect-minio-object-store
   #this will be used as the chart name in the convention releasename-chartname
-  #nameOverride:minio
+  nameOverride: "minio"
   #this will be used as the chart name and used as is for the components naming
-  fullnameOverride: sa-collect-minio-object-store
+  #fullnameOverride:sa-collect-minio-object-store
   ingress:
     enabled: false
     path: "/"

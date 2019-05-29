@@ -29,15 +29,15 @@ spec:
            - name: LOG_LEVEL
              valueFrom:
                configMapKeyRef:
-                  name: configmgr-configuration
+                  name: {{ template "fullname" . }}-configuration
                   key: log_level
            - name: shardId
              valueFrom:
                configMapKeyRef:
-                  name: configmgr-configuration
+                  name: {{ template "fullname" . }}-configuration
                   key: shardId
            - name: shardData
              valueFrom:
                configMapKeyRef:
-                  name: configmgr-configuration
+                  name: {{ template "fullname" . }}-configuration
                   key: shardData

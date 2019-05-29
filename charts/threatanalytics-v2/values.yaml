@@ -5,6 +5,7 @@ global:
   #registry.ng.bluemix.net/secadv_dev/threatanalytics-v2:0.0.276
   # Threat Intelligence Analytics micro-service properties.
   name: tia
+  nameOverride: threat-intelligence-analytics
   registryNamespace: secadvisor_dev
   tag: 16
   imagePullSecret: 'my-secret'
