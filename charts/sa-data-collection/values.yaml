@@ -1,5 +1,6 @@
 ---
-host: "customerv12.us-south.containers.appdomain.cloud"
+#uncomment this when installing on IKS, and set the host value to cluster's ingress-subdomain
+#host: "customerv11.us-south.containers.appdomain.cloud"
 minio:
   existingSecret: sa-collect-minio-object-store
   #this will be used as the chart name in the convention releasename-chartname

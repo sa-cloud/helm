@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Release.Name }}-shard-configuration
+  namespace: {{ .Release.Namespace }}
+data:
+  accountsApiEndpoint: http://{{ template "configmgrservicename" . }}:9002/api/v1/

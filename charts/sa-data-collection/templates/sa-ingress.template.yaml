@@ -1,7 +1,7 @@
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
-  name: {{ template "minio.fullname" .Values.minio }}
+  name: {{ template "fullname" . }}
   namespace: "{{.Release.Namespace}}"
 spec:
    rules:
@@ -14,7 +14,10 @@ spec:
          paths:
           - path: /
             backend:
-              serviceName: {{ .Values.minio.fullnameOverride | quote }}
+              # this is a way to run minio subchart's template and pass it minio's scope (.Values.minio). 
+              # The .Values.minio itself is not sub-scope of the current chart, need to create the dict so it looks like a scope.
+              # this way we get the minio fullname, which is the name of the minio service we need to reference here
+              serviceName: {{ template "minio.fullname" (dict "Chart" (dict "Name" "minio") "Values" (index .Values "minio") "Release" .Release "Capabilities" .Capabilities) }}
               servicePort: 9000
 
 

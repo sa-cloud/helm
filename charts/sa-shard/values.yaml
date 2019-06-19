@@ -13,36 +13,30 @@ kafka:
   persistence:
     enabled: false
 
-datacontrol:
-  global:
+global:
     # env refers to the environment properties belong to during build-time. Default is "development".
     env: development
     registryNamespace: secadvisor_dev #secadv_dev
+    imagePullSecret: 'my-secret'
+    # Don't change this value. false means this is a combined helm (redis, kafka and minio are subcharts here)
+    standalone: false
+
+datacontrol:
+  global:
     name: datacontrol
     nameOverride: data-control
     #fullnameOverride:sa-shard-data-control
-    tag: 33 #18 #20 #18 #106 #0.0.106  # 18 is a good working version for unsecure kafka #31 is a working version with new adapter (unsecured kafka)
-    imagePullSecret: 'my-secret'
+    tag: 33
     statisticsRate: '60000'
     dataSourcesTopicsMapping: '{"netflow_ingress":"netflow_ingress","netflow_egress":"netflow_egress","netflow_internal":"netflow_internal","netflow_other":"netflow_other","at_cadf":"at_cadf"}'
     supportedRegions: 'us-south,us-east,us-west,eu-gb,eu-de,au-syd,jp-tok,other,dontcare'
-    accountsApiEndpoint: 'http://sa-shard-configmgr:9002/api/v1/'
     securityAdvisorShardId: 'default_449a6a22-1059-4b96-97cb-0f0dca2d25f3'
     redisDbNum: 1
     redisDbNumDC: 1
     redis_auth: ''
-    minioEndpoint: 'sa'
-    # must match minio.minioConfig.region 
-    minioRegion: 'dontcare'
-    # must match the access key of the secret defined in minio.existingSecret 
-    accessKey: 'admin'
-    # must match the secret key of the secret defined in minio.existingSecret 
-    secretKey: 'admin1234'
     #'PLAIN' and 'PLAINTEXT' make kafka run in unsecure mode
     kafkaSaalMechanism: 'PLAIN'
     kafkaSecurityProtocol: PLAINTEXT #'SSL'
-    # Don't change this value. false means this is a combined helm (redis, kafka and minio are subcharts here)
-    standalone: false
     #fixed redis port. No need to change this.
     dc_redis_port: '6379'
     # all of the iam configurations are irrelevant in icp, must be set only when installing on bluemix
@@ -54,15 +48,12 @@ datacontrol:
 
 threatanalytics-v2:
   global:
-    # env refers to the environment properties belong to during build-time. Default is "development".
-    env: development
     # Threat Intelligence Analytics micro-service properties.
     name: tia
     nameOverride:: threat-intelligence-analytics
     #fullnameOverride:sa-shard-threat-intelligence-analytics
     registryNamespace: secadvisor_dev
     tag: 16 
-    imagePullSecret: 'my-secret'
     consumerGroupId: 'tia-consumer-group-dev'
     consumerTopics: 'netflow_ingress,netflow_egress'
     consumerSupportedDataSources: 'netflow_ingress,netflow_egress'
@@ -73,11 +64,6 @@ threatanalytics-v2:
     redis_port: '6379'
     redisDbNum: '2'
     redis_auth: ''
-    minioEndpoint: 'sa'
-    minioRegion: 'dontcare'
-    accessKey: 'admin'
-    secretKey: 'admin1234'
-    useOS: 'minio'
     xfeDbCosIamConfig: '{"iamTokenURL":"https://iam.bluemix.net/identity/token","iamPDPURL":"https://iam.bluemix.net","iamPAPURL":"https://iam.bluemix.net","iamPublicKeysEndpoint":"https://iam.bluemix.net/identity/keys","serviceCname":"TIA-XFE-COS","adminService":{"apiKey":"stlUyXu1a4HOsA57sRSgeFouqbcWbMuB-EWbufrMghdv","serviceName":"TIA-XFE-COS","serviceid":"TIA-XFE-COS"},"externalService":{"apiKey":"stlUyXu1a4HOsA57sRSgeFouqbcWbMuB-EWbufrMghdv","serviceName":"TIA-XFE-COS","serviceid":"TIA-XFE-COS"},"internalService":{"apiKey":"stlUyXu1a4HOsA57sRSgeFouqbcWbMuB-EWbufrMghdv","serviceName":"TIA-XFE-COS","serviceid":"TIA-XFE-COS"},"viewerService":{"apiKey":"stlUyXu1a4HOsA57sRSgeFouqbcWbMuB-EWbufrMghdv","serviceName":"TIA-XFE-COS","serviceid":"TIA-XFE-COS"}}'
     #'PLAIN' and 'PLAINTEXT' make kafka run in unsecure mode
     kafkaSaalMechanism: 'PLAIN'
@@ -85,9 +71,6 @@ threatanalytics-v2:
 
 configmgr:
   global:
-    # env refers to the environment properties belong to during build-time. Default is "development".
-    env: development
-    registryNamespace : secadvisor_dev
     name: configmgr
     tag: 3
     shardId: 'default_449a6a22-1059-4b96-97cb-0f0dca2d25f3'

@@ -162,7 +162,11 @@ spec:
            - name: accountsApiEndpoint
              valueFrom:
                configMapKeyRef:
+{{- if .Values.global.standalone }}
                  name: {{ .Release.Name }}-datacontrol-configuration
+{{- else }}
+                 name: {{ .Release.Name }}-shard-configuration
+{{- end }}
                  key: accountsApiEndpoint
            - name: securityAdvisorShardId
              valueFrom:

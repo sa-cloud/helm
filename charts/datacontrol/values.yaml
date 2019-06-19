@@ -67,10 +67,6 @@ global:
   kafkaSecurityProtocol: 'PLAINTEXT'
   redisDbNum: 1
   redisDbNumDC: 1
-  minioEndpoint: 'sa-shard'
-  minioRegion: 'dontcare'
-  accessKey: 'admin'
-  secretKey: 'admin1234'
   standalone: true
   dc_redis_host: 'sa-shard-redis-slave'
   dc_redis_port: '6379'
