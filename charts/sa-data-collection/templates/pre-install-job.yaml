@@ -1,0 +1,29 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: "{{.Release.Name}}"
+  annotations:
+    # This is what defines this resource as a hook. Without this line, the
+    # job is considered part of the release.
+    "helm.sh/hook": pre-install
+    "helm.sh/hook-delete-policy": hook-succeeded
+spec:
+  template:
+    metadata:
+      name: "{{.Release.Name}}"
+    spec:
+      restartPolicy: Never
+      imagePullSecrets:
+         - name: {{ .Values.global.imagePullSecret }}
+      containers:
+      - name: main
+        image: registry.ng.bluemix.net/{{ .Values.global.registryNamespace }}/{{ .Values.global.preinstallJobImage }}:{{ .Values.global.preinstallJobTag | default "last" }}
+        env:
+         - name: runningLocally
+           value: "false"
+         - name: myNamespace
+           value: "{{.Release.Namespace}}"
+        command:
+        - npm
+        - start
+          

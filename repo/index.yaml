@@ -3,7 +3,7 @@ entries:
   configmgr:
   - apiVersion: v1
     appVersion: 0.0.1
-    created: 2019-05-29T06:59:21.251227459Z
+    created: 2019-06-27T06:28:08.259046481Z
     description: This chart manages the Data Control micro-service.
     digest: 80fc7835e520e6e1d8b455bd8b70881b89d23385cc0246d265d7239c9a0851fc
     icon: https://avatars.github.ibm.com/u/56137?s=400
@@ -17,7 +17,7 @@ entries:
   datacontrol:
   - apiVersion: v1
     appVersion: 0.0.1
-    created: 2019-05-29T06:59:21.252037805Z
+    created: 2019-06-27T06:28:08.261477027Z
     description: This chart manages the Data Control micro-service.
     digest: bec61118a7f67360a710f8b79476166d33879968d4442b40aeb1f0733507495e
     icon: https://avatars.github.ibm.com/u/56137?s=400
@@ -31,7 +31,7 @@ entries:
   findingslog:
   - apiVersion: v1
     appVersion: 0.0.1
-    created: 2019-05-29T06:59:21.2524476Z
+    created: 2019-06-27T06:28:08.262406435Z
     description: This chart is for developement logging of kafka findings channel
     digest: 94c1f346a2554a681b5fc2f7bd3bcedaa43f9e9a8651dadd58e5d47d38272d2f
     icon: https://avatars.github.ibm.com/u/56137?s=400
@@ -45,7 +45,7 @@ entries:
   ibm-skydive-dev:
   - apiVersion: v1
     appVersion: 0.21.0
-    created: 2019-05-29T06:59:21.299674305Z
+    created: 2019-06-27T06:28:08.308070925Z
     description: Skydive is an open source real-time network topology and protocols
       analyzer.
     digest: df19f17d5c63e0fda328185ae4b15c38f3011927d548c17ba0c538c7b4953379
@@ -77,10 +77,10 @@ entries:
     version: 2.2.2
   - apiVersion: v1
     appVersion: 0.22.0
-    created: 2019-05-29T06:59:21.288243984Z
+    created: 2019-06-27T06:28:08.297322073Z
     description: Skydive is an open source real-time network topology and protocols
       analyzer.
-    digest: 02385802ce48d391ac9f9b9598555c86133b1a1efa1d9de1c24fb0e46530a067
+    digest: 7d6bf1e48ae662c60f643c078dbd9a7a0f27880387dc0f0db287b4bf11df1e7e
     home: https://skydive-project.github.io/skydive/
     icon: https://avatars2.githubusercontent.com/u/19912486?s=400&v=4
     keywords:
@@ -109,7 +109,7 @@ entries:
     version: 1.1.2
   - apiVersion: v1
     appVersion: 0.21.0
-    created: 2019-05-29T06:59:21.277649049Z
+    created: 2019-06-27T06:28:08.287594175Z
     description: Skydive is an open source real-time network topology and protocols
       analyzer.
     digest: bae41fb4c09a874962c1c405d89554d726c6e3b9e99771ee4de2156484e16f8d
@@ -141,7 +141,7 @@ entries:
     version: 1.1.1
   - apiVersion: v1
     appVersion: 0.20.0
-    created: 2019-05-29T06:59:21.264672151Z
+    created: 2019-06-27T06:28:08.275451055Z
     description: Skydive is an open source real-time network topology and protocols
       analyzer.
     digest: fe9a41f61038db24f0d312716eb41b465d3308afbcde59b8e0823da0ee921f16
@@ -174,9 +174,9 @@ entries:
   sa-data-collection:
   - apiVersion: v1
     appVersion: "1.0"
-    created: 2019-05-29T06:59:21.311727331Z
+    created: 2019-06-27T06:28:08.320445936Z
     description: A Helm chart for sa icp
-    digest: 3baa411d7d90edcaddcd76c21fc1d38dbd1e75c50744d66835471b94b42c7094
+    digest: 5856dbcb4506bdf270915419edf8a7b304944bc5630c5021a02aad09b616b5c4
     name: sa-data-collection
     urls:
     - sa-data-collection-0.1.0.tgz
@@ -184,7 +184,7 @@ entries:
   sa-shard:
   - apiVersion: v1
     appVersion: "1.0"
-    created: 2019-05-29T06:59:21.319391554Z
+    created: 2019-06-27T06:28:08.328664244Z
     description: A Helm chart for sa icp
     digest: e44957789aae6f9b07ae9bc31d9d85b36576d479489b4ac4215d586460f8a647
     name: sa-shard
@@ -194,7 +194,7 @@ entries:
   threatanalytics-v2:
   - apiVersion: v1
     appVersion: 0.0.1
-    created: 2019-05-29T06:59:21.319956577Z
+    created: 2019-06-27T06:28:08.329661544Z
     description: This chart manages the Threat Intelligence Analytics micro-service.
     digest: 6bfe41b008f3419e3dc57f9524e0e2566c5fae5f0612d7244d577e4edcebf92b
     icon: https://avatars.github.ibm.com/u/56137?s=400
@@ -205,4 +205,4 @@ entries:
     urls:
     - threatanalytics-v2-0.0.1.tgz
     version: 0.0.1
-generated: 2019-05-29T06:59:21.250591243Z
+generated: 2019-06-27T06:28:08.257394556Z

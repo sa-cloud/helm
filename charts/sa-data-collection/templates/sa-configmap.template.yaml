@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: sa-configuration
+data:
+  minioEndpoint: {{ template "minioendpoint" .}}
+  minioSecretName: {{ template "miniofullname" .}}
+  minioExistingSecret: {{ .Values.minio.existingSecret }}
+  minioBucket: {{ .Values.minio.defaultBucket.name }}

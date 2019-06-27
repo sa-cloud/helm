@@ -2,7 +2,8 @@
 #uncomment this when installing on IKS, and set the host value to cluster's ingress-subdomain
 #host: "customerv11.us-south.containers.appdomain.cloud"
 minio:
-  existingSecret: sa-collect-minio-object-store
+  accessKey: "admin"
+  secretKey: "admin1234"
   #this will be used as the chart name in the convention releasename-chartname
   nameOverride: "minio"
   #this will be used as the chart name and used as is for the components naming
@@ -18,13 +19,23 @@ minio:
   minioConfig:
     region: "dontcare"
   defaultBucket:
-    enabled: false
+    enabled: true
     name: icptest
+
+global:
+    secAdv: true
+    dockerRuntime: true
+    registryNamespace: secadvisor_dev #secadv_dev
+    imagePullSecret: 'my-secret'
+    preinstallJobImage: 'sa-preinstall-job'
+    preinstallJobTag: 8
 
 ibm-skydive-dev:
   image:
     repository: cognetive/skydive
-    tag: amd64-latest
+    tag: 2019.04.16___08.35
+    # tag for older k8s version (i.e ICP)
+    tagVdocker: amd64-latest
   env:
     # For debug purposes
     - name: SKYDIVE_LOGGING_LEVEL
@@ -54,29 +65,9 @@ ibm-skydive-dev:
     - name: SKYDIVE_STORAGE_DEFENDER_MAX_SECONDS_PER_STREAM
       value: "86400"
 
-    # Object-storage endpoint (COS / S3)
-    - name: SKYDIVE_STORAGE_DEFENDER_ENDPOINT
-      value: "http://sa-collect-minio-object-store:9000"
-
-    # Object-storage endpoint (COS / S3)
-    - name: SKYDIVE_STORAGE_DEFENDER_ACCESS_KEY
-      value: "admin"
-
-    # Object-storage endpoint (COS / S3)
-    - name: SKYDIVE_STORAGE_DEFENDER_SECRET_KEY
-      value: "admin1234"
-
-    # Object-storage bucket
-    - name: SKYDIVE_STORAGE_DEFENDER_BUCKET
-      value: "icptest"
-
     # Object-storage region
     - name: SKYDIVE_STORAGE_DEFENDER_REGION
       value: "dontcare"
-
-    # Object-storage kubernetes cluster guid
-    - name: SKYDIVE_STORAGE_DEFENDER_KUBERNETES_GUID
-      value: "icpsomGuid12363635"
 
     # ?
     - name: SKYDIVE_STORAGE_DEFENDER_DRIVER
@@ -99,10 +90,6 @@ ibm-skydive-dev:
     # DEFAULT_LAYER_KEY_MODE - the layers used to identify a unique flow.
     - name: SKYDIVE_FLOW_DEFAULT_LAYER_KEY_MODE
       value: "L3"
-
-    # IP Address of the cluster -  on icp - private masks (10.., 172.., 192..), node ips/32, external ip/29 (use curl https://api.ipify.org from a node)
-    - name: SKYDIVE_STORAGE_DEFENDER_CLUSTER_NET_MASKS
-      value: "10.0.0.0/8 172.16.0.0/12 192.168.0.0/16 9.148.245.11/32 9.148.245.127/32 9.148.244.87/32 9.148.244.253/32 159.8.66.226/29"
 
     - name: SKYDIVE_ANALYZER_STARTUP_CAPTURE_TYPE
       value: "pcap"

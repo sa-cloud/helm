@@ -57,6 +57,7 @@ spec:
         tier: analyzer
     spec:
       serviceAccountName: skydive-service-account
+      hostNetwork: true
       dnsPolicy: ClusterFirstWithHostNet
       hostPID: true
       hostIPC: true
@@ -73,7 +74,11 @@ spec:
       {{- end }}      
       containers:
       - name: skydive-analyzer
+        {{- if and (.Values.image.tagVdocker) (.Values.global.dockerRuntime) }}
+        image: {{ .Values.image.repository }}:{{ .Values.image.tagVdocker }}
+        {{- else }}
         image: {{ .Values.image.repository }}:{{ .Values.image.tag }}
+        {{- end }}
         imagePullPolicy: {{ default "" .Values.image.imagePullPolicy | quote }}
         terminationMessagePolicy: FallbackToLogsOnError
         args:
@@ -161,6 +166,38 @@ spec:
           value: {{ .Values.analyzer.topology.fabric }}
       {{- if .Values.env }}
 {{ toYaml .Values.env | indent 8 }}
+      {{- end }}
+      {{- if .Values.global.secAdv }}
+        - name: SKYDIVE_STORAGE_DEFENDER_KUBERNETES_GUID
+          valueFrom:
+            configMapKeyRef:
+              name: skydive-configuration
+              key: "guid"
+        - name: SKYDIVE_STORAGE_DEFENDER_ENDPOINT
+          valueFrom: 
+            configMapKeyRef:
+               name: "sa-configuration"
+               key: "minioEndpoint"
+        - name: SKYDIVE_STORAGE_DEFENDER_ACCESS_KEY
+          valueFrom:
+            secretKeyRef:
+              name: "sa-secret"
+              key: "minioaccesskey"
+        - name: SKYDIVE_STORAGE_DEFENDER_SECRET_KEY
+          valueFrom:
+            secretKeyRef:
+              name: "sa-secret"
+              key: "miniosecretkey"
+        - name: SKYDIVE_STORAGE_DEFENDER_CLUSTER_NET_MASKS
+          valueFrom:
+            configMapKeyRef:
+              name: skydive-configuration
+              key: "netmasks"
+        - name: SKYDIVE_STORAGE_DEFENDER_BUCKET
+          valueFrom:
+            configMapKeyRef:
+              name: "sa-configuration"
+              key: "minioBucket"
       {{- end }}
         resources:
 {{ toYaml .Values.resources | indent 10 }}
