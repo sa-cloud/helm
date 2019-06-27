@@ -28,7 +28,7 @@ global:
     registryNamespace: secadvisor_dev #secadv_dev
     imagePullSecret: 'my-secret'
     preinstallJobImage: 'sa-preinstall-job'
-    preinstallJobTag: 8
+    preinstallJobTag: 10
 
 ibm-skydive-dev:
   image:
