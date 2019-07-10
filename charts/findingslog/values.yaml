@@ -4,16 +4,21 @@ global:
   env: development
   registryNamespace: secadvisor_dev
   name: findingslog
-  nameOverride: finding-distributor-log
-  #fullnameOverride:sa-shard-finding-distributor-log
-  tag: 7
+  nameOverride: finding-distributor-qr
+  fullnameOverride: finding-distributor-qr
+  tag: 11 #7 is working local logger version #11 is local/qradar by sendQRadar
   log_level:
     development: debug
   topics: 'security_advisor_findings'
-  groupid: 'findingslog33'
+  groupid: 'findingslog'
   imagePullSecret: 'my-secret'
+  sendQRadar: 'true' # set false for simple local log distributor
+  qrip: 'iris-bluesecure.sl.cloud9.ibm.com'
+  qrport: 514
+  qrissuer: 'csaInsights'
   kafkaSaalMechanism: 'PLAIN'
-  kafkaSecurityProtocol: PLAINTEXT #'SSL'
-  kafkaMetadataBrokerList: 'sa-shard-kafka-headless:9092' #local kafka
+  kafkaSecurityProtocol: 'PLAINTEXT' #'SSL'
+  #kafkaMetadataBrokerList:'dh-kafka-0.dh-kafka-headless.cert-manager.svc.cluster.local:9092' #local kafka
+  kafkaMetadataBrokerList: 'sa-shard-kafka-headless:9092' #'dh-kafka-0.dh-kafka-headless.cert-manager.svc.cluster.local:9092' #local kafka
 
 

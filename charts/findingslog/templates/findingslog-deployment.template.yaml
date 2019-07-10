@@ -60,3 +60,23 @@ spec:
                configMapKeyRef:
                   name: {{ template "fullname" . }}-configuration
                   key: kafkaSslCaLocation
+           - name: sendQRadar
+             valueFrom:
+               configMapKeyRef:
+                  name: {{ template "fullname" . }}-configuration
+                  key: sendQRadar
+           - name: qrip
+             valueFrom:
+               configMapKeyRef:
+                  name: {{ template "fullname" . }}-configuration
+                  key: qrip
+           - name: qrport
+             valueFrom:
+               configMapKeyRef:
+                  name: {{ template "fullname" . }}-configuration
+                  key: qrport
+           - name: qrissuer
+             valueFrom:
+               configMapKeyRef:
+                  name: {{ template "fullname" . }}-configuration
+                  key: qrissuer

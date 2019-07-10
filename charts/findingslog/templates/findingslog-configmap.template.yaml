@@ -20,3 +20,15 @@ data:
 {{- if .Values.global.kafkaSecurityProtocol }}
   kafkaSecurityProtocol: {{ .Values.global.kafkaSecurityProtocol | quote }}
 {{- end }}
+{{- if .Values.global.sendQRadar }}
+  sendQRadar: {{ .Values.global.sendQRadar | quote }}
+{{- end }}
+{{- if .Values.global.qrip }}
+  qrip: {{ .Values.global.qrip | quote }}
+{{- end }}
+{{- if .Values.global.qrport }}
+  qrport: {{ .Values.global.qrport | quote }}
+{{- end }}
+{{- if .Values.global.qrissuer }}
+  qrissuer: {{ .Values.global.qrissuer | quote }}
+{{- end }}
