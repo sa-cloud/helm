@@ -6,13 +6,17 @@ global:
   name: findingslog
   nameOverride: finding-distributor-qr
   fullnameOverride: finding-distributor-qr
-  tag: 11 #7 is working local logger version #11 is local/qradar by sendQRadar
+  tag: 12 #7 is working local logger version #11 is log/qradar distribution by sendQRadar #12 supports also netflow sending
   log_level:
     development: debug
-  topics: 'security_advisor_findings'
+  topicsFindings: 'security_advisor_findings'
+  topicsNetflow: 'netflow_ingress,netflow_egress'
+  consumerSupportedDataSources: 'netflow_ingress,netflow_egress'
   groupid: 'findingslog'
   imagePullSecret: 'my-secret'
   sendQRadar: 'true' # set false for simple local log distributor
+  distribFindings: 'false'
+  distribNeflows: 'true'
   qrip: 'iris-bluesecure.sl.cloud9.ibm.com'
   qrport: 514
   qrissuer: 'csaInsights'
