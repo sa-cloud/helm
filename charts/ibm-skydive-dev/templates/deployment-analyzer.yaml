@@ -74,11 +74,7 @@ spec:
       {{- end }}      
       containers:
       - name: skydive-analyzer
-        {{- if and (.Values.image.tagVdocker) (.Values.global.dockerRuntime) }}
-        image: {{ .Values.image.repository }}:{{ .Values.image.tagVdocker }}
-        {{- else }}
         image: {{ .Values.image.repository }}:{{ .Values.image.tag }}
-        {{- end }}
         imagePullPolicy: {{ default "" .Values.image.imagePullPolicy | quote }}
         terminationMessagePolicy: FallbackToLogsOnError
         args:
@@ -167,43 +163,71 @@ spec:
       {{- if .Values.env }}
 {{ toYaml .Values.env | indent 8 }}
       {{- end }}
-      {{- if .Values.global.secAdv }}
-        - name: SKYDIVE_STORAGE_DEFENDER_KUBERNETES_GUID
-          valueFrom:
-            configMapKeyRef:
-              name: skydive-configuration
-              key: "guid"
-        - name: SKYDIVE_STORAGE_DEFENDER_ENDPOINT
-          valueFrom: 
-            configMapKeyRef:
-               name: "sa-configuration"
-               key: "minioEndpoint"
-        - name: SKYDIVE_STORAGE_DEFENDER_ACCESS_KEY
-          valueFrom:
-            secretKeyRef:
-              name: "sa-secret"
-              key: "minioaccesskey"
-        - name: SKYDIVE_STORAGE_DEFENDER_SECRET_KEY
-          valueFrom:
-            secretKeyRef:
-              name: "sa-secret"
-              key: "miniosecretkey"
-        - name: SKYDIVE_STORAGE_DEFENDER_CLUSTER_NET_MASKS
-          valueFrom:
-            configMapKeyRef:
-              name: skydive-configuration
-              key: "netmasks"
-        - name: SKYDIVE_STORAGE_DEFENDER_BUCKET
-          valueFrom:
-            configMapKeyRef:
-              name: "sa-configuration"
-              key: "minioBucket"
-      {{- end }}
         resources:
 {{ toYaml .Values.resources | indent 10 }}
         volumeMounts:
         - name: ssl
           mountPath: /etc/ssl/certs
+      - name: skydive-sa-connector
+        image: {{ .Values.image.saImage }}
+        ports:
+        - containerPort: 8085
+        securityContext:
+          privileged: false
+          readOnlyRootFilesystem: false
+          allowPrivilegeEscalation: false
+          runAsNonRoot: true
+          runAsUser: 1000
+          capabilities:
+                add:
+                - SYS_ADMIN
+                - SYS_RESOURCE
+                - SYS_TIME
+                - NET_BROADCAST
+                - NET_ADMIN
+        env:
+        - name: SKYDIVE_ANALYZERS
+          value: {{ template "fullname" . }}-service:{{ .Values.service.port }}
+        - name: SKYDIVE_PIPELINE_ANALYZER_SUBSCRIBER_URL
+          value: ws://{{ template "fullname" . }}-service:{{ .Values.service.port }}/ws/subscriber/flow
+        - name: SKYDIVE_PIPELINE_STORE_S3_OBJECT_PREFIX
+          valueFrom:
+            configMapKeyRef:
+              name: skydive-configuration
+              key: "objectPrefix"
+        - name: SKYDIVE_PIPELINE_STORE_S3_ENDPOINT
+          valueFrom: 
+            configMapKeyRef:
+               name: "sa-configuration"
+               key: "minioEndpoint"
+        - name: SKYDIVE_PIPELINE_STORE_S3_ACCESS_KEY
+          valueFrom:
+            secretKeyRef:
+              name: "sa-secret"
+              key: "minioaccesskey"
+        - name: SKYDIVE_PIPELINE_STORE_S3_SECRET_KEY
+          valueFrom:
+            secretKeyRef:
+              name: "sa-secret"
+              key: "miniosecretkey"
+        - name: SKYDIVE_PIPELINE_CLASSIFY_CLUSTER_NET_MASKS
+          valueFrom:
+            configMapKeyRef:
+              name: skydive-configuration
+              key: "netmasks"
+        - name: SKYDIVE_PIPELINE_STORE_S3_BUCKET
+          valueFrom:
+            configMapKeyRef:
+              name: "sa-configuration"
+              key: "minioBucket"
+        - name: SKYDIVE_PIPELINE_STORE_S3_REGION
+          valueFrom:
+            configMapKeyRef:
+              name: "sa-configuration"
+              key: "minioRegion"
+      {{- if .Values.env }}
+{{ toYaml .Values.env | indent 8 }}
+      {{- end }}
     {{- if .Values.persistence.enabled }}
       - name: skydive-elasticsearch
         image: {{ .Values.elasticsearch.image.repository }}:{{ .Values.elasticsearch.image.tag }}
@@ -259,4 +283,3 @@ spec:
       - name: ssl
         hostPath:
           path: /etc/ssl/certs
-

@@ -28,54 +28,38 @@ global:
     registryNamespace: secadvisor_dev #secadv_dev
     imagePullSecret: 'my-secret'
     preinstallJobImage: 'sa-preinstall-job'
-    preinstallJobTag: 10
+    preinstallJobTag: 16
 
 ibm-skydive-dev:
   image:
     repository: cognetive/skydive
-    tag: 2019.04.16___08.35
+    #tag:2019.04.16___08.35
     # tag for older k8s version (i.e ICP)
-    tagVdocker: amd64-latest
+    #tagVdocker:amd64-latest
+    tag: 2019.07.24___08.41
+    saImage: registry.ng.bluemix.net/secadvisor_dev/skydive-secadvisor:3
+    secretName: 'my-secret'
   env:
     # For debug purposes
     - name: SKYDIVE_LOGGING_LEVEL
       value: "INFO"
 
-    # Send flow information to defender back-end
-    - name: SKYDIVE_ANALYZER_FLOW_BACKEND
-      value: "defender"
-
-    # We do not propagate the topology information, so just keep this in memory (this is being deleted over time)
-    - name: SKYDIVE_ANALYZER_TOPOLOGY_BACKEND
-      value: "memory"
-
     # Maximum number of flows per object
-    - name: SKYDIVE_STORAGE_DEFENDER_MAX_FLOWS_PER_OBJECT
+    - name: SKYDIVE_PIPELINE_STORE_S3_MAX_FLOWS_PER_OBJECT
       value: "60000"
+
+    - name: SKYDIVE_PIPELINE_STORE_S3_MAX_SECONDS_PER_OBJECT
+      value: "60"
+
+    - name: SKYDIVE_PIPELINE_STORE_S3_MAX_FLOW_ARRAY_SIZE
+      value: "100000"
+
+    - name: SKYDIVE_PIPELINE_STORE_S3_MAX_SECONDS_PER_STREAM
+      value: "86400"
 
     # Flows to be updated every 30 seconds (thus, every 60 seconds to defender)
     - name: SKYDIVE_FLOW_UPDATE
       value: "30"
-
-    # Maximum seconds per object
-    - name: SKYDIVE_STORAGE_DEFENDER_MAX_SECONDS_PER_OBJECT
-      value: "60"
-
-    # Maximum seconds per stream
-    - name: SKYDIVE_STORAGE_DEFENDER_MAX_SECONDS_PER_STREAM
-      value: "86400"
-
-    # Object-storage region
-    - name: SKYDIVE_STORAGE_DEFENDER_REGION
-      value: "dontcare"
-
-    # ?
-    - name: SKYDIVE_STORAGE_DEFENDER_DRIVER
-      value: defender
-
-    # COLLECTION (as defined in the defender API)
-    - name: SKYDIVE_STORAGE_DEFENDER_COLLECTION
-      value: "netflow"
 
     # ANALYZER_STARTUP_CAPTURE_GREMLIN invoke at startup capturing in selected nodes
     - name: SKYDIVE_ANALYZER_STARTUP_CAPTURE_GREMLIN

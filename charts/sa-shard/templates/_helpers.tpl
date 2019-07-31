@@ -24,6 +24,15 @@ get the configmgr service name
 {{- end -}}
 
 
+
+{{/*
+get the redis serviceAccount name
+*/}}
+{{- define "redisServiceAccountName" -}}
+{{ template "redis.serviceAccountName" (dict "Chart" (dict "Name" "redis") "Values" (index .Values "redis") "Release" .Release "Capabilities" .Capabilities) }}
+{{- end -}}
+
+
 {{/*
 Helper functions which can be used for used for .Values.arch in PPA Charts
 Check if tag contains specific platform suffix and if not set based on kube platform

@@ -8,10 +8,14 @@ redis:
     persistence:
       enabled: false
   usePassword: false
+  serviceAccount:
+    create: true
 
 kafka:
   persistence:
     enabled: false
+  rbac:
+    enabled: true
 
 global:
     # env refers to the environment properties belong to during build-time. Default is "development".
@@ -52,7 +56,7 @@ threatanalytics-v2:
     name: tia
     nameOverride:: threat-intelligence-analytics
     #fullnameOverride:sa-shard-threat-intelligence-analytics
-    registryNamespace: secadvisor_dev
+    #registryNamespace:secadvisor_dev
     tag: 16 
     consumerGroupId: 'tia-consumer-group-dev'
     consumerTopics: 'netflow_ingress,netflow_egress'

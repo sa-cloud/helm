@@ -7,3 +7,4 @@ data:
   minioSecretName: {{ template "miniofullname" .}}
   minioExistingSecret: {{ .Values.minio.existingSecret }}
   minioBucket: {{ .Values.minio.defaultBucket.name }}
+  minioRegion: {{ .Values.minio.minioConfig.region }}

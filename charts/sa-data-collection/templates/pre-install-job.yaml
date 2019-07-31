@@ -13,6 +13,77 @@ metadata:
     release: "{{ .Release.Name }}"
     heritage: "{{ .Release.Service }}"
 ---
+apiVersion: policy/v1beta1
+kind: PodSecurityPolicy
+metadata:
+  name: sa-psp-user-any
+  annotations:
+    "helm.sh/hook-delete-policy": before-hook-creation
+    "helm.sh/hook": pre-install
+    "helm.sh/hook-weight": "1"
+  labels:
+    app: {{ template "fullname" . }}
+    chart: "{{ .Chart.Name }}"
+    release: "{{ .Release.Name }}"
+    heritage: "{{ .Release.Service }}"
+spec:
+  privileged: false
+  seLinux:
+    rule: RunAsAny
+  supplementalGroups:
+    rule: RunAsAny
+  runAsUser:
+    rule: RunAsAny
+  fsGroup:
+    rule: RunAsAny
+  volumes:
+  - '*'
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: sa-user-any
+  annotations:
+    "helm.sh/hook-delete-policy": before-hook-creation
+    "helm.sh/hook": pre-install
+    "helm.sh/hook-weight": "2"
+  labels:
+    app: {{ template "fullname" . }}
+    chart: "{{ .Chart.Name }}"
+    release: "{{ .Release.Name }}"
+    heritage: "{{ .Release.Service }}"
+rules:
+- apiGroups: ['policy']
+  resources: ['podsecuritypolicies']
+  verbs:     ['use']
+  resourceNames:
+  - sa-psp-user-any
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: sa-user-any
+  annotations:
+    "helm.sh/hook-delete-policy": before-hook-creation
+    "helm.sh/hook": pre-install
+    "helm.sh/hook-weight": "3"
+  labels:
+    app: {{ template "fullname" . }}
+    chart: "{{ .Chart.Name }}"
+    release: "{{ .Release.Name }}"
+    heritage: "{{ .Release.Service }}"
+roleRef:
+  kind: ClusterRole
+  name: sa-user-any
+  apiGroup: rbac.authorization.k8s.io
+subjects:
+- kind: ServiceAccount
+  name: sa-service-account
+  namespace: sa-analytics
+- kind: ServiceAccount
+  name: sa-service-account
+  namespace: sa-collection
+---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
 metadata:
@@ -64,6 +135,8 @@ spec:
            value: "{{.Release.Namespace}}"
          - name: configmapName
            value: "skydive-configuration"
+         - name: region
+           value: {{ .Values.minio.minioConfig.region }}
         command:
         - npm
         - start
