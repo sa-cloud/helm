@@ -30,11 +30,21 @@ spec:
                configMapKeyRef:
                   name: {{ template "fullname" . }}-configuration
                   key: log_level
-           - name: topics
+           - name: topicsFindings
              valueFrom:
                configMapKeyRef:
                   name: {{ template "fullname" . }}-configuration
-                  key: topics
+                  key: topicsFindings
+           - name: topicsNetflow
+             valueFrom:
+               configMapKeyRef:
+                  name: {{ template "fullname" . }}-configuration
+                  key: topicsNetflow
+           - name: consumerSupportedDataSources
+             valueFrom:
+               configMapKeyRef:
+                  name: {{ template "fullname" . }}-configuration
+                  key: consumerSupportedDataSources
            - name: groupid
              valueFrom:
                configMapKeyRef:
@@ -65,16 +75,21 @@ spec:
                configMapKeyRef:
                   name: {{ template "fullname" . }}-configuration
                   key: sendQRadar
-           - name: qrip
+           - name: distribFindings
              valueFrom:
                configMapKeyRef:
                   name: {{ template "fullname" . }}-configuration
-                  key: qrip
-           - name: qrport
+                  key: distribFindings
+           - name: distribNeflows
              valueFrom:
                configMapKeyRef:
                   name: {{ template "fullname" . }}-configuration
-                  key: qrport
+                  key: distribNeflows
+           - name: qr
+             valueFrom:
+               configMapKeyRef:
+                  name: {{ template "fullname" . }}-configuration
+                  key: qr
            - name: qrissuer
              valueFrom:
                configMapKeyRef:

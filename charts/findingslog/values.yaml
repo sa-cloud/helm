@@ -4,22 +4,23 @@ global:
   env: development
   registryNamespace: secadvisor_dev
   name: findingslog
-  nameOverride: finding-distributor-qr
-  fullnameOverride: finding-distributor-qr
-  tag: 12 #7 is working local logger version #11 is log/qradar distribution by sendQRadar #12 supports also netflow sending
+  #nameOverride:finding-distributor-qr
+  #fullnameOverride:finding-distributor-qr
+  #7 is working local logger version #11 is log/qradar distribution by sendQRadar #16 supports also netflow sending #17 is qr json instead of single qrip+qrport
+  tag: 17 
   log_level:
     development: debug
   topicsFindings: 'security_advisor_findings'
   topicsNetflow: 'netflow_ingress,netflow_egress'
   consumerSupportedDataSources: 'netflow_ingress,netflow_egress'
-  groupid: 'findingslog'
+  groupid: 'findingslog-'
   imagePullSecret: 'my-secret'
   sendQRadar: 'true' # set false for simple local log distributor
-  distribFindings: 'false'
-  distribNeflows: 'true'
-  qrip: 'iris-bluesecure.sl.cloud9.ibm.com'
-  qrport: 514
+  distribFindings: 'true'
+  distribNeflows: 'false'
   qrissuer: 'csaInsights'
+  #qrissuer:'csaNetflows'
+  qr: '[{"ip":"iris-bluesecure.sl.cloud9.ibm.com","port":514},{"ip":"52.117.58.153","port":514},{"ip":"86.4.79.222","port":12514}]'
   kafkaSaalMechanism: 'PLAIN'
   kafkaSecurityProtocol: 'PLAINTEXT' #'SSL'
   #kafkaMetadataBrokerList:'dh-kafka-0.dh-kafka-headless.cert-manager.svc.cluster.local:9092' #local kafka

@@ -6,7 +6,9 @@ metadata:
   imagePullSecret: {{ .Values.global.imagePullSecret }}
 data:
   log_level: {{ index .Values.global.log_level .Values.global.env | quote }}
-  topics: {{ .Values.global.topics | quote }}
+  topicsFindings: {{ .Values.global.topicsFindings | quote }}
+  topicsNetflow: {{ .Values.global.topicsNetflow | quote }}
+  consumerSupportedDataSources: {{ .Values.global.consumerSupportedDataSources | quote }}
   groupid: {{ .Values.global.groupid | quote }}
   kafkaMetadataBrokerList: {{ .Values.global.kafkaMetadataBrokerList | quote }}
   kafkaSslCaLocation: {{ .Values.global.kafkaSslCaLocation | quote }}
@@ -22,12 +24,24 @@ data:
 {{- end }}
 {{- if .Values.global.sendQRadar }}
   sendQRadar: {{ .Values.global.sendQRadar | quote }}
+{{- else }}
+  sendQRadar: 'false'
 {{- end }}
-{{- if .Values.global.qrip }}
-  qrip: {{ .Values.global.qrip | quote }}
+{{- if .Values.global.distribFindings }}
+  distribFindings: {{ .Values.global.distribFindings | quote }}
+{{- else }}
+  distribFindings: 'false'
 {{- end }}
-{{- if .Values.global.qrport }}
-  qrport: {{ .Values.global.qrport | quote }}
+{{- if .Values.global.distribNeflows }}
+  distribNeflows: {{ .Values.global.distribNeflows | quote }}
+{{- else }}
+  distribNeflows: 'false'
+{{- end }}
+#qr and qrissuer are required only if sendQRadar is set to true
+{{- if .Values.global.qr }}
+  qr: {{ .Values.global.qr | quote }}
+{{- else }}
+  qr: '[]'
 {{- end }}
 {{- if .Values.global.qrissuer }}
   qrissuer: {{ .Values.global.qrissuer | quote }}
