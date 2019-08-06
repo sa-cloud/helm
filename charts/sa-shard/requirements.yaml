@@ -6,8 +6,8 @@ dependencies:
     version: 0.0.1
     repository: https://github.com/sa-cloud/helm/blob/master/repo?raw=true
   - name: kafka
-    version: 0.13.3
-    repository: https://kubernetes-charts-incubator.storage.googleapis.com/
+    version: 4.1.0
+    repository: https://charts.bitnami.com/bitnami
   - name: threatanalytics-v2
     version: 0.0.1
     repository: https://github.com/sa-cloud/helm/blob/master/repo?raw=true

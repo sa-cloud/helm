@@ -3,7 +3,7 @@ dependencies:
     version: 1.1.2
     repository: https://github.com/sa-cloud/helm/blob/master/repo?raw=true
   - name: minio
-    version: 2.1.0
-    repository: https://kubernetes-charts.storage.googleapis.com
+    version: 1.1.7
+    repository: https://charts.bitnami.com/bitnami
 
 

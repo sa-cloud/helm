@@ -14,8 +14,12 @@ redis:
 kafka:
   persistence:
     enabled: false
-  rbac:
-    enabled: true
+  zookeeper:
+    persistence:
+      enabled: false
+  auth:
+    enabled: false
+
 
 global:
     # env refers to the environment properties belong to during build-time. Default is "development".

@@ -2,8 +2,6 @@
 #uncomment this when installing on IKS, and set the host value to cluster's ingress-subdomain
 #host: "customerv11.us-south.containers.appdomain.cloud"
 minio:
-  accessKey: "admin"
-  secretKey: "admin1234"
   #this will be used as the chart name in the convention releasename-chartname
   nameOverride: "minio"
   #this will be used as the chart name and used as is for the components naming
@@ -18,9 +16,7 @@ minio:
   #https://docs.min.io/docs/minio-server-configuration-guide.html
   minioConfig:
     region: "dontcare"
-  defaultBucket:
-    enabled: true
-    name: icptest
+  defaultBuckets: "icptest"
 
 global:
     secAdv: true
@@ -29,6 +25,9 @@ global:
     imagePullSecret: 'my-secret'
     preinstallJobImage: 'sa-preinstall-job'
     preinstallJobTag: 16
+    minio:
+      secretKey: "admin1234"
+      accessKey: "admin"
 
 ibm-skydive-dev:
   image:

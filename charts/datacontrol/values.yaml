@@ -37,7 +37,7 @@ global:
   activeDiscovererThreshold: '300000'
   statusUpdaterCycleDuration: '300000'
   accountsInfoWriteUpdatesTopic: 'account_write'
-  monitoringPort: '443'
+  monitoringPort: '4443'
   refreshAccountsRate: '3600000'
   accountsUpdatesCheckRate: '5000'
   accountsUpdatesCheckMinCycleDuration: '3600000'

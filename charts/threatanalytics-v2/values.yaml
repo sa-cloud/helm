@@ -80,18 +80,13 @@ global:
     development: debug
     production: info
   standalone: true
-  redis_host: 'sa-icp-ibm-redis-ha-dev-master-svc'
+  redis_host: 'sa-shard-ibm-redis-ha-dev-master-svc'
   redis_port: '6379'
   redis_auth: ''
   redisDbNum: '2'
-  minioEndpoint: 'sa-icp'
-  minioRegion: 'dontcare'
-  accessKey: 'admin'
-  secretKey: 'admin1234'
-  useOS: 'minio'
   xfeDbCosIamConfig: '{"iamTokenURL":"https://iam.bluemix.net/identity/token","iamPDPURL":"https://iam.bluemix.net","iamPAPURL":"https://iam.bluemix.net","iamPublicKeysEndpoint":"https://iam.bluemix.net/identity/keys","serviceCname":"TIA-XFE-COS","adminService":{"apiKey":"stlUyXu1a4HOsA57sRSgeFouqbcWbMuB-EWbufrMghdv","serviceName":"TIA-XFE-COS","serviceid":"TIA-XFE-COS"},"externalService":{"apiKey":"stlUyXu1a4HOsA57sRSgeFouqbcWbMuB-EWbufrMghdv","serviceName":"TIA-XFE-COS","serviceid":"TIA-XFE-COS"},"internalService":{"apiKey":"stlUyXu1a4HOsA57sRSgeFouqbcWbMuB-EWbufrMghdv","serviceName":"TIA-XFE-COS","serviceid":"TIA-XFE-COS"},"viewerService":{"apiKey":"stlUyXu1a4HOsA57sRSgeFouqbcWbMuB-EWbufrMghdv","serviceName":"TIA-XFE-COS","serviceid":"TIA-XFE-COS"}}'
   kafkaSslCaLocation: ''
-  kafkaMetadataBrokerList: 'sa-icp-kafka-headless:9092'
+  kafkaMetadataBrokerList: 'dh-kafka-headless:9092'
   #'PLAIN' and 'PLAINTEXT' make kafka run in unsecure mode
   kafkaSaalMechanism: 'PLAIN'
   kafkaSecurityProtocol: 'PLAINTEXT'
