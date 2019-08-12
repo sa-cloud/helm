@@ -6,5 +6,5 @@ data:
   minioEndpoint: {{ template "minioendpoint" .}}
   minioSecretName: {{ template "miniofullname" .}}
   minioExistingSecret: {{ .Values.minio.existingSecret }}
-  minioBucket: {{ .Values.minio.defaultBucket.name }}
+  minioBucket: {{ .Values.minio.defaultBuckets }}
   minioRegion: {{ .Values.minio.minioConfig.region }}
