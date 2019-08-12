@@ -24,7 +24,7 @@ global:
     registryNamespace: secadvisor_dev #secadv_dev
     imagePullSecret: 'my-secret'
     preinstallJobImage: 'sa-preinstall-job'
-    preinstallJobTag: 16
+    preinstallJobTag: 17
     minio:
       secretKey: "admin1234"
       accessKey: "admin"
