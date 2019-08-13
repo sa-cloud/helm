@@ -34,10 +34,18 @@ spec:
            - name: shardId
              valueFrom:
                configMapKeyRef:
+{{- if .Values.global.autoConfig }}
+                  name: {{ .Values.global.autoConfigName }}
+{{- else }}
                   name: {{ template "fullname" . }}-configuration
+{{- end }}
                   key: shardId
            - name: shardData
              valueFrom:
                configMapKeyRef:
+{{- if .Values.global.autoConfig }}
+                  name: {{ .Values.global.autoConfigName }}
+{{- else }}
                   name: {{ template "fullname" . }}-configuration
+{{- end }}
                   key: shardData

@@ -2,9 +2,14 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: sa-configuration
+  annotations:
+    "helm.sh/hook": pre-install
+    "helm.sh/hook-delete-policy": before-hook-creation #hook-succeeded
+    "helm.sh/hook-weight": "2"
 data:
   minioEndpoint: {{ template "minioendpoint" .}}
   minioSecretName: {{ template "miniofullname" .}}
-  minioExistingSecret: {{ .Values.minio.existingSecret }}
+  minioExistingSecret: {{ .Values.minio.existingSecret | default "" | quote}}
   minioBucket: {{ .Values.minio.defaultBuckets }}
   minioRegion: {{ .Values.minio.minioConfig.region }}
+

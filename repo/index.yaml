@@ -3,9 +3,9 @@ entries:
   configmgr:
   - apiVersion: v1
     appVersion: 0.0.1
-    created: 2019-08-12T09:07:48.374107398Z
+    created: 2019-08-13T09:31:17.591402448Z
     description: This chart manages the Data Control micro-service.
-    digest: 80fc7835e520e6e1d8b455bd8b70881b89d23385cc0246d265d7239c9a0851fc
+    digest: 18efc451eecfa6c4a139cbfe01d55b45652fbc492c948a4cfe9145a9d0675310
     icon: https://avatars.github.ibm.com/u/56137?s=400
     maintainers:
     - email: ashishth@in.ibm.com
@@ -17,7 +17,7 @@ entries:
   datacontrol:
   - apiVersion: v1
     appVersion: 0.0.1
-    created: 2019-08-12T09:07:48.375048404Z
+    created: 2019-08-13T09:31:17.592455593Z
     description: This chart manages the Data Control micro-service.
     digest: 8886f02d7442f033f4e840f3588e0968bacb311b7c70ccee0276f4b157e76736
     icon: https://avatars.github.ibm.com/u/56137?s=400
@@ -31,7 +31,7 @@ entries:
   findingslog:
   - apiVersion: v1
     appVersion: 0.0.1
-    created: 2019-08-12T09:07:48.375651915Z
+    created: 2019-08-13T09:31:17.59333389Z
     description: This chart is for developement logging of kafka findings channel
     digest: 4478bba528c3e0ef65759ad5d54456d89b5a154d9ba0d52d42993f743fd9930d
     icon: https://avatars.github.ibm.com/u/56137?s=400
@@ -45,7 +45,7 @@ entries:
   ibm-skydive-dev:
   - apiVersion: v1
     appVersion: 0.21.0
-    created: 2019-08-12T09:07:48.418176889Z
+    created: 2019-08-13T09:31:17.635851819Z
     description: Skydive is an open source real-time network topology and protocols
       analyzer.
     digest: df19f17d5c63e0fda328185ae4b15c38f3011927d548c17ba0c538c7b4953379
@@ -77,7 +77,7 @@ entries:
     version: 2.2.2
   - apiVersion: v1
     appVersion: 0.22.0
-    created: 2019-08-12T09:07:48.407540336Z
+    created: 2019-08-13T09:31:17.625344766Z
     description: Skydive is an open source real-time network topology and protocols
       analyzer.
     digest: 332ed245b39f1cb235d4aa8155300394dd96fa7193210e4da4a2c9a695dbb8b5
@@ -109,7 +109,7 @@ entries:
     version: 1.1.2
   - apiVersion: v1
     appVersion: 0.21.0
-    created: 2019-08-12T09:07:48.398627281Z
+    created: 2019-08-13T09:31:17.616382823Z
     description: Skydive is an open source real-time network topology and protocols
       analyzer.
     digest: bae41fb4c09a874962c1c405d89554d726c6e3b9e99771ee4de2156484e16f8d
@@ -141,7 +141,7 @@ entries:
     version: 1.1.1
   - apiVersion: v1
     appVersion: 0.20.0
-    created: 2019-08-12T09:07:48.387406103Z
+    created: 2019-08-13T09:31:17.604945803Z
     description: Skydive is an open source real-time network topology and protocols
       analyzer.
     digest: fe9a41f61038db24f0d312716eb41b465d3308afbcde59b8e0823da0ee921f16
@@ -174,9 +174,9 @@ entries:
   sa-data-collection:
   - apiVersion: v1
     appVersion: "1.0"
-    created: 2019-08-12T09:07:48.430514483Z
+    created: 2019-08-13T09:31:17.648350971Z
     description: A Helm chart for sa icp
-    digest: 75e3bd4d8afa7e2069140d058d16fbb5a79660a3e351001318d6754b043c798f
+    digest: c3105a9bb7c3a4e2001f14786b5f211414c26736a513873b2743ecb1b21335b5
     name: sa-data-collection
     urls:
     - sa-data-collection-0.1.0.tgz
@@ -184,17 +184,27 @@ entries:
   sa-shard:
   - apiVersion: v1
     appVersion: "1.0"
-    created: 2019-08-12T09:07:48.440448303Z
+    created: 2019-08-13T09:31:17.658693127Z
     description: A Helm chart for sa icp
-    digest: bc5d571a2c1a2b31e8bd7fcf68c0c6ff27aa4d7cebfc01cc22c8c6a547f70dc9
+    digest: bacce7ac9e67f873ddb4e0d972a362a09b1da5f1a3579221852b583b3a416f5b
     name: sa-shard
     urls:
     - sa-shard-0.1.0.tgz
     version: 0.1.0
+  sa-single-helm:
+  - apiVersion: v1
+    appVersion: "1.0"
+    created: 2019-08-13T09:31:17.680834329Z
+    description: A Helm chart for security advisor
+    digest: 091772af000f72d75107be876c655f918085e615f228cc53f646ed10ce3136b8
+    name: sa-single-helm
+    urls:
+    - sa-single-helm-0.1.0.tgz
+    version: 0.1.0
   threatanalytics-v2:
   - apiVersion: v1
     appVersion: 0.0.1
-    created: 2019-08-12T09:07:48.44104555Z
+    created: 2019-08-13T09:31:17.681383398Z
     description: This chart manages the Threat Intelligence Analytics micro-service.
     digest: 6bfe41b008f3419e3dc57f9524e0e2566c5fae5f0612d7244d577e4edcebf92b
     icon: https://avatars.github.ibm.com/u/56137?s=400
@@ -205,4 +215,4 @@ entries:
     urls:
     - threatanalytics-v2-0.0.1.tgz
     version: 0.0.1
-generated: 2019-08-12T09:07:48.372661517Z
+generated: 2019-08-13T09:31:17.59045728Z

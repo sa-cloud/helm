@@ -136,7 +136,32 @@ spec:
          - name: configmapName
            value: "skydive-configuration"
          - name: region
-           value: {{ .Values.minio.minioConfig.region }}
+           value: "{{ .Values.minio.minioConfig.region }}"
+         - name: autoConfig
+           value: "{{ .Values.global.autoConfig }}"
+         - name: autoConfigName
+           value: "{{ .Values.global.autoConfigName }}"
+         - name: shardDataTemplateJson
+           value: '{{ .Values.global.shardData }}'
+         - name: minioAccessKey
+           value: "{{ .Values.global.minio.accessKey }}"
+         - name: minioSecretKey
+           value: "{{ .Values.global.minio.secretKey }}"
+         - name: minioBucket
+           valueFrom:
+             configMapKeyRef:
+               name: "sa-configuration"
+               key: minioBucket
+         - name: minioEndpoint
+           valueFrom:
+             configMapKeyRef:
+               name: "sa-configuration"
+               key: minioEndpoint
+         - name: minioSecret
+           valueFrom:
+             configMapKeyRef:
+               name: "sa-configuration"
+               key: minioSecretName
         command:
         - npm
         - start

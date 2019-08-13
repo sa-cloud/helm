@@ -1,20 +1,8 @@
 dependencies:
-  - name: ibm-redis-ha-dev
-    version: 1.1.0
-    repository: https://raw.githubusercontent.com/IBM/charts/master/repo/stable/
-  - name: ibm-skydive-dev
-    version: 1.0.4
-    repository: file://../skydive/ICP-skydive-chart/stable/ibm-skydive-dev
-  - name: datacontrol
-    version: 0.0.1
-    repository: file://../DataControl/security-advisor-data-control/config/helm/datacontrol
-  - name: minio
-    version: 2.1.0
-    repository: https://kubernetes-charts.storage.googleapis.com
-  - name: kafka
-    version: 0.13.3
-    repository: https://kubernetes-charts-incubator.storage.googleapis.com/
-  - name: threatanalytics-v2
-    version: 0.0.1
-    repository: file://../tia/security-advisor-threat-intelligence-analytics/config/helm/threatanalytics-v2
+  - name: sa-shard
+    version: 0.1.0
+    repository: https://github.com/sa-cloud/helm/blob/master/repo?raw=true
+  - name: sa-data-collection
+    version: 0.1.0
+    repository: https://github.com/sa-cloud/helm/blob/master/repo?raw=true
 
