@@ -4,7 +4,7 @@ global:
   autoConfig: true
   autoConfigName: "sa-shard-auto-configmap"
   #this is used as template json by the automatic configuration
-  shardData: '{"accounts":[{"account_id":"","bucket_url":"","auth":{"type":"AMAZON_S3", "accessKey":"","secretKey":"","region":""},"collect_from":{"netflow_ingress":true,"netflow_egress":true,"netflow_internal":true,"netflow_other":true,"at_cadf":true},"sa_analytics":{"tia":true,"ata":true,"nba":true},"sa_instance_crn":"","sa_analytics_status":{"ata":[{"packageUrl":"https://","num_active_rules":2,"num_dormant_rules":45,"num_illegal_rules":6,"status":"success"}],"dc":{"num_sources_netflow":3,"num_sources_at":1}}}]}'
+  shardData: '{"accounts":[{"account_id":"","bucket_url":"","auth":{"type":"AMAZON_S3", "accessKey":"","secretKey":"","region":""},"collect_from":{"netflow_ingress":true,"netflow_egress":true,"netflow_internal":true,"netflow_other":true,"at_cadf":true},"sa_analytics":{"tia":true,"ata":true,"nba":true},"sa_instance_crn":"crn:","sa_analytics_status":{"ata":[{"packageUrl":"https://","num_active_rules":2,"num_dormant_rules":45,"num_illegal_rules":6,"status":"success"}],"dc":{"num_sources_netflow":3,"num_sources_at":1}}}]}'
 sa-shard:
   configmgr:
     global:
