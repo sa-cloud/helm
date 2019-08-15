@@ -172,7 +172,7 @@ spec:
              valueFrom:
                configMapKeyRef:
 {{- if .Values.global.autoConfig }}
-                  name: {{ .Values.global.autoConfigName }}
+                 name: {{ .Values.global.autoConfigName }}
                  key: shardId
 {{- else }}
                  name: {{ .Release.Name }}-datacontrol-configuration
