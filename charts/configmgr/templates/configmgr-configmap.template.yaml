@@ -5,5 +5,5 @@ metadata:
   namespace: {{ .Values.global.clusterNamespace }}
 data:
   log_level: {{ index .Values.global.log_level .Values.global.env | quote }}
-  shardId: {{ .Values.global.shardId | quote }}
+  shardId: {{ .Values.global.securityAdvisorShardId | quote }}
   shardData: {{ .Values.global.shardData | quote }}

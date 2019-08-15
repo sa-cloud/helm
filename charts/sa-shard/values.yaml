@@ -28,6 +28,7 @@ global:
     imagePullSecret: 'my-secret'
     # Don't change this value. false means this is a combined helm (redis, kafka and minio are subcharts here)
     standalone: false
+    securityAdvisorShardId: 'default_449a6a22-1059-4b96-97cb-0f0dca2d25f3'
 
 datacontrol:
   global:
@@ -38,7 +39,6 @@ datacontrol:
     statisticsRate: '60000'
     dataSourcesTopicsMapping: '{"netflow_ingress":"netflow_ingress","netflow_egress":"netflow_egress","netflow_internal":"netflow_internal","netflow_other":"netflow_other","at_cadf":"at_cadf"}'
     supportedRegions: 'us-south,us-east,us-west,eu-gb,eu-de,au-syd,jp-tok,other,dontcare'
-    securityAdvisorShardId: 'default_449a6a22-1059-4b96-97cb-0f0dca2d25f3'
     redisDbNum: 1
     redisDbNumDC: 1
     redis_auth: ''
@@ -53,7 +53,7 @@ datacontrol:
     iamTokenURL: 'https://iam.test.cloud.ibm.com/identity/token'
     iamPAPURL: 'https://iam.test.cloud.ibm.com'
     iamConfig: '{"adminService":{"serviceName":"Grafeas-Admin-Service","serviceid":"ServiceId-1d1e8188-8ae6-45a4-b67e-5058a8373638"},"externalService":{"apiKey":"pYgIUhpGO25tN52EtbuzzomqGX_D7h_La8PCD_ELj6cq","serviceName":"Grafeas-External-Service","serviceid":"ServiceId-838121e1-8053-40e0-85d6-43a7d30f110d"},"internalService":{"apiKey":"ZSbLcYWa3iLul8zI4Vc_7tgYN8qG8GF4qmcaFL79713-","serviceName":"Grafeas-Internal-Service","serviceid":"ServiceId-5f4ca4ac-9a64-4bf0-ae03-4ad9a21afe42"},"serviceCname":"staging","viewerService":{"apiKey":"pYgIUhpGO25tN52EtbuzzomqGX_D7h_La8PCD_ELj6cq","serviceName":"security-advisor","serviceid":"ServiceId-838121e1-8053-40e0-85d6-43a7d30f110d"}}'
-
+ 
 threatanalytics-v2:
   global:
     # Threat Intelligence Analytics micro-service properties.
@@ -81,5 +81,4 @@ configmgr:
   global:
     name: configmgr
     tag: 3
-    shardId: 'default_449a6a22-1059-4b96-97cb-0f0dca2d25f3'
     shardData: '{"accounts":[{"account_id":"fa53b6717d5e9c9979101d8dac5fd4ad","bucket_url":"http://customerv11.us-south.containers.appdomain.cloud/icptest","auth":{"type":"AMAZON_S3", "accessKey":"admin","secretKey":"admin1234","region":"dontcare"},"collect_from":{"netflow_ingress":true,"netflow_egress":true,"netflow_internal":true,"netflow_other":true,"at_cadf":true},"sa_analytics":{"tia":true,"ata":true,"nba":true},"sa_instance_crn":"crn:v1:staging:public:security-advisor:us-south:a/d0c8a917589e40076961f56b23056d16:ef71b41c-3239-5ff0-ad6e-5f8059f1130b:security-advisor:","sa_analytics_status":{"ata":[{"packageUrl":"https://","num_active_rules":2,"num_dormant_rules":45,"num_illegal_rules":6,"status":"success"}],"dc":{"num_sources_netflow":3,"num_sources_at":1}}},{"account_id":"2e40efb1287694f11d1f27920543d283","bucket_url":"http://sa-collect-minio-object-store:9000/icptest","auth":{"type":"AMAZON_S3", "accessKey":"admin","secretKey":"admin1234","region":"dontcare"},"collect_from":{"netflow_ingress":true,"netflow_egress":true,"netflow_internal":true,"netflow_other":true,"at_cadf":true},"sa_analytics":{"tia":true,"ata":true,"nba":true},"sa_instance_crn":"crn:v1:staging:public:security-advisor:us-south:a/d0c8a917589e40076961f56b23056d16:ef71b41c-3239-5ff0-ad6e-5f8059f1130b:security-advisor:","sa_analytics_status":{"ata":[{"packageUrl":"https://","num_active_rules":2,"num_dormant_rules":45,"num_illegal_rules":6,"status":"success"}],"dc":{"num_sources_netflow":3,"num_sources_at":1}}},{"account_id":"2e40efb1287694f11d1f27920543d111","bucket_url":"http://9.148.244.87/icptest","auth":{"type":"AMAZON_S3", "accessKey":"admin","secretKey":"admin1234","region":"dontcare"},"collect_from":{"netflow_ingress":true,"netflow_egress":true,"netflow_internal":true,"netflow_other":true,"at_cadf":true},"sa_analytics":{"tia":true,"ata":true,"nba":true},"sa_instance_crn":"crn:v1:staging:public:security-advisor:us-south:a/d0c8a917589e40076961f56b23056d16:ef71b41c-3239-5ff0-ad6e-5f8059f1130b:security-advisor:","sa_analytics_status":{"ata":[{"packageUrl":"https://","num_active_rules":2,"num_dormant_rules":45,"num_illegal_rules":6,"status":"success"}],"dc":{"num_sources_netflow":3,"num_sources_at":1}}}]}'
