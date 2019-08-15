@@ -171,8 +171,13 @@ spec:
            - name: securityAdvisorShardId
              valueFrom:
                configMapKeyRef:
+{{- if .Values.global.autoConfig }}
+                  name: {{ .Values.global.autoConfigName }}
+                 key: shardId
+{{- else }}
                  name: {{ .Release.Name }}-datacontrol-configuration
                  key: securityAdvisorShardId
+{{- end }}
            - name: accountsApiTimeout
              valueFrom:
                configMapKeyRef:
