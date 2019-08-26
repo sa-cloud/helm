@@ -7,7 +7,7 @@ global:
   #nameOverride:finding-distributor-qr
   #fullnameOverride:finding-distributor-qr
   #7 is working local logger version #11 is log/qradar distribution by sendQRadar #16 supports also netflow sending #17 is qr json instead of single qrip+qrport
-  tag: 17 
+  tag: 18 
   log_level:
     development: debug
   topicsFindings: 'security_advisor_findings'
