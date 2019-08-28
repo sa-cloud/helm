@@ -24,7 +24,8 @@ For ICP:
  * For ICP: < master node ip > / < bucket name >
    
  * For other cluster types: < cluster's ingress sub-domain > / < bucket name >
- The default bucket name is icptest
+ 
+ * The default bucket name is icptest
    
 
 ***About this Chart:***
