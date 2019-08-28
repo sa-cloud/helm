@@ -2,38 +2,23 @@
 An all-in-one helm chart, that installs tia, data-control, and all it's dependencies
 
 This chart uses an unsecured version of kafka (kafkaSaalMechanism: 'PLAIN', kafkaSecurityProtocol: 'PLAINTEXT')
-Uses minio as it's object storage
+The chart is supported for ICP, IKS and Openshift
 
 ***Pre-Requisites:***
-1. IBM Cloud Private version 3.1.0 or higher running on Linux® 64-bit (x86_64) systems. 
-2. Kubernetes cluster 1.7 or higher
-3. At least 4 worker nodes
-4. GlusterFS storage, available through dynamic volume provisioning by using a storage class. 
+1. A kubernetes Cluster: ICP/IKS/Openshift
+For ICP:
+1.1 IBM Cloud Private version 3.1.0 or higher running on Linux® 64-bit (x86_64) systems. 
+1.2 Kubernetes cluster 1.7 or higher
+1.3 At least 3 worker nodes
+
+2. Helm tiller installed and running on the cluster + helm client
 
 ***Installing the chart:***
-1. first clone skydive and data-control from their git repositories, since their helm carts are currently not in any git repository (skydive is the sa compatible version):
-  
-    (a) *helm repo add cloud-platforms-charts-latest https://raw.github.ibm.com/cloud-platforms/ICP-skydive-chart/master/stable/*
-  
-    (b) *git clone git@github.ibm.com:cloud-platforms/ICP-skydive-chart.git*
-
-    (c) *git clone git@github.ibm.com:security-services/security-advisor-data-control.git*
+1. helm repo add sa-charts https://github.com/sa-cloud/helm/blob/master/repo?raw=true
+2. helm repo update
+3. helm install --name=sa-shard --namespace=<your-namespace> sa-charts/sa-shard
     
-    (d) *git checkout icp*
-
-2. Skydive and datacontrol are taken from their local repositories, so make sure that their repository entries in requirments.yaml point to where you actually cloned them. 
-Then execute **sudo helm dependency update** to get the zipped packages from the locations that are mentioned in the requirements.yaml
-Make sure all the dependencies zip pzckages now appear in the charts directory (5 dependencies)
-
-3. Add ibm-charts repository to your cluster, if it isn’t already added:
-
-    *sudo helm repo add ibm-charts https://raw.githubusercontent.com/IBM/charts/master/repo/stable/*
-
-4. Create secret for minio OS:
-
-    *kubectl create secret generic sa-icp --from-literal=accesskey=admin --from-literal=secretkey=admin1234*
-    
-5.	Create secret for registry.ng.bluemix.net:  
+* Create secret for registry.ng.bluemix.net:  
     https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/
       
       but I don’t have username and password on docker – only user to bluemix, so this is my alternative way:
@@ -51,61 +36,24 @@ Make sure all the dependencies zip pzckages now appear in the charts directory (
       
       (f)	login to the icp cluster
       
-      (g)	kubectl create secret docker-registry <my-image-pull-secret> --namespace <my-ns> --docker-server=registry.ng.bluemix.net --docker-username=token --docker-password=<token_password>
- 
- 6. Update the sa-helm/values.yaml or use –set for the following parameters:
- 
-    (1)	minio.existingSecret = sa-icp (note that the secret that is created must be in the same namespace where the helm is installed and must be named like the name of the release)
-    (2)	minio.persistence.storageClass = the persistent storage class (see minio documentation)
-    
-    (3)	minio.minioConfig.region = currently, due to skydive-minio bug it must be set to dontcare, generally it has to be one of the strings in datacontrol.global. supportedRegions (or update supportedRegions to include it)
-    
-    (4)	minio.defaultBucket = the name of the bucket (Set by default to ‘icptest’)
+      (g)	kubectl create secret docker-registry my-secret --namespace <my-ns> --docker-server=registry.ng.bluemix.net --docker-username=token --docker-password=<token_password>
 
-    (5)	ibm-skydive-dev.env.SKYDIVE_STORAGE_DEFENDER_ENDPOINT = http://sa-icp:9000 (note that the helm release name is the name of the endpoint – here it is sa-icp) – can’t make the endpoint template – should be done in config map, I only pass in values…
-    
-    (6)	ibm-skydive-dev.env.SKYDIVE_STORAGE_DEFENDER_ACCESS_KEY= the access key, that matches the secret created for minio (here admin)
-    
-    (7)	ibm-skydive-dev.env.SKYDIVE_STORAGE_DEFENDER_SECRET_KEY = the secret key, that matches the secret created for minio (here admin1234)
-    
-    (8)	ibm-skydive-dev.env.SKYDIVE_STORAGE_DEFENDER_BUCKET = bucket name that is created in minio, this must match minio. defaultBucket
-    
-    (9)	ibm-skydive-dev.env.SKYDIVE_STORAGE_DEFENDER_REGION region configured in minio – must match minio.minioConfig.region
-    
-    (10)	ibm-skydive-dev.env.SKYDIVE_STORAGE_DEFENDER_KUBERNETES_GUID
 
-    (11)	datacontrol.global.accountsApiEndpoint
-    
-    (12)	datacontrol.global.securityAdvisorShardId ?
-    
-    (13)	datacontrol.global.minioRegion = region configured in minio – must match minio.minioConfig.region
-    
-    (14)	datacontrol.global.accessKey = the access key, that matches the secret created for minio (here admin)
-    
-    (15)	datacontrol.global.secretKey= the secret key, that matches the secret created for minio (here admin1234)
-    
-    (16)	datacontrol.global.imagePullSecret = < my-image-pull-secret> the secret created in step (6) above.
-    
+***About this Chart:***
 
-7. sudo helm install --name=<release-name> --namespace=<your-namespace> . --tls
+* The chart's dependencies are tia, data-control, kafka, findingsLog, redis charts
 
-    (Make sure you have all the permissions in the namespace that you are using (kubectl create rolebinding command)
+* This chart creates shard-configmap, that has the accountsApiEndpoint
 
- 
- 
-***Notes:***
- 1. minio has several helm bugs, one of which is related to the minio secret. The secret must be named like the helm release name. When create bucket is set to true (we want the bucket to be automatically created), mount volume is looking for secret named as release name, and fails if does not exist. Seems like this was recently fixed for the case where create bucket is false…
- 2. Another minio helm feature is that it is created with release name: minio endpoint is called like the release name, and other minio objects do not have distinguishing names and use the release name with no “minio” postfix. The minio endpoint name is of interest to skydive and to DC and is set through the values file(s) to both for them.
- 3. Minio create bucket job gets stuck for some reason in 50% of installations, which results in timeout and failed release. Then need to run sudo helm del --purge sa-icp --tls, go and manually delete the batch Job – not deleted as part of the release, and re-run the install command.. Another way is to set the defaultBucket.enabled to false in values.yaml, and after the chart is installed, create the bucket manually (minio gui can be reached the following way:
+***Configuration:***
 
-    *export POD_NAME=$(kubectl get pods --namespace default -l "release=sa-icp" -o jsonpath="{.items[0].metadata.name}")*
-    *kubectl port-forward $POD_NAME 9000 --namespace default*
+* global.securityAdvisorShardId has the default shard ID. It should be set to a unique value.
 
-The error in make-bucket-job: kubectl logs sa-icp-make-bucket-job-7d2zl
-Connecting to Minio server: http://sa-icp:9000
-Added `myminio` successfully.
-Creating bucket 'icptest'
-mc: <ERROR> Unable to make bucket `myminio/icptest`. The authorization header is malformed; the region is wrong; expecting 'us-east-1'.
+* configmgr.global.shardData has the json that defines the accounts that are monitored by this shard and should be configured.
+
+  An example JSON for 3 accounts:
+  
+'{"accounts":[{"account_id":"fa53b6717d5e9c9979101d8dac5fd4ad","bucket_url":"http://customerv11.us-south.containers.appdomain.cloud/icptest","auth":{"type":"AMAZON_S3", "accessKey":"admin","secretKey":"admin1234","region":"dontcare"},"collect_from":{"netflow_ingress":true,"netflow_egress":true,"netflow_internal":true,"netflow_other":true,"at_cadf":true},"sa_analytics":{"tia":true,"ata":true,"nba":true},"sa_instance_crn":"crn:v1:staging:public:security-advisor:us-south:a/d0c8a917589e40076961f56b23056d16:ef71b41c-3239-5ff0-ad6e-5f8059f1130b:security-advisor:","sa_analytics_status":{"ata":[{"packageUrl":"https://","num_active_rules":2,"num_dormant_rules":45,"num_illegal_rules":6,"status":"success"}],"dc":{"num_sources_netflow":3,"num_sources_at":1}}},{"account_id":"2e40efb1287694f11d1f27920543d283","bucket_url":"http://sa-collect-minio-object-store:9000/icptest","auth":{"type":"AMAZON_S3", "accessKey":"admin","secretKey":"admin1234","region":"dontcare"},"collect_from":{"netflow_ingress":true,"netflow_egress":true,"netflow_internal":true,"netflow_other":true,"at_cadf":true},"sa_analytics":{"tia":true,"ata":true,"nba":true},"sa_instance_crn":"crn:v1:staging:public:security-advisor:us-south:a/d0c8a917589e40076961f56b23056d16:ef71b41c-3239-5ff0-ad6e-5f8059f1130b:security-advisor:","sa_analytics_status":{"ata":[{"packageUrl":"https://","num_active_rules":2,"num_dormant_rules":45,"num_illegal_rules":6,"status":"success"}],"dc":{"num_sources_netflow":3,"num_sources_at":1}}},{"account_id":"2e40efb1287694f11d1f27920543d111","bucket_url":"http://9.148.244.87/icptest","auth":{"type":"AMAZON_S3", "accessKey":"admin","secretKey":"admin1234","region":"dontcare"},"collect_from":{"netflow_ingress":true,"netflow_egress":true,"netflow_internal":true,"netflow_other":true,"at_cadf":true},"sa_analytics":{"tia":true,"ata":true,"nba":true},"sa_instance_crn":"crn:v1:staging:public:security-advisor:us-south:a/d0c8a917589e40076961f56b23056d16:ef71b41c-3239-5ff0-ad6e-5f8059f1130b:security-advisor:","sa_analytics_status":{"ata":[{"packageUrl":"https://","num_active_rules":2,"num_dormant_rules":45,"num_illegal_rules":6,"status":"success"}],"dc":{"num_sources_netflow":3,"num_sources_at":1}}}]}'
 
 
 ***Testing***
