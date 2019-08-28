@@ -39,4 +39,4 @@ The values:
 - guid - a unique id identifying the cluster's objects in object store
 - containerRuntime
 
-An additional **sa-configmap** is defined as a template and stores the values related to minio configuration, that can be this way accessible to the sky-dive chart too.
+An additional configmap **sa-configuration** is defined as a template and stores the values related to minio configuration, that can be this way accessible to the skydive chart too.
