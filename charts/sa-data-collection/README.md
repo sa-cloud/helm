@@ -21,8 +21,9 @@ For ICP:
 ***Notes:***
  1. Minio create bucket job some times gets stuck for some reason, which results in timeout and failed release. Then need to create the bucket manually in the minio GUI
  2. Accessing Minio GUI in the browser:
- For ICP: <master node ip>/<bucket name>
- For other cluster types: <cluster's ingress sub-domain>/<bucket name>
+ - For ICP: <master node ip>/<bucket name>
+   
+ - For other cluster types: <cluster's ingress sub-domain>/<bucket name>
  The default bucket name is icptest
    
 
