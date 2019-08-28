@@ -43,13 +43,14 @@ For ICP:
  
 
 
+
 ***About this Chart:***
 
-The chart's dependencies are sa-data-collection and sa-shard charts
+* The chart's dependencies are sa-data-collection and sa-shard charts
 
-The chart is fully automated.
+* The chart is fully automated.
 
-The shard is configured to collect and analyze only the single cluster it is installed on.
+* The shard is auto-configured to collect and analyze only the single cluster it is installed on.
 But this can be re-configured by:
 
 1. setting the global.autoConfig = 'false'
