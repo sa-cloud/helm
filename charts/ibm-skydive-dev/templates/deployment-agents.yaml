@@ -21,6 +21,7 @@ spec:
         heritage: "{{ .Release.Service }}"
         tier: agent
     spec:
+      serviceAccountName: skydive-service-account
       hostNetwork: true
       hostPID: true
       hostIPC: true
