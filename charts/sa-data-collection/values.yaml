@@ -32,11 +32,8 @@ global:
 ibm-skydive-dev:
   image:
     repository: cognetive/skydive
-    #tag:2019.04.16___08.35
-    # tag for older k8s version (i.e ICP)
-    #tagVdocker:amd64-latest
-    tag: 2019.07.24___08.41
-    saImage: registry.ng.bluemix.net/secadvisor_dev/skydive-secadvisor:11
+    tag: 2019.09.02___08.41
+    saImage: registry.ng.bluemix.net/secadvisor_dev/skydive-secadvisor:12
     secretName: 'my-secret'
   env:
     # For debug purposes
