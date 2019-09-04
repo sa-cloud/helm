@@ -10,7 +10,11 @@ data:
   topicsNetflow: {{ .Values.global.topicsNetflow | quote }}
   consumerSupportedDataSources: {{ .Values.global.consumerSupportedDataSources | quote }}
   groupid: {{ .Values.global.groupid | quote }}
+{{- if .Values.global.standalone }}
   kafkaMetadataBrokerList: {{ .Values.global.kafkaMetadataBrokerList | quote }}
+{{- else }}
+  kafkaMetadataBrokerList: {{ .Release.Name}}-kafka-headless:9092
+{{- end }}
   kafkaSslCaLocation: {{ .Values.global.kafkaSslCaLocation | quote }}
 {{- if .Values.global.kafkaSaslUsername }}
   kafkaSaslUsername: {{ .Values.global.kafkaSaslUsername | quote }}
