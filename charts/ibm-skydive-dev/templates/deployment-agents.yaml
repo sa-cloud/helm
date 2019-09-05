@@ -105,6 +105,10 @@ spec:
           mountPath: /var/data/kubelet
         - name: lib-kubelet
           mountPath: /var/lib/kubelet
+        - mountPath: /var/data/openshiftvolumes
+          name: data-openshiftvolumes
+        - mountPath: /var/lib/origin
+          name: lib-origin
       volumes:
       - name: docker
         hostPath:
@@ -130,3 +134,9 @@ spec:
       - name: lib-kubelet
         hostPath:
           path: /var/lib/kubelet
+      - name: data-openshiftvolumes
+        hostPath:
+          path: /var/data/openshiftvolumes
+      - name: lib-origin
+        hostPath:
+          path: /var/lib/origin
