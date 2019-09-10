@@ -17,6 +17,9 @@ spec:
          labels:
             microservice: {{ .Values.global.name }}
       spec:
+{{ if .Values.global.serviceAccountName }}
+         serviceAccountName: sa-service-account
+{{- end }}
          imagePullSecrets:
          - name: {{ .Values.global.imagePullSecret }}
          containers:

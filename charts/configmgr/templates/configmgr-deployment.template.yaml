@@ -18,6 +18,9 @@ spec:
             microservice: {{ .Values.global.name }}
             app: configmgr
       spec:
+{{ if .Values.global.serviceAccountName }}
+         serviceAccountName: sa-service-account
+{{- end }}
          imagePullSecrets:
          - name: my-secret
          containers:
