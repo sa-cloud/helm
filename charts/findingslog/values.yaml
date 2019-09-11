@@ -15,7 +15,7 @@ global:
   consumerSupportedDataSources: 'netflow_ingress,netflow_egress'
   groupid: 'findingslog-'
   imagePullSecret: 'my-secret'
-  sendQRadar: 'true' # set false for simple local log distributor
+  sendQRadar: 'false' # set false for simple local log distributor; if set to true, qr parameter must be set
   distribFindings: 'true'
   distribNeflows: 'false'
   qrissuer: 'csaInsights'
