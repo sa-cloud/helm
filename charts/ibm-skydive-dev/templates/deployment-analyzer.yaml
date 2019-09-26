@@ -178,24 +178,24 @@ spec:
         env:
         - name: SKYDIVE_ANALYZERS
           value: {{ template "fullname" . }}-service:{{ .Values.service.port }}
-        - name: SKYDIVE_PIPELINE_ANALYZER_SUBSCRIBER_URL
+        - name: SKYDIVE_PIPELINE_SUBSCRIBER_URL
           value: ws://{{ template "fullname" . }}-service:{{ .Values.service.port }}/ws/subscriber/flow
-        - name: SKYDIVE_PIPELINE_STORE_S3_OBJECT_PREFIX
+        - name: SKYDIVE_PIPELINE_STORE_BUFFERED_FILENAME_PREFIX
           valueFrom:
             configMapKeyRef:
               name: skydive-configuration
               key: "objectPrefix"
-        - name: SKYDIVE_PIPELINE_STORE_S3_ENDPOINT
+        - name: SKYDIVE_PIPELINE_WRITE_S3_ENDPOINT
           valueFrom: 
             configMapKeyRef:
                name: "sa-configuration"
                key: "minioEndpoint"
-        - name: SKYDIVE_PIPELINE_STORE_S3_ACCESS_KEY
+        - name: SKYDIVE_PIPELINE_WRITE_S3_ACCESS_KEY
           valueFrom:
             secretKeyRef:
               name: "sa-secret"
               key: "minioaccesskey"
-        - name: SKYDIVE_PIPELINE_STORE_S3_SECRET_KEY
+        - name: SKYDIVE_PIPELINE_WRITE_S3_SECRET_KEY
           valueFrom:
             secretKeyRef:
               name: "sa-secret"
@@ -205,12 +205,12 @@ spec:
             configMapKeyRef:
               name: skydive-configuration
               key: "netmasks"
-        - name: SKYDIVE_PIPELINE_STORE_S3_BUCKET
+        - name: SKYDIVE_PIPELINE_STORE_BUFFERED_DIRNAME
           valueFrom:
             configMapKeyRef:
               name: "sa-configuration"
               key: "minioBucket"
-        - name: SKYDIVE_PIPELINE_STORE_S3_REGION
+        - name: SKYDIVE_PIPELINE_WRITE_S3_REGION
           valueFrom:
             configMapKeyRef:
               name: "sa-configuration"

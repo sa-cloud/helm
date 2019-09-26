@@ -33,7 +33,8 @@ ibm-skydive-dev:
   image:
     repository: cognetive/skydive
     tag: 2019.09.02___08.41
-    saImage: registry.ng.bluemix.net/secadvisor_dev/skydive-secadvisor:17
+    #saImage:registry.ng.bluemix.net/secadvisor_dev/skydive-secadvisor:17
+    saImage: skydive-flow-exporter:1
     secretName: 'my-secret'
   env:
     # For debug purposes
@@ -41,16 +42,16 @@ ibm-skydive-dev:
       value: "INFO"
 
     # Maximum number of flows per object
-    - name: SKYDIVE_PIPELINE_STORE_S3_MAX_FLOWS_PER_OBJECT
+    - name: SKYDIVE_PIPELINE_STORE_BUFFERED_MAX_FLOWS_PER_OBJECT
       value: "60000"
 
-    - name: SKYDIVE_PIPELINE_STORE_S3_MAX_SECONDS_PER_OBJECT
+    - name: SKYDIVE_PIPELINE_STORE_BUFFERED_MAX_SECONDS_PER_OBJECT
       value: "60"
 
-    - name: SKYDIVE_PIPELINE_STORE_S3_MAX_FLOW_ARRAY_SIZE
+    - name: SKYDIVE_PIPELINE_STORE_BUFFERED_MAX_FLOW_ARRAY_SIZE
       value: "100000"
 
-    - name: SKYDIVE_PIPELINE_STORE_S3_MAX_SECONDS_PER_STREAM
+    - name: SKYDIVE_PIPELINE_STORE_BUFFERED_MAX_SECONDS_PER_STREAM
       value: "86400"
 
     # Flows to be updated every 30 seconds (thus, every 60 seconds to defender)
