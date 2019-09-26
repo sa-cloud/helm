@@ -5,4 +5,7 @@ dependencies:
   - name: sa-data-collection
     version: 0.1.0
     repository: https://github.com/sa-cloud/helm/blob/master/repo?raw=true
+  - name: helth-check
+    version: 0.1.0
+    repository: https://github.com/sa-cloud/helm/blob/master/repo?raw=true
 

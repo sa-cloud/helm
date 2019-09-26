@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ template "fullname" . }}-configuration
+  namespace: {{ .Values.global.clusterNamespace }}
+  imagePullSecret: {{ .Values.global.imagePullSecret }}
+data:
+  log_level: {{ index .Values.global.log_level .Values.global.env | quote }}
+  topicsFindings: {{ .Values.global.topicsFindings | quote }}
+  kafkaMetadataBrokerList: {{ .Release.Name}}-kafka-headless:9092
+  kafkaSslCaLocation: {{ .Values.global.kafkaSslCaLocation | quote }}
+{{- if .Values.global.kafkaSaslUsername }}
+  kafkaSaslUsername: {{ .Values.global.kafkaSaslUsername | quote }}
+  kafkaSaslPassword: {{ .Values.global.kafkaSaslPassword | quote }}
+{{- end }}
+{{- if .Values.global.kafkaSaalMechanism }}
+  kafkaSaalMechanism: {{ .Values.global.kafkaSaalMechanism | quote }}
+{{- end }}
+{{- if .Values.global.kafkaSecurityProtocol }}
+  kafkaSecurityProtocol: {{ .Values.global.kafkaSecurityProtocol | quote }}
+{{- end }}

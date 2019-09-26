@@ -1,0 +1,60 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+   name: {{ template "fullname" . }}
+   namespace: {{ .Values.global.clusterNamespace }}
+spec:
+   revisionHistoryLimit: 10
+   minReadySeconds: 10
+   strategy:
+      type: RollingUpdate
+      rollingUpdate:
+         maxUnavailable: 0
+         maxSurge: 3
+   replicas: 1
+   template:
+      metadata:
+         labels:
+            microservice: {{ .Values.global.name }}
+      spec:
+{{ if .Values.global.serviceAccountName }}
+         serviceAccountName: sa-service-account
+{{- end }}
+         imagePullSecrets:
+         - name: {{ .Values.global.imagePullSecret }}
+         containers:
+         - name: {{ .Values.global.name }}
+           image: registry.ng.bluemix.net/{{ .Values.global.registryNamespace }}/{{ .Values.global.name }}:{{ .Values.global.tag | default "last" }}
+           ports:
+           - containerPort: 443
+           env:
+           - name: LOG_LEVEL
+             valueFrom:
+               configMapKeyRef:
+                  name: {{ template "fullname" . }}-configuration
+                  key: log_level
+           - name: topicsFindings
+             valueFrom:
+               configMapKeyRef:
+                  name: {{ template "fullname" . }}-configuration
+                  key: topicsFindings
+           - name: kafkaMetadataBrokerList
+             valueFrom:
+               configMapKeyRef:
+                  name: {{ template "fullname" . }}-configuration
+                  key: kafkaMetadataBrokerList
+           - name: kafkaSaalMechanism
+             valueFrom:
+               configMapKeyRef:
+                  name: {{ template "fullname" . }}-configuration
+                  key: kafkaSaalMechanism
+           - name: kafkaSecurityProtocol
+             valueFrom:
+               configMapKeyRef:
+                  name: {{ template "fullname" . }}-configuration
+                  key: kafkaSecurityProtocol
+           - name: kafkaSslCaLocation
+             valueFrom:
+               configMapKeyRef:
+                  name: {{ template "fullname" . }}-configuration
+                  key: kafkaSslCaLocation
