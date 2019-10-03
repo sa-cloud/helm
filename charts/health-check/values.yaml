@@ -3,7 +3,7 @@ global:
   # env refers to the environment properties belong to during build-time. Default is "development".
   env: development
   registryNamespace: secadvisor_dev
-  name: helth-check
+  name: health-check
   #nameOverride:finding-distributor-qr
   #fullnameOverride:finding-distributor-qr
   tag: 1 
