@@ -5,7 +5,7 @@ metadata:
   namespace: {{ .Values.global.clusterNamespace }}
 data:
   #### Evironment
-  log_level: {{ index .Values.global.log_level .Values.global.env | quote }}
+  log_level: {{ .Values.global.log_level | quote }}
   port_vulnerability_switch: {{ .Values.global.port_vulnerability_switch | quote }}
 
   #### X-Force
@@ -112,4 +112,4 @@ data:
 {{- if .Values.global.kafkaSaalMechanism }}
   kafkaSslTruststorePassword: {{ .Values.global.kafkaSslTruststorePassword | quote }}
 {{- end }}
-
+  testIprs: {{ .Values.global.testIprs | quote }}
