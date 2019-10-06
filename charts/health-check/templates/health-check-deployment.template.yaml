@@ -23,8 +23,8 @@ spec:
          imagePullSecrets:
          - name: {{ .Values.global.imagePullSecret }}
          containers:
-         - name: {{ .Values.global.name }}
-           image: registry.ng.bluemix.net/{{ .Values.global.registryNamespace }}/{{ .Values.global.name }}:{{ .Values.global.tag | default "last" }}
+         - name: {{ .Values.global.name1 }}
+           image: registry.ng.bluemix.net/{{ .Values.global.registryNamespace }}/{{ .Values.global.name1 }}:{{ .Values.global.tag1 | default "last" }}
            ports:
            - containerPort: 443
            env:
@@ -33,6 +33,66 @@ spec:
                configMapKeyRef:
                   name: {{ template "fullname" . }}-configuration
                   key: log_level
+           - name: repeatAfter
+             valueFrom:
+               configMapKeyRef:
+                  name: {{ template "fullname" . }}-configuration
+                  key: repeatAfter
+           - name: waitForFinding
+             valueFrom:
+               configMapKeyRef:
+                  name: {{ template "fullname" . }}-configuration
+                  key: waitForFinding
+           - name: topicsFindings
+             valueFrom:
+               configMapKeyRef:
+                  name: {{ template "fullname" . }}-configuration
+                  key: topicsFindings
+           - name: kafkaMetadataBrokerList
+             valueFrom:
+               configMapKeyRef:
+                  name: {{ template "fullname" . }}-configuration
+                  key: kafkaMetadataBrokerList
+           - name: kafkaSaalMechanism
+             valueFrom:
+               configMapKeyRef:
+                  name: {{ template "fullname" . }}-configuration
+                  key: kafkaSaalMechanism
+           - name: kafkaSecurityProtocol
+             valueFrom:
+               configMapKeyRef:
+                  name: {{ template "fullname" . }}-configuration
+                  key: kafkaSecurityProtocol
+           - name: kafkaSslCaLocation
+             valueFrom:
+               configMapKeyRef:
+                  name: {{ template "fullname" . }}-configuration
+                  key: kafkaSslCaLocation
+         - name: {{ .Values.global.name2 }}
+           image: registry.ng.bluemix.net/{{ .Values.global.registryNamespace }}/{{ .Values.global.name2 }}:{{ .Values.global.tag2 | default "last" }}
+           ports:
+           - containerPort: 443
+           env:
+           - name: LOG_LEVEL
+             valueFrom:
+               configMapKeyRef:
+                  name: {{ template "fullname" . }}-configuration
+                  key: log_level
+           - name: clusterNodeIps
+             valueFrom:
+               configMapKeyRef:
+                  name: skydive-configuration
+                  key: clusterNodeIps
+           - name: repeatAfter
+             valueFrom:
+               configMapKeyRef:
+                  name: {{ template "fullname" . }}-configuration
+                  key: repeatAfter
+           - name: waitForFinding
+             valueFrom:
+               configMapKeyRef:
+                  name: {{ template "fullname" . }}-configuration
+                  key: waitForFinding
            - name: topicsFindings
              valueFrom:
                configMapKeyRef:
