@@ -7,6 +7,8 @@ metadata:
 data:
   log_level: {{ index .Values.global.log_level .Values.global.env | quote }}
   topicsFindings: {{ .Values.global.topicsFindings | quote }}
+  waitForFinding: {{ .Values.global.waitForFinding | quote }}
+  repeatAfter: {{ .Values.global.repeatAfter | quote }}
   kafkaMetadataBrokerList: {{ .Release.Name}}-kafka-headless:9092
   kafkaSslCaLocation: {{ .Values.global.kafkaSslCaLocation | quote }}
 {{- if .Values.global.kafkaSaslUsername }}
