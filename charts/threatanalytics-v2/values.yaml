@@ -90,3 +90,4 @@ global:
   #'PLAIN' and 'PLAINTEXT' make kafka run in unsecure mode
   kafkaSaalMechanism: 'PLAIN'
   kafkaSecurityProtocol: 'PLAINTEXT'
+  testIprs: "169.57.14.136 169.57.14.137 169.57.14.138 169.57.14.139 169.57.14.140 169.57.14.141 169.57.14.142 169.57.14.143
