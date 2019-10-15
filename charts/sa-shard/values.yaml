@@ -62,7 +62,7 @@ threatanalytics-v2:
     nameOverride:: threat-intelligence-analytics
     #fullnameOverride:sa-shard-threat-intelligence-analytics
     #registryNamespace:secadvisor_dev
-    tag: 21
+    tag: 22
     consumerGroupId: 'tia-consumer-group-dev'
     consumerTopics: 'netflow_ingress,netflow_egress'
     consumerSupportedDataSources: 'netflow_ingress,netflow_egress'
@@ -77,7 +77,7 @@ threatanalytics-v2:
     #'PLAIN' and 'PLAINTEXT' make kafka run in unsecure mode
     kafkaSaalMechanism: 'PLAIN'
     kafkaSecurityProtocol: PLAINTEXT #'SSL'
-
+    insecureKafka: 'true'
 configmgr:
   global:
     name: configmgr
