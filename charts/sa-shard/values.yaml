@@ -62,7 +62,7 @@ threatanalytics-v2:
     nameOverride:: threat-intelligence-analytics
     #fullnameOverride:sa-shard-threat-intelligence-analytics
     #registryNamespace:secadvisor_dev
-    tag: 22
+    tag: 23
     consumerGroupId: 'tia-consumer-group-dev'
     consumerTopics: 'netflow_ingress,netflow_egress'
     consumerSupportedDataSources: 'netflow_ingress,netflow_egress'

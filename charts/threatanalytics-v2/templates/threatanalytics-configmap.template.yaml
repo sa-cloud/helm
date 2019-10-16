@@ -84,11 +84,6 @@ data:
   redis_port: {{ .Values.global.redis_port | quote }}
   redis_auth: {{ .Values.global.redis_auth | quote }}
   redisDbNum: {{ .Values.global.redisDbNum | quote }}
-  minioEndpoint: {{ .Values.global.minioEndpoint | quote }}
-  minioRegion: {{ .Values.global.minioRegion | quote }}
-  accessKey: {{ .Values.global.accessKey | quote }}
-  secretKey: {{ .Values.global.secretKey | quote }}
-  useOS: {{ .Values.global.useOS | quote }}
   xfeDbCosIamConfig: {{ .Values.global.xfeDbCosIamConfig | quote }}
   kafkaSslCaLocation: {{ .Values.global.kafkaSslCaLocation | quote }}
 {{- if .Values.global.kafkaSaslUsername }}

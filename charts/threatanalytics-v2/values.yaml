@@ -7,7 +7,7 @@ global:
   name: tia
   nameOverride: threat-intelligence-analytics
   registryNamespace: secadvisor_dev
-  tag: 16
+  tag: 23
   imagePullSecret: 'my-secret'
   consumerGroupId: 'tia-consumer-group-dev'
   consumerTopics: 'netflow_ingress,netflow_egress'
@@ -91,4 +91,4 @@ global:
   kafkaSaalMechanism: 'PLAIN'
   kafkaSecurityProtocol: 'PLAINTEXT'
   insecureKafka: 'true'
-  testIprs: "169.57.14.136 169.57.14.137 169.57.14.138 169.57.14.139 169.57.14.140 169.57.14.141 169.57.14.142 169.57.14.143 169.57.91.216 169.46.24.248 169.46.24.249 169.46.24.250 169.46.24.251 169.46.24.252 169.46.24.253 169.46.24.254 169.46.24.255 169.46.21.250"
+  testIprs: "192.0.2.7 192.0.2.5"

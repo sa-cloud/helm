@@ -421,28 +421,8 @@ spec:
                configMapKeyRef:
                   name: {{ template "fullname" . }}-configuration
                   key: kafkaSslCaLocation
-           - name: minioEndpoint
+           - name: testIprs
              valueFrom:
                configMapKeyRef:
                  name: {{ template "fullname" . }}-configuration
-                 key: minioEndpoint
-           - name: minioRegion
-             valueFrom:
-               configMapKeyRef:
-                 name: {{ template "fullname" . }}-configuration
-                 key: minioRegion
-           - name: accessKey
-             valueFrom:
-               configMapKeyRef:
-                 name: {{ template "fullname" . }}-configuration
-                 key: accessKey
-           - name: secretKey
-             valueFrom:
-               configMapKeyRef:
-                 name: {{ template "fullname" . }}-configuration
-                 key: secretKey
-           - name: useOS
-             valueFrom:
-               configMapKeyRef:
-                 name: {{ template "fullname" . }}-configuration
-                 key: useOS
+                 key: testIprs
