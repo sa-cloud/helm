@@ -68,6 +68,11 @@ spec:
                configMapKeyRef:
                   name: {{ template "fullname" . }}-configuration
                   key: kafkaSslCaLocation
+           - name: clusterNodeIps
+             valueFrom:
+               configMapKeyRef:
+                  name: "skydive-configuration"
+                  key: clusterNodeIps
          - name: {{ .Values.global.name2 }}
            image: registry.ng.bluemix.net/{{ .Values.global.registryNamespace }}/{{ .Values.global.name2 }}:{{ .Values.global.tag2 | default "last" }}
            ports:

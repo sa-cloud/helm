@@ -8,8 +8,8 @@ global:
   name2: health-check-egress
   #nameOverride:finding-distributor-qr
   #fullnameOverride:finding-distributor-qr
-  tag1: 2019-10-3
-  tag2: 2019-10-3
+  tag1: 2019-10-7
+  tag2: 2019-10-7
   log_level:
     development: debug
   topicsFindings: 'security_advisor_findings'
