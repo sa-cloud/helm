@@ -5,7 +5,7 @@ metadata:
   namespace: {{ .Values.global.clusterNamespace }}
 data:
   #### Evironment
-  log_level: {{ .Values.global.log_level | quote }}
+  log_level: {{ index .Values.global.log_level .Values.global.env | quote }}
   port_vulnerability_switch: {{ .Values.global.port_vulnerability_switch | quote }}
 
   #### X-Force
