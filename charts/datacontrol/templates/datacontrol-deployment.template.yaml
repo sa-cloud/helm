@@ -377,31 +377,6 @@ spec:
                configMapKeyRef:
                   name: {{ .Release.Name }}-datacontrol-configuration
                   key: kafkaSecurityProtocol
-           - name: kafkaSslTruststorePassword
-             valueFrom:
-               configMapKeyRef:
-                  name: {{ .Release.Name }}-datacontrol-configuration
-                  key: kafkaSslTruststorePassword
-           - name: kafkaSslTruststoreLocation
-             valueFrom:
-               configMapKeyRef:
-                  name: {{ .Release.Name }}-datacontrol-configuration
-                  key: kafkaSslTruststoreLocation
-           - name: kafkaSslKeyPassword
-             valueFrom:
-               configMapKeyRef:
-                  name: {{ .Release.Name }}-datacontrol-configuration
-                  key: kafkaSslKeyPassword
-           - name: kafkaSslKeystorePassword
-             valueFrom:
-               configMapKeyRef:
-                  name: {{ .Release.Name }}-datacontrol-configuration
-                  key: kafkaSslKeystorePassword
-           - name: kafkaSslKeystoreLocation
-             valueFrom:
-               configMapKeyRef:
-                  name: {{ .Release.Name }}-datacontrol-configuration
-                  key: kafkaSslKeystoreLocation
 #### ENVIRONMENT VARIABLES - REDIS SECRETS
            - name: redis_host
              valueFrom:

@@ -65,6 +65,7 @@ global:
   kafkaMetadataBrokerList: 'sa-shard-kafka-headless:9092'
   kafkaSaalMechanism: 'PLAIN'
   kafkaSecurityProtocol: 'PLAINTEXT'
+  kafkaSslCaLocation: ''
   redisDbNum: 1
   redisDbNumDC: 1
   standalone: true
