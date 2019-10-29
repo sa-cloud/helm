@@ -34,7 +34,7 @@ ibm-skydive-dev:
     repository: cognetive/skydive
     tag: 2019.10.15___12.24
     #saImage:registry.ng.bluemix.net/secadvisor_dev/skydive-secadvisor:17
-    saImage: registry.ng.bluemix.net/secadvisor_dev/skydive-flow-exporter:9
+    saImage: registry.ng.bluemix.net/secadvisor_dev/skydive-flow-exporter:11
     secretName: 'my-secret'
   env:
     # For debug purposes
