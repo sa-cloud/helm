@@ -3,7 +3,7 @@ entries:
   configmgr:
   - apiVersion: v1
     appVersion: 0.0.1
-    created: 2019-10-29T13:39:23.667599864Z
+    created: 2019-11-04T09:11:21.585199396Z
     description: This chart manages the Data Control micro-service.
     digest: e440f477f61652b2b5df8ecb2ee7fdefc790e037e95a68be7a9f74dd2af1528a
     icon: https://avatars.github.ibm.com/u/56137?s=400
@@ -17,7 +17,7 @@ entries:
   datacontrol:
   - apiVersion: v1
     appVersion: 0.0.1
-    created: 2019-10-29T13:39:23.66811573Z
+    created: 2019-11-04T09:11:21.586098573Z
     description: This chart manages the Data Control micro-service.
     digest: 56d9aa212b99424659568c1e72216a37126fabe4cc28575d0a63ff74fb2524a4
     icon: https://avatars.github.ibm.com/u/56137?s=400
@@ -31,7 +31,7 @@ entries:
   findingslog:
   - apiVersion: v1
     appVersion: 0.0.1
-    created: 2019-10-29T13:39:23.668514752Z
+    created: 2019-11-04T09:11:21.586719759Z
     description: This chart is for developement logging of kafka findings channel
     digest: fbcd085b14e8153c6239133f46fe321edf025e5c073b41a8879d099b24bd5547
     icon: https://avatars.github.ibm.com/u/56137?s=400
@@ -45,7 +45,7 @@ entries:
   health-check:
   - apiVersion: v1
     appVersion: 0.0.1
-    created: 2019-10-29T13:39:23.668846517Z
+    created: 2019-11-04T09:11:21.587473808Z
     description: end to end helth check of sa installation
     digest: 50ef1b03d7c1fe3fefa7b859d496a94c8681ae63f8ee82e2debc3a9c740ef526
     icon: https://avatars.github.ibm.com/u/56137?s=400
@@ -56,7 +56,7 @@ entries:
   ibm-skydive-dev:
   - apiVersion: v1
     appVersion: 0.21.0
-    created: 2019-10-29T13:39:23.710645983Z
+    created: 2019-11-04T09:11:21.631252441Z
     description: Skydive is an open source real-time network topology and protocols
       analyzer.
     digest: df19f17d5c63e0fda328185ae4b15c38f3011927d548c17ba0c538c7b4953379
@@ -88,7 +88,7 @@ entries:
     version: 2.2.2
   - apiVersion: v1
     appVersion: 0.22.0
-    created: 2019-10-29T13:39:23.699915713Z
+    created: 2019-11-04T09:11:21.621148256Z
     description: Skydive is an open source real-time network topology and protocols
       analyzer.
     digest: 5b28f0c34b326a9615102fa62a8f2fd89327a5ce50e3f2b1a7cf40b4dc7ab87c
@@ -120,7 +120,7 @@ entries:
     version: 1.1.2
   - apiVersion: v1
     appVersion: 0.21.0
-    created: 2019-10-29T13:39:23.691279734Z
+    created: 2019-11-04T09:11:21.611696329Z
     description: Skydive is an open source real-time network topology and protocols
       analyzer.
     digest: bae41fb4c09a874962c1c405d89554d726c6e3b9e99771ee4de2156484e16f8d
@@ -152,7 +152,7 @@ entries:
     version: 1.1.1
   - apiVersion: v1
     appVersion: 0.20.0
-    created: 2019-10-29T13:39:23.679973429Z
+    created: 2019-11-04T09:11:21.599589752Z
     description: Skydive is an open source real-time network topology and protocols
       analyzer.
     digest: fe9a41f61038db24f0d312716eb41b465d3308afbcde59b8e0823da0ee921f16
@@ -185,7 +185,7 @@ entries:
   sa-data-collection:
   - apiVersion: v1
     appVersion: "1.0"
-    created: 2019-10-29T13:39:23.721895865Z
+    created: 2019-11-04T09:11:21.643935036Z
     description: A Helm chart for sa icp
     digest: fac0e06a4d819724283209a926712362d9eaaf638f1b61fd81b372a3126049b8
     name: sa-data-collection
@@ -195,9 +195,9 @@ entries:
   sa-shard:
   - apiVersion: v1
     appVersion: "1.0"
-    created: 2019-10-29T13:39:23.727930563Z
+    created: 2019-11-04T09:11:21.64944332Z
     description: A Helm chart for sa icp
-    digest: 1f2e7dfff1ee587d8397e8ae12b8833f0233ee75e446ec558d0e7ba6a69d5f61
+    digest: ffbb45be0a32b9b3845ced261db1c60717e5a370d5e23c4c2868b3c9390d2bcd
     name: sa-shard
     urls:
     - sa-shard-0.1.0.tgz
@@ -205,9 +205,9 @@ entries:
   sa-single-helm:
   - apiVersion: v1
     appVersion: "1.0"
-    created: 2019-10-29T13:39:23.745160808Z
+    created: 2019-11-04T09:11:21.667865401Z
     description: A Helm chart for security advisor
-    digest: d02de25b149f10d5f191ba29bfb3009f70b6a0bf6927e102203c169d4f840cb4
+    digest: b113ba24e7f377e6c2ef5463333e435b767d505e475b32b97f211e7553971138
     name: sa-single-helm
     urls:
     - sa-single-helm-0.1.0.tgz
@@ -215,7 +215,7 @@ entries:
   threatanalytics-v2:
   - apiVersion: v1
     appVersion: 0.0.1
-    created: 2019-10-29T13:39:23.745747257Z
+    created: 2019-11-04T09:11:21.668493835Z
     description: This chart manages the Threat Intelligence Analytics micro-service.
     digest: 3d5f2ee0ac9467c526ec85c49c0b104863b9010eb9d940c80792d4327664881a
     icon: https://avatars.github.ibm.com/u/56137?s=400
@@ -226,4 +226,4 @@ entries:
     urls:
     - threatanalytics-v2-0.0.1.tgz
     version: 0.0.1
-generated: 2019-10-29T13:39:23.667014188Z
+generated: 2019-11-04T09:11:21.584232276Z
