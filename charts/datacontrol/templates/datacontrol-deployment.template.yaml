@@ -394,8 +394,8 @@ spec:
                   name: {{ .Release.Name }}-datacontrol-configuration
                   key: dc_redis_auth
 #### ENVIRONMENT VARIABLES - IAM SECRETS
-           - name: iamConfig
-             valueFrom:
-               configMapKeyRef:
-                  name: {{ .Release.Name }}-datacontrol-configuration
-                  key: iamConfig
+####           - name: iamConfig
+####             valueFrom:
+####               configMapKeyRef:
+####                  name: {{ .Release.Name }}-datacontrol-configuration
+####                  key: iamConfig

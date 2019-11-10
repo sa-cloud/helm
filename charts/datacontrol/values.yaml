@@ -76,4 +76,4 @@ global:
   iamPDPURL: 'https://iam.test.cloud.ibm.com'
   iamTokenURL: 'https://iam.test.cloud.ibm.com/identity/token'
   iamPAPURL: 'https://iam.test.cloud.ibm.com'
-  iamConfig: '{"adminService":{"serviceName":"Grafeas-Admin-Service","serviceid":"ServiceId-1d1e8188-8ae6-45a4-b67e-5058a8373638"},"externalService":{"apiKey":"pYgIUhpGO25tN52EtbuzzomqGX_D7h_La8PCD_ELj6cq","serviceName":"Grafeas-External-Service","serviceid":"ServiceId-838121e1-8053-40e0-85d6-43a7d30f110d"},"internalService":{"apiKey":"ZSbLcYWa3iLul8zI4Vc_7tgYN8qG8GF4qmcaFL79713-","serviceName":"Grafeas-Internal-Service","serviceid":"ServiceId-5f4ca4ac-9a64-4bf0-ae03-4ad9a21afe42"},"serviceCname":"staging","viewerService":{"apiKey":"pYgIUhpGO25tN52EtbuzzomqGX_D7h_La8PCD_ELj6cq","serviceName":"security-advisor","serviceid":"ServiceId-838121e1-8053-40e0-85d6-43a7d30f110d"}}'
+  iamConfig: '{}'

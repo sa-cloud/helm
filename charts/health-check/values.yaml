@@ -14,7 +14,7 @@ global:
     development: debug
   topicsFindings: 'security_advisor_findings'
   repeatAfter: '1m'
-  waitForFinding: '10m'
+  waitForFinding: '20m'
   imagePullSecret: 'my-secret'
   kafkaSaalMechanism: 'PLAIN'
   kafkaSecurityProtocol: 'PLAINTEXT' #'SSL'
