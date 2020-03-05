@@ -41,6 +41,8 @@ For ICP:
       
       (g)	kubectl create secret docker-registry <my-image-pull-secret> --namespace <my-ns> --docker-server=registry.ng.bluemix.net --docker-username=token --docker-password=<token_password>
  
+*default secret name is my-secret, and it can be modified with --set sa-shard.global.imagePullSecret = 'new-name'
+
 
 4. On openshift only - an additional manual step is required:
 This line adds service account to a previously created scc, which allows runAsAny user and group:
