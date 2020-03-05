@@ -16,7 +16,7 @@ For ICP:
 ***Installing the chart:***
 1. helm repo add sa-charts https://github.com/sa-cloud/helm/blob/master/repo?raw=true
 2. helm repo update
-3. helm install --name=sa --namespace=<your-namespace> --set sa-data-collection.host=<cluster's ingress sub-domain> sa-charts/sa-data-collection
+3. helm install --name=sa --namespace=<your-namespace> --set sa-data-collection.host=<cluster's ingress sub-domain> sa-charts/sa-single-helm
   
    Note: for ICP cluster that does not have domain name defined, remove --set sa-data-collection.host=.. from the above command
 
@@ -42,6 +42,29 @@ For ICP:
       (g)	kubectl create secret docker-registry <my-image-pull-secret> --namespace <my-ns> --docker-server=registry.ng.bluemix.net --docker-username=token --docker-password=<token_password>
  
 
+4. On openshift only - an additional manual step is required:
+This line adds service account to a previously created scc, which allows runAsAny user and group:
+
+```oc adm policy add-scc-to-user <scc name> system:serviceaccount:<project/namespace>:<service account name>```
+
+It is possible to use a default scc that already present in project or create a new scc (You must have cluster-admin privileges to   manage SCCs.)
+https://docs.openshift.com/container-platform/3.4/admin_guide/manage_scc.html#updating-the-default-security-context-constraints
+
+I used an existing "privileged" scc which has: runAsUser:
+```runAsUser:
+  type: RunAsAny
+fsGroup:
+  type: RunAsAny
+```
+```oc adm policy add-scc-to-user privileged system:serviceaccount:sa-analytics:default
+oc adm policy add-scc-to-user privileged system:serviceaccount:sa-analytics:sa-single-helm-redis
+oc adm policy add-scc-to-user privileged system:serviceaccount:sa-analytics:sa-service-account
+oc adm policy add-scc-to-user privileged system:serviceaccount:sa-analytics:sa-redis
+oc adm policy add-scc-to-user privileged system:serviceaccount:sa-collectors:skydive-service-account
+oc adm policy add-scc-to-user privileged system:serviceaccount:sa-collectors:sa-service-account
+```
+
+all of the service accounts used in my components must be added the privileged scc
 
 
 ***About this Chart:***
